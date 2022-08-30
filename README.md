@@ -21,3 +21,6 @@ Created by the team
 -
 ## Stretch Goals
 Allow users to upload a variety of games, such as point and clicks, flash games, etc.
+
+## Database Visualization
+![Database Visual]
