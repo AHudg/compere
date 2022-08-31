@@ -41,3 +41,14 @@ Allow users to upload a variety of games, such as point and clicks, flash games,
 ## Database Visualization
 
 ![Database Visual](/lib/images/DatabaseVisual.png)
+
+## Mock Up Images
+
+Mock Up Design for Landing Page / Home Page
+![Landing Page Mock Up](./lib/images/LandingPageMockUp.jpg)
+
+Mock Up Design for the Profile Page
+![Profile Page Mock Up](./lib/images/ProfileMockUp.jpg)
+
+Mock Up Design for the View Quiz Page
+![View Quiz Mock Up](./lib/images/ViewQuizMockUp.jpg)
