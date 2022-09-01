@@ -15,29 +15,25 @@ Question.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    answers: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
+    answer1: {
+      type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        len: [4],
-      },
     },
-    /*answer2: {
+    answer2: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     answer3: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false, // true?
     },
     answer4: {
       type: DataTypes.STRING,
-      allowNull: false,
-    },*/
+      allowNull: false, // true?
+    },
     correct: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
-      // foreign key pointing to answers?
     },
     img_url: {
       type: DataTypes.STRING,
