@@ -2,7 +2,7 @@ const router = require('express').Router();
 const withAuth = require('../../utils/auth');
 const { Quiz, User, Like } = require('../../models');
 const sequelize = require('../../config/connection');
-
+// displays all quizzes
 router.get('/', (req, res) => {
     Quiz.findAll()
         .then(dbQuizData => res.json(dbQuizData))
@@ -12,6 +12,7 @@ router.get('/', (req, res) => {
         });
 });
 
+// finds a certain quiz
 router.get('/', (req, res) => {
     Quiz.findOne({
         where: {
@@ -44,6 +45,7 @@ router.get('/', (req, res) => {
         });
 });
 
+// creates a new quiz
 router.create('/', withAuth, (req, res) => {
     //expects {title: 'Ultimate Stardew Valley Quiz', question:'Who is this character', answer: 'A. Harvey' }
     Quiz.create({
@@ -58,6 +60,7 @@ router.create('/', withAuth, (req, res) => {
         });
 });
 
+// shows the upvotes on the quiz
 router.put('/upvote', withAuth, (req, res) => {
     Quiz.upvote({ ...req.body, user_id: req.session.user_id }, { Like, Quiz, User })
         .then(updatedVoteData => res.json(updatedVoteData))
@@ -67,6 +70,7 @@ router.put('/upvote', withAuth, (req, res) => {
         });
 });
 
+// updates the quiz
 router.put('/:id', withAuth, (req, res) => {
     Quiz.update(
         {
@@ -93,12 +97,20 @@ router.put('/:id', withAuth, (req, res) => {
         });
 });
 
+// deletes the quiz/ questions
 router.delete('/:id', withAuth, (req, res) => {
-    Post.destroy({
-        where: {
-            id: req.params.id
+    Post.destroy(
+        {
+            title: req.params.title,
+            question: req.body.question,
+            answer: req.body.answer
+        },
+        {
+            where: {
+                id: req.params.id
+            }
         }
-    })
+    )
         .then(dbPostData => {
             if (!dbPostData) {
                 res.status(404).json({ message: 'No quiz found with this id' });
