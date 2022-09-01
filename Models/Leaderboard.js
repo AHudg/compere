@@ -19,17 +19,11 @@ Leaderboard.init(
         key: "id",
       },
     },
-    points: {
-      // personally i'd like to rename it score but i'll follow the table for now
+    score_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-    },
-    quiz_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-
       references: {
-        model: "quiz",
+        model: "score",
         key: "id",
       },
     },
