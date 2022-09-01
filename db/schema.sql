@@ -1,0 +1,4 @@
+DROP DATABASE IF EXISTS compere_db;
+
+CREATE DATABASE compere_db;
+
