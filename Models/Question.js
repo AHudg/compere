@@ -16,7 +16,7 @@ Question.init(
       allowNull: false,
     },
     answers: {
-      type: DataTypes.ARRAY(sequelize.STRING),
+      type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: false,
       validate: {
         len: [4],
