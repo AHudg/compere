@@ -77,4 +77,4 @@ User.hasMany(Leaderboard, {
   foreignKey: "user_id",
 });
 
-module.exports = { Question, Quiz, User, Leaderboard };
+module.exports = { Question, Quiz, User, Leaderboard, Like, Score };
