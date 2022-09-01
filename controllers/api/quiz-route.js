@@ -50,8 +50,7 @@ router.create('/', withAuth, (req, res) => {
     //expects {title: 'Ultimate Stardew Valley Quiz', question:'Who is this character', answer: 'A. Harvey' }
     Quiz.create({
         title: req.body.title,
-        question: req.body.question,
-        answer: req.body.answer
+        description: req.body.description
     })
         .then(dbQuizData => res.json(dbQuizData))
         .catch(err => {
@@ -75,8 +74,7 @@ router.put('/:id', withAuth, (req, res) => {
     Quiz.update(
         {
             title: req.body.title,
-            question: req.body.question,
-            answer: req.body.answer
+            description: req.body.description
         },
         {
             where: {
@@ -101,9 +99,8 @@ router.put('/:id', withAuth, (req, res) => {
 router.delete('/:id', withAuth, (req, res) => {
     Post.destroy(
         {
-            title: req.params.title,
-            question: req.body.question,
-            answer: req.body.answer
+            title: req.body.title,
+            description: req.body.description
         },
         {
             where: {
