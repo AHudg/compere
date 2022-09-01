@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require("sequelize");
-const sequelize = requeire("../config/connection");
+const sequelize = require("../config/connection");
 
 class Leaderboard extends Model {}
 
