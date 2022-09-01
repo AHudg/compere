@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require("sequelize");
-const sequelize = requeire("../config/connection");
+const sequelize = require("../config/connection");
 
 class Question extends Model {}
 
@@ -15,11 +15,14 @@ Question.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    answer1: {
-      type: DataTypes.STRING,
+    answers: {
+      type: DataTypes.ARRAY(sequelize.STRING),
       allowNull: false,
+      validate: {
+        len: [4],
+      },
     },
-    answer2: {
+    /*answer2: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -30,7 +33,7 @@ Question.init(
     answer4: {
       type: DataTypes.STRING,
       allowNull: false,
-    },
+    },*/
     correct: {
       type: DataTypes.INTEGER,
       allowNull: false,

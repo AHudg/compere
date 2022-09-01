@@ -1,30 +1,15 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
-class Quiz extends Model {}
+class Score extends Model {}
 
-Quiz.init(
+Score.init(
   {
     id: {
       type: DataTypes.INTEGER,
+      allowNull: false,
       primaryKey: true,
-      allowNull: false,
       autoIncrement: true,
-    },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    img_url: {
-      type: DataTypes.STRING,
-      allowNull: true,
-      validate: {
-        isUrl: true,
-      },
-    },
-    description: {
-      type: DataTypes.STRING,
-      allowNull: true,
     },
     user_id: {
       type: DataTypes.INTEGER,
@@ -34,14 +19,27 @@ Quiz.init(
         key: "id",
       },
     },
+    points: {
+      // personally i'd like to rename it score but i'll follow the table for now
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    quiz_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+
+      references: {
+        model: "quiz",
+        key: "id",
+      },
+    },
   },
   {
     sequelize,
-    timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: "quiz",
+    modelName: "score",
   }
 );
 
-module.exports = Quiz;
+module.exports = Score;
