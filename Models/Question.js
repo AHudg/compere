@@ -15,8 +15,20 @@ Question.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    answers: {
-      type: DataTypes.ARRAY(sequelize.STRING),
+    answer1: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    answer2: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    answer3: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    answer4: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
     correct: {
@@ -24,15 +36,13 @@ Question.init(
       allowNull: false,
       // foreign key pointing to answers?
     },
-    /*
     img_url: {
-        type: DataTypes.STRING,
-        allowNull: true,
-        validate: {
-            isUrl: true
-        },
+      type: DataTypes.STRING,
+      allowNull: true,
+      validate: {
+        isUrl: true,
+      },
     },
-    */
     quiz_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
