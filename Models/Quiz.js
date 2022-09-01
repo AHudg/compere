@@ -1,6 +1,5 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = requeire("../config/connection");
-const bcrypt = require("bcrypt");
 
 class Quiz extends Model {}
 
