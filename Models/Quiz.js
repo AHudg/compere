@@ -11,18 +11,18 @@ Quiz.init(
       allowNull: false,
       autoIncrement: true,
     },
-    quizName: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    quiz_img_url: {
+    img_url: {
       type: DataTypes.STRING,
       allowNull: true,
       validate: {
         isUrl: true,
       },
     },
-    quiz_description: {
+    description: {
       type: DataTypes.STRING,
       allowNull: true,
     },
