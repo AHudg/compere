@@ -1,13 +1,12 @@
 const { Model, DataTypes } = require("sequelize");
-const sequelize = requeire("../config/connection");
+const sequelize = require("../config/connection");
 
-class Leaderboard extends Model {}
+class Like extends Model {}
 
-Leaderboard.init(
+Like.init(
   {
     id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
       primaryKey: true,
       autoIncrement: true,
     },
@@ -19,15 +18,9 @@ Leaderboard.init(
         key: "id",
       },
     },
-    points: {
-      // personally i'd like to rename it score but i'll follow the table for now
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
     quiz_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-
       references: {
         model: "quiz",
         key: "id",
@@ -36,10 +29,11 @@ Leaderboard.init(
   },
   {
     sequelize,
+    timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: "leaderboard",
+    modelName: "like",
   }
 );
 
-module.exports = Leaderboard;
+module.exports = Like;
