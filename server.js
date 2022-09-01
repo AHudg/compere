@@ -1,10 +1,10 @@
 const path = require("path");
 const express = require("express");
 const exphbs = require("express-handlebars");
-const helpers = require("./utils");
+const helpers = require("./utils/auth");
 
 // access to controller folder
-const controllers = require("./controllers");
+const controllers = require("./controllers/");
 
 // create the express application
 const app = express();
