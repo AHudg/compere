@@ -3,7 +3,7 @@ const Quiz = require("./Quiz");
 const Question = require("./Question");
 const Score = require("./Score");
 const Leaderboard = require("./Leaderboard");
-const Like = require("./Like");
+const Vote = require("./Vote");
 
 User.hasMany(Quiz, {
   foreignKey: "user_id",
@@ -13,27 +13,27 @@ Quiz.belongsTo(User, {
 });
 
 User.belongsToMany(Quiz, {
-  through: Like,
+  through: Vote,
   as: "liked_quizes",
   foreignKey: "user_id",
 });
 Quiz.belongsToMany(User, {
-  through: Like,
+  through: Vote,
   as: "liked_quizes",
   foreignKey: "quiz_id",
 });
 
-Like.belongsTo(User, {
+Vote.belongsTo(User, {
   foreignKey: "user_id",
 });
-User.hasMany(Like, {
+User.hasMany(Vote, {
   foreignKey: "user_id",
 });
 
-Like.belongsTo(Quiz, {
+Vote.belongsTo(Quiz, {
   foreignKey: "quiz_id",
 });
-Quiz.hasMany(Like, {
+Quiz.hasMany(Vote, {
   foreignKey: "quiz_id",
 });
 
@@ -77,4 +77,4 @@ User.hasMany(Leaderboard, {
   foreignKey: "user_id",
 });
 
-module.exports = { Question, Quiz, User, Leaderboard, Like, Score };
+module.exports = { Question, Quiz, User, Leaderboard, Vote, Score };
