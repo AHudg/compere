@@ -1,7 +1,6 @@
 const router = require("express").Router();
 const sequelize = require("../config/connection");
 const { Quiz, User, Like, Score } = require("../models");
-const withAuth = require("../utils/auth");
 
 // Cannot use withAuth here because you need to be able to be routed to the
 // homepage initially upon URL entry so that you can click the login button
