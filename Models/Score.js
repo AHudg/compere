@@ -11,14 +11,14 @@ Score.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    user_id: {
+    /*user_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
         model: "user",
         key: "id",
       },
-    },
+    },*/
     points: {
       // personally i'd like to rename it score but i'll follow the table for now
       type: DataTypes.INTEGER,
