@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const withAuth = require("../../utils/auth");
-const { Quiz, Question, User, Like } = require("../../models");
+const { Quiz, Question, User, Vote } = require("../../models");
 const sequelize = require("../../config/connection");
 // displays all quizzes
 router.get("/", (req, res) => {
@@ -67,12 +67,9 @@ router.post("/", withAuth, (req, res) => {
     });
 });
 
-// shows the upvotes on the quiz
-router.put("/upvote", withAuth, (req, res) => {
-  Quiz.upvote(
-    { ...req.body, user_id: req.session.user_id },
-    { Like, Quiz, User }
-  )
+// lets the user like a quiz
+router.put("/like", withAuth, (req, res) => {
+  Quiz.like({ ...req.body, user_id: req.session.user_id }, { Vote, Quiz, User })
     .then((updatedVoteData) => res.json(updatedVoteData))
     .catch((err) => {
       console.log(err);
