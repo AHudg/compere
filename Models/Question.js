@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require("sequelize");
-const sequelize = requeire("../config/connection");
+const sequelize = require("../config/connection");
 
 class Question extends Model {}
 
@@ -25,16 +25,15 @@ Question.init(
     },
     answer3: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false, // true?
     },
     answer4: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false, // true?
     },
     correct: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
-      // foreign key pointing to answers?
     },
     img_url: {
       type: DataTypes.STRING,
