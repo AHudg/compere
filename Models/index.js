@@ -1,9 +1,9 @@
+const User = require("./User");
+const Quiz = require("./Quiz");
+const Question = require("./Question");
+const Score = require("./Score");
 const Leaderboard = require("./Leaderboard");
 const Like = require("./Like");
-const Question = require("./Question");
-const Quiz = require("./Quiz");
-const Score = require("./Score");
-const User = require("./User");
 
 User.hasMany(Quiz, {
   foreignKey: "user_id",
@@ -51,7 +51,7 @@ Quiz.hasOne(Score, {
   foreignKey: "quiz_id",
 });
 
-User.hasMany(Score, {
+User.belongsToMany(Score, {
   through: Leaderboard,
   as: "user_scores",
   foreignKey: "user_id",
