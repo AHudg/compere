@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User, Quiz, Like, Question } = require("../../models");
+const { User, Quiz, Like, Score, Leaderboard } = require("../../models");
 
 // gets all users
 router.get("/", (req, res) => {
@@ -21,28 +21,19 @@ router.get("/:id", (req, res) => {
     include: [
       {
         model: Quiz,
-        attributes: [
-          "id",
-          "title",
-          "quiz_url",
-          "created_at",
-          "quiz_title",
-          "quiz_description",
-        ], // possibly include questions
-      },
-      {
-        model: Question,
-        attributes: ["id", "question_text", "created_at"],
-        include: {
-          model: Quiz,
-          attributes: ["title"],
-        },
+        attributes: ["id", "title", "img_url", "description"], // possibly include questions
       },
       {
         model: Quiz,
         attributes: ["title"],
         through: Like,
-        as: "liked_quiz",
+        as: "liked_quizes",
+      },
+      {
+        model: Score,
+        attributes: ["points"],
+        through: Leaderboard,
+        as: "user_scores",
       },
     ],
   })
@@ -70,7 +61,7 @@ router.post("/", (req, res) => {
       req.session.save(() => {
         req.session.user_id = dbUserData.id;
         req.session.username = dbUserData.username;
-        require.session.loggedIn = true;
+        req.session.loggedIn = true;
 
         res.json(dbUserData);
       });

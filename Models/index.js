@@ -14,12 +14,12 @@ Quiz.belongsTo(User, {
 
 User.belongsToMany(Quiz, {
   through: Like,
-  as: "liked_quizs",
+  as: "liked_quizes",
   foreignKey: "user_id",
 });
 Quiz.belongsToMany(User, {
   through: Like,
-  as: "liked_quizs",
+  as: "liked_quizes",
   foreignKey: "quiz_id",
 });
 
