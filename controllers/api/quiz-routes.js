@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const withAuth = require("../../utils/auth");
-const { Quiz, User, Like } = require("../../models");
+const { Quiz, Question, User, Like } = require("../../models");
 const sequelize = require("../../config/connection");
 // displays all quizzes
 router.get("/", (req, res) => {
@@ -58,7 +58,7 @@ router.post("/", withAuth, (req, res) => {
     title: req.body.title,
     description: req.body.description,
     user_id: req.body.user_id, // user_id: req.session.user_id,
-    img_url: req.body.img_url || null, // honestly not sure if that works / would work without
+    img_url: req.body.img_url, // honestly not sure if that works / would work without
   })
     .then((dbQuizData) => res.json(dbQuizData))
     .catch((err) => {
