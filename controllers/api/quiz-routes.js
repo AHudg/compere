@@ -112,7 +112,7 @@ router.delete('/:id', withAuth, (req, res) => {
     )
         .then(dbPostData => {
             if (!dbPostData) {
-                res.status(404).json({ message: 'No quiz found with this id' });
+                res.status(404).json({ message: "No quiz found with this id" });
                 return;
             }
             res.json(dbPostData);
