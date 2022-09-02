@@ -11,7 +11,7 @@ Quiz.init(
       allowNull: false,
       autoIncrement: true,
     },
-    name: {
+    title: {
       type: DataTypes.STRING,
       allowNull: false,
     },

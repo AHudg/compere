@@ -8,7 +8,7 @@ const homeRoutes = require("./home-routes");
 const dashboardRoutes = require("./dashboard-routes");
 
 // uses localhost:PORT/api in the url
-// router.use("/api", apiRoutes);
+router.use("/api", apiRoutes);
 // uses localhost:PORT/
 router.use("/", homeRoutes);
 // uses localhost:PORT/profile in the url
