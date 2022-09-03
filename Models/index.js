@@ -2,7 +2,7 @@ const User = require("./User");
 const Quiz = require("./Quiz");
 const Question = require("./Question");
 const Score = require("./Score");
-const Leaderboard = require("./Leaderboard");
+// const Leaderboard = require("./Leaderboard");
 const Vote = require("./Vote");
 
 User.hasMany(Quiz, {
@@ -74,4 +74,5 @@ User.hasMany(Leaderboard, {
   foreignKey: "user_id",
 }); /* */
 
-module.exports = { Question, Quiz, User, Leaderboard, Vote, Score };
+
+module.exports = { Question, Quiz, User, Vote, Score };

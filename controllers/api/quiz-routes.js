@@ -25,10 +25,10 @@ router.get("/:id", (req, res) => {
       "description",
       // 'questions'
       [
-        (sequelize.literal(
+        sequelize.literal(
           "(SELECT COUNT(*) FROM vote WHERE quiz.id = vote.quiz_id)"
         ),
-        "like_count"),
+        "like_count",
       ],
     ],
     include: [

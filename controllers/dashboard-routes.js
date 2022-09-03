@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const sequelize = require("../config/connection");
-const { Quiz, User, Like, Score } = require("../models");
+const { Quiz, User, Vote, Score } = require("../models");
 const withAuth = require("../utils/auth");
 
 // gets all of the quizzes the user has taken
@@ -14,12 +14,12 @@ router.get("/", withAuth, (req, res) => {
     },
     attributes: [
       "id",
-      "quiz_url",
+      "img_url",
       "title",
-      "created_at"[
+      "description"[
         // potentially questions?
         (sequelize.literal(
-          "(SELECT COUNT(*) FROM like WHERE quiz.id = like.quiz_id"
+          "(SELECT COUNT(*) FROM vote WHERE quiz.id = vote.quiz_id"
         ),
         "like_count")
       ],
@@ -29,7 +29,7 @@ router.get("/", withAuth, (req, res) => {
         model: Score,
         include: {
           model: User,
-          attributes: [""],
+          attributes: ["username"],
         },
       },
     ],
