@@ -4,27 +4,27 @@ const scoredata = [
   {
     user_id: 2,
     quiz_id: 1,
-    score: 67,
+    points: 67,
   },
   {
     user_id: 2,
     quiz_id: 2,
-    score: 0,
+    points: 0,
   },
   {
     user_id: 1,
     quiz_id: 2,
-    score: 100,
+    points: 100,
   },
   {
     user_id: 1,
     quiz_id: 1,
-    score: 33,
+    points: 33,
   },
   {
     user_id: 1,
     quiz_id: 3,
-    score: 0,
+    points: 0,
   },
 ];
 
