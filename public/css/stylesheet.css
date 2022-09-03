@@ -3,12 +3,17 @@
 }
 
 :root {
-  --primary-color: rgb(139, 216, 147);
+  /* --primary-color: rgb(139, 216, 147);
   --secondary-color: rgb(63, 113, 72);
   --tertiary-color: rgb(116, 186, 115);
   --primary-text-color: rgb(239, 151, 65);
-  --secondary-text-color: rgb(226, 213, 174);
+  --secondary-text-color: rgb(226, 213, 174); */
   --primary-font: "Kumbh Sans";
+  --primary-color: #cbd5b1;
+  --secondary-color: #446724;
+  --primary-text-color: #6e8b3d;
+  --secondary-text-color: #354e0c;
+  --accent-color: #854442;
 }
 
 body {
@@ -28,36 +33,25 @@ li {
   list-style-type: none;
 }
 
-.row {
-  padding-left: 0;
-  padding-right: 0;
-  margin-left: 0;
-  margin-right: 0;
-}
-
-.row > * {
-  padding-left: 0;
-  padding-right: 0;
+button {
+  border: none;
 }
 
 /* Styling the Header / Navigation */
 .header-bg {
   position: absolute;
-  background-color: var(--secondary-color);
+  background-color: var(--primary-color);
+  border-bottom: 5px solid var(--secondary-color);
   width: 100%;
-  height: 75px;
+  height: 70px;
   z-index: -1;
-  top: -17px;
+  top: -8px;
 }
 
 h1 {
   font-family: var(--primary-font);
   padding-left: 10px;
   margin-bottom: -5px;
-}
-
-.caboose {
-  margin-left: -7px;
 }
 
 h1 > a {
@@ -82,16 +76,67 @@ li > a {
   color: var(--primary-text-color);
 }
 
+li > a:hover {
+  font-size: 15px;
+  color: var(--secondary-text-color);
+}
+
 /* Styling Home Page */
 h2 {
-  font-size: 20px;
+  font-size: 18px;
   color: var(--primary-text-color);
 }
 
 input {
   border-radius: 10px;
-  background-color: var(--secondary-text-color);
+  background-color: var(--primary-color);
   border: solid 2px var(--primary-text-color);
+  color: var(--primary-text-color);
+}
+
+/* Styling Quiz Cards */
+h3 {
+  margin-top: 15px;
+  margin-left: 10px;
+  color: var(--secondary-color);
+}
+
+.quiz-section {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.quiz-body {
+  background-color: var(--primary-color);
+  border: solid 3px var(--secondary-color);
+  margin-top: 10px;
+  margin-bottom: 15px;
+  padding-top: 15px;
+}
+
+.quiz-img {
+  width: 95%;
+}
+
+h4 {
+  font-family: var(--primary-font);
+  color: var(--secondary-color);
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+h4 ~ p {
+  color: black;
+}
+
+.view-btn {
+  margin-bottom: 10px;
+  background-color: var(--primary-color);
+  border-top: solid 2px var(--secondary-color);
+  border-bottom: solid 2px var(--secondary-color);
+  border-radius: 3px;
+  font-family: var(--primary-font);
+  color: var(--secondary-color);
 }
 
 /* For iPads and Tablets 481px - 767px */

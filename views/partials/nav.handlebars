@@ -7,19 +7,18 @@
   </h1>
 
   <nav class="container text-end">
-    <ol class="row">
+    <ol class="row justify-content-end">
       {{#if loggedIn}}
-        <li class="">
+        <li class="col-3">
           <a href="/">Home</a>
         </li>
-        <li class="">
+        <li class="col-3">
           <a href="/dashboard">Dashboard</a>
         </li>
-        <li class="">
+        <li class="col-3">
           <a href="/logout">Log Out</a>
         </li>
       {{else}}
-        <div class="col-6"></div>
         <li class="col-3">
           <a href="/">Home</a>
         </li>
