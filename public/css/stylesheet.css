@@ -3,13 +3,17 @@
 }
 
 :root {
-  --primary-bg-color: rgb(175, 252, 165);
-  --primary-text-color: rgb(0, 0, 0);
+  --primary-color: rgb(139, 216, 147);
+  --secondary-color: rgb(63, 113, 72);
+  --tertiary-color: rgb(116, 186, 115);
+  --primary-text-color: rgb(239, 151, 65);
+  --secondary-text-color: rgb(226, 213, 174);
   --primary-font: "Kumbh Sans";
 }
 
 body {
   font-family: sans-serif;
+  background-color: var(--primary-color);
 }
 
 a {
@@ -37,45 +41,45 @@ li {
 }
 
 /* Styling the Header / Navigation */
-h1 {
+.header-bg {
   position: absolute;
-  /* Needed 100% for the header-bg to reference a size for its width */
+  background-color: var(--secondary-color);
   width: 100%;
+  height: 75px;
+  z-index: -1;
+  top: -17px;
+}
+
+h1 {
   font-family: var(--primary-font);
-  margin-top: 10px;
+  padding-left: 10px;
+  margin-bottom: -5px;
+}
+
+.caboose {
+  margin-left: -7px;
 }
 
 h1 > a {
-  position: relative;
-  left: -35px;
-  font-size: 15vw;
+  font-size: 60px;
   color: var(--primary-text-color);
 }
 
-h1 > img {
-  position: relative;
-  left: 47px;
-  bottom: 9px;
-  width: 9vw;
-  z-index: 1;
+h1 > a:hover {
+  color: var(--secondary-text-color);
 }
 
-h1 > div {
-  position: relative;
-  bottom: 80px;
-  height: 67px;
-  width: 100%;
-  z-index: -1;
-  background-color: var(--primary-bg-color);
-}
-
-nav > ol {
-  padding-top: 65px;
+#header-img {
+  width: 40px;
+  margin: -12px;
+  filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 0.5));
+  transition: 2s;
+  transform: rotate(720deg);
 }
 
 li > a {
   font-size: 15px;
-  color: rgb(0, 0, 0);
+  color: var(--primary-text-color);
 }
 
 /* For iPads and Tablets 481px - 767px */
