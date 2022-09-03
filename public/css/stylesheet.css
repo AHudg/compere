@@ -82,6 +82,18 @@ li > a {
   color: var(--primary-text-color);
 }
 
+/* Styling Home Page */
+h2 {
+  font-size: 20px;
+  color: var(--primary-text-color);
+}
+
+input {
+  border-radius: 10px;
+  background-color: var(--secondary-text-color);
+  border: solid 2px var(--primary-text-color);
+}
+
 /* For iPads and Tablets 481px - 767px */
 @media screen and (min-width: 481px) {
 }
