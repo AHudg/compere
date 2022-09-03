@@ -1,33 +1,31 @@
-<div class="">
-  <h1 class="">
-    <a href="">Compêre</a>
+<section>
+  <h1>
+    <img src="/images/LogoMock.png" />
+    <a href="">Compére</a>
+    <div></div>
   </h1>
-</div>
 
-<nav class="">
-  {{#if loggedIn}}
-    <ol class="">
-      <li class="">
-        <a href="/">Home</a>
-      </li>
-      <li class="">
-        <a href="/dashboard">Dashboard</a>
-      </li>
-      <li class="">
-        <a href="/logout">Log Out</a>
-      </li>
+  <nav class="container-fluid text-end">
+    <ol class="row">
+      {{#if loggedIn}}
+        <li class="">
+          <a href="/">Home</a>
+        </li>
+        <li class="">
+          <a href="/dashboard">Dashboard</a>
+        </li>
+        <li class="">
+          <a href="/logout">Log Out</a>
+        </li>
+      {{else}}
+        <div class="col-6"></div>
+        <li class="col-3">
+          <a href="/">Home</a>
+        </li>
+        <li class="col-3">
+          <a href="/login">Log In</a>
+        </li>
+      {{/if}}
     </ol>
-  {{else}}
-    <ol class="">
-      <li class="">
-        <a href="/">Home</a>
-      </li>
-      <li class="">
-        <a href="/login">Log In</a>
-      </li>
-      <li class="">
-        <a href="/signup">Sign Up</a>
-      </li>
-    </ol>
-  {{/if}}
-</nav>
+  </nav>
+</section>
