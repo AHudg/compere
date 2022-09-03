@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const withAuth = require("../../utils/auth");
-const { Quiz, Question, User, Vote } = require("../../models");
+const { Quiz, Question, User, Vote, Score } = require("../../models");
 const sequelize = require("../../config/connection");
 // displays all quizzes
 router.get("/", (req, res) => {
@@ -37,6 +37,35 @@ router.get("/:id", (req, res) => {
         attributes: ["username"],
       },
     ],
+  })
+    .then((dbQuizData) => {
+      if (!dbQuizData) {
+        res.status(404).json({ message: "No quiz found with this id" });
+        return;
+      }
+      res.json(dbQuizData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+// finds the top 10 scores for the quiz
+router.get("/scores/:id", (req, res) => {
+  Score.findAll({
+    limit: 10,
+    where: {
+      quiz_id: req.params.id,
+    },
+    attributes: ["points"],
+    include: [
+      {
+        model: User,
+        attributes: ["username"],
+      },
+    ],
+    order: [["points", "DESC"]],
   })
     .then((dbQuizData) => {
       if (!dbQuizData) {
