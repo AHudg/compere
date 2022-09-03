@@ -21,7 +21,7 @@ router.get("/:id", (req, res) => {
     include: [
       {
         model: Quiz,
-        attributes: ["id", "title", "img_url", "description"], // possibly include questions
+        attributes: ["id", "title", "img_url", "description"],
       },
       {
         model: Quiz,
@@ -31,7 +31,14 @@ router.get("/:id", (req, res) => {
       },
       {
         model: Score,
+
         attributes: ["points"],
+        include: [
+          {
+            model: Quiz,
+            attributes: ["title"],
+          },
+        ],
       },
     ],
   })
