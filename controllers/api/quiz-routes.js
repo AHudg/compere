@@ -13,22 +13,22 @@ router.get("/", (req, res) => {
 });
 
 // finds a certain quiz
-router.get("/", (req, res) => {
+router.get("/:id", (req, res) => {
   Quiz.findOne({
     where: {
       id: req.params.id,
     },
     attributes: [
       "id",
-      "post_url",
+      "img_url",
       "title",
-      "created_at",
-      "description"[
-        // 'questions'
+      "description",
+      // 'questions'
+      [
         (sequelize.literal(
-          "(SELECT COUNT(*) FROM like WHERE post.id = like.post_id)"
+          "(SELECT COUNT(*) FROM vote WHERE quiz.id = vote.quiz_id)"
         ),
-        "like_count")
+        "like_count"),
       ],
     ],
     include: [
