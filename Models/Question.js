@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require("sequelize");
-const sequelize = requeire("../config/connection");
+const sequelize = require("../config/connection");
 
 class Question extends Model {}
 
@@ -15,24 +15,33 @@ Question.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    answers: {
-      type: DataTypes.ARRAY(sequelize.STRING),
+    answer1: {
+      type: DataTypes.STRING,
       allowNull: false,
+    },
+    answer2: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    answer3: {
+      type: DataTypes.STRING,
+      allowNull: false, // true?
+    },
+    answer4: {
+      type: DataTypes.STRING,
+      allowNull: false, // true?
     },
     correct: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
-      // foreign key pointing to answers?
     },
-    /*
     img_url: {
-        type: DataTypes.STRING,
-        allowNull: true,
-        validate: {
-            isUrl: true
-        },
+      type: DataTypes.STRING,
+      allowNull: true,
+      validate: {
+        isUrl: true,
+      },
     },
-    */
     quiz_id: {
       type: DataTypes.INTEGER,
       allowNull: false,

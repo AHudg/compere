@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
-class Leaderboard extends Model {}
+class Score extends Model {}
 
-Leaderboard.init(
+Score.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -19,22 +19,28 @@ Leaderboard.init(
         key: "id",
       },
     },
-    score_id: {
+    points: {
+      // personally i'd like to rename it score but i'll follow the table for now
       type: DataTypes.INTEGER,
       allowNull: false,
+    },
+    quiz_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+
       references: {
-        model: "score",
+        model: "quiz",
         key: "id",
       },
     },
   },
   {
     sequelize,
-    freezeTableName: true,
     timestamps: false,
+    freezeTableName: true,
     underscored: true,
-    modelName: "leaderboard",
+    modelName: "score",
   }
 );
 
-module.exports = Leaderboard;
+module.exports = Score;

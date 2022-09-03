@@ -1,13 +1,12 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
-class Leaderboard extends Model {}
+class Vote extends Model {}
 
-Leaderboard.init(
+Vote.init(
   {
     id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
       primaryKey: true,
       autoIncrement: true,
     },
@@ -19,22 +18,22 @@ Leaderboard.init(
         key: "id",
       },
     },
-    score_id: {
+    quiz_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: "score",
+        model: "quiz",
         key: "id",
       },
     },
   },
   {
     sequelize,
-    freezeTableName: true,
     timestamps: false,
+    freezeTableName: true,
     underscored: true,
-    modelName: "leaderboard",
+    modelName: "vote",
   }
 );
 
-module.exports = Leaderboard;
+module.exports = Vote;
