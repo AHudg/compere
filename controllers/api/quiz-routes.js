@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const withAuth = require("../../utils/auth");
-const { Quiz, User, Like } = require("../../models");
+const { Quiz, Question, User, Vote } = require("../../models");
 const sequelize = require("../../config/connection");
 // displays all quizzes
 router.get("/", (req, res) => {
@@ -13,22 +13,22 @@ router.get("/", (req, res) => {
 });
 
 // finds a certain quiz
-router.get("/", (req, res) => {
+router.get("/:id", (req, res) => {
   Quiz.findOne({
     where: {
       id: req.params.id,
     },
     attributes: [
       "id",
-      "post_url",
+      "img_url",
       "title",
-      "created_at",
-      "description"[
-        // 'questions'
-        (sequelize.literal(
-          "(SELECT COUNT(*) FROM like WHERE post.id = like.post_id)"
+      "description",
+      // 'questions'
+      [
+        sequelize.literal(
+          "(SELECT COUNT(*) FROM vote WHERE quiz.id = vote.quiz_id)"
         ),
-        "like_count")
+        "like_count",
       ],
     ],
     include: [
@@ -57,6 +57,8 @@ router.post("/", withAuth, (req, res) => {
   Quiz.create({
     title: req.body.title,
     description: req.body.description,
+    user_id: req.body.user_id, // user_id: req.session.user_id,
+    img_url: req.body.img_url, // honestly not sure if that works / would work without
   })
     .then((dbQuizData) => res.json(dbQuizData))
     .catch((err) => {
@@ -65,12 +67,9 @@ router.post("/", withAuth, (req, res) => {
     });
 });
 
-// shows the upvotes on the quiz
-router.put("/upvote", withAuth, (req, res) => {
-  Quiz.upvote(
-    { ...req.body, user_id: req.session.user_id },
-    { Like, Quiz, User }
-  )
+// lets the user like a quiz
+router.put("/like", withAuth, (req, res) => {
+  Quiz.like({ ...req.body, user_id: req.session.user_id }, { Vote, Quiz, User })
     .then((updatedVoteData) => res.json(updatedVoteData))
     .catch((err) => {
       console.log(err);
