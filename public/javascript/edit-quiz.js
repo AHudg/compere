@@ -1,8 +1,9 @@
 async function editFormHandler(event) {
     event.preventDefault();
     
-    const question = document.querySelector('input[name="question"]').value;
-    const answer = document.querySelector('input[name="answer"]').value;
+    const title = document.querySelector('input[name="title"]').value;
+    const description = document.querySelector('input[name="description"]').value;
+    const picture = document.querySelector('input[name="picture"]').value;
     
     const id = window.location.toString().split('/')[
       window.location.toString().split('/').length - 1
@@ -10,8 +11,9 @@ async function editFormHandler(event) {
     const response = await fetch(`/api/questions/${id}`, {
       method: 'PUT',
       body: JSON.stringify({
-          question,
-          answer
+        title,
+        description,
+        picture
       }),
       headers: {
         'Content-Type': 'application/json'
@@ -25,5 +27,5 @@ async function editFormHandler(event) {
     }
   }
   
-  document.querySelector('.edit-post-form').addEventListener('submit', editFormHandler);
+  document.querySelector('.edit-quiz-form').addEventListener('submit', editFormHandler);
   

@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { User, Quiz, Like, Question } = require('../../models');
+const withAuth = require('../../utils/auth');
 
 // gets all users
 router.get('/', (req, res) => {
@@ -54,7 +55,7 @@ router.get('/:id', (req, res) => {
         });
 });
 
-router.post('/', (req, res) => {
+router.post('/', withAuth, (req, res) => {
     // expects {username: 'Lernantino', email: 'lernantino@example.com, password: 'password1234'}
     User.create({
         username: req.body.username,
@@ -76,7 +77,7 @@ router.post('/', (req, res) => {
         });    
 });
 
-router.post('/login', (req, res) => {
+router.post('/login', withAuth, (req, res) => {
     // expects { email: 'lernatino@gmail.com', password: 'password1234'}
     User.findOne({
         where: {
@@ -106,7 +107,7 @@ router.post('/login', (req, res) => {
         });
 });
 
-router.post('/logout', (req, res) => {
+router.post('/logout', withAuth, (req, res) => {
     if (req.session.loggedIn) {
         require.session.destroy(() => {
             res.status(204).end();
@@ -116,7 +117,7 @@ router.post('/logout', (req, res) => {
     }
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', withAuth, (req, res) => {
     User.update(req.body, {
         individualHooks: true,
         where: {
@@ -136,7 +137,7 @@ router.put('/:id', (req, res) => {
         });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', withAuth, (req, res) => {
     User.destroy({
         where: {
             id: req.params.id

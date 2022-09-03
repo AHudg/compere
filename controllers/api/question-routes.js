@@ -22,7 +22,7 @@ router.get('/quiz/:id/questions', (req, res) => {
         },
         attributes: [
             'id',
-            'quetion',
+            'question',
             'answers'
         ],
         include: [
@@ -47,7 +47,7 @@ router.get('/quiz/:id/questions', (req, res) => {
 
 //creates the quiz question
 
-router.create('/quiz/:id/questions', withAuth, (req, res) => {
+router.post('/quiz/:id/questions', withAuth, (req, res) => {
     //expects question: "what does the fox say?", answer: "A. grr", "B. bark". "C. woof", "D. idk"
     Question.create({
         question: req.body.question,
