@@ -139,6 +139,22 @@ h4 ~ p {
   color: var(--secondary-color);
 }
 
+/* Styling Login */
+.form-section {
+  border-left: solid 2px var(--secondary-text-color);
+  border-right: solid 2px var(--secondary-text-color);
+  filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 0.3));
+}
+
+label {
+  color: var(--secondary-text-color);
+  font-family: var(--primary-font);
+}
+
+.toggle-phrase {
+  color: var(--secondary-text-color);
+}
+
 /* For iPads and Tablets 481px - 767px */
 @media screen and (min-width: 481px) {
 }
