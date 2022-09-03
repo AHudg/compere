@@ -19,7 +19,7 @@ User.belongsToMany(Quiz, {
 });
 Quiz.belongsToMany(User, {
   through: Vote,
-  as: "liked_quizes",
+  as: "like_count",
   foreignKey: "quiz_id",
 });
 
@@ -72,6 +72,7 @@ Leaderboard.belongsTo(User, {
 });
 User.hasMany(Leaderboard, {
   foreignKey: "user_id",
-}); */
+}); /* */
+
 
 module.exports = { Question, Quiz, User, Vote, Score };
