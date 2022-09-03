@@ -31,9 +31,10 @@ Leaderboard.init(
   {
     sequelize,
     freezeTableName: true,
+    timestamps: false,
     underscored: true,
     modelName: "leaderboard",
   }
 );
 
-module.exports = Leaderboard;
+// module.exports = Leaderboard;
