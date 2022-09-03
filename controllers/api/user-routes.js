@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User, Quiz, Like, Score, Leaderboard } = require("../../models");
+const { User, Quiz, Vote, Score } = require("../../models");
 
 // gets all users
 router.get("/", (req, res) => {
@@ -26,14 +26,12 @@ router.get("/:id", (req, res) => {
       {
         model: Quiz,
         attributes: ["title"],
-        through: Like,
+        through: Vote,
         as: "liked_quizes",
       },
       {
         model: Score,
         attributes: ["points"],
-        through: Leaderboard,
-        as: "user_scores",
       },
     ],
   })
