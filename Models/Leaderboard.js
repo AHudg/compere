@@ -31,6 +31,7 @@ Leaderboard.init(
   {
     sequelize,
     freezeTableName: true,
+    timestamps: false,
     underscored: true,
     modelName: "leaderboard",
   }

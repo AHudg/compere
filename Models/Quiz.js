@@ -1,7 +1,31 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
-class Quiz extends Model {}
+class Quiz extends Model {
+  static like(body, models) {
+    return models.Vote.create({
+      user_id: body.user_id,
+      quiz_id: body.quiz_id,
+    }).then(() => {
+      return Quiz.findOne({
+        where: {
+          id: body.quiz_id,
+        },
+        attributes: [
+          "id",
+          "title",
+          "description",
+          [
+            sequelize.literal(
+              "(SELECT COUNT(*) FROM vote WHERE quiz.id = vote.quiz_id)"
+            ),
+            "like_count",
+          ],
+        ],
+      });
+    });
+  }
+}
 
 Quiz.init(
   {
@@ -11,7 +35,7 @@ Quiz.init(
       allowNull: false,
       autoIncrement: true,
     },
-    name: {
+    title: {
       type: DataTypes.STRING,
       allowNull: false,
     },
