@@ -5,15 +5,16 @@ const getFourQuizzes = require("../utils/homepageQuizes");
 
 // Cannot use withAuth here because you need to be able to be routed to the
 // homepage initially upon URL entry so that you can click the login button
-// instead, I check for authentication on line 39
+// instead, I check for authentication on line 40
 router.get("/", (req, res) => {
-  Quiz.count() // get total # of quizzes
+  // get total # of quizzes
+  Quiz.count()
+    // randomly select 4 quizzes from that list
     .then((numQuizzes) => {
-      // randomly select 4 quizzes from that list
       return getFourQuizzes(numQuizzes);
     })
+    // then get the data tied to those quizzes ...
     .then((displayQuizzes) => {
-      // then get the data tied to those quizzes
       return Quiz.findAll({
         where: {
           id: displayQuizzes,
@@ -32,9 +33,9 @@ router.get("/", (req, res) => {
         ],
       });
     })
+    // ... and send it to the user
     .then((dbQuizData) => {
       const quizzes = dbQuizData.map((quiz) => quiz.get({ plain: true }));
-      console.log(quizzes);
       res.render("homepage", {
         quizzes,
         loggedIn: req.session.loggedIn,

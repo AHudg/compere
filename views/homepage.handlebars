@@ -6,7 +6,9 @@
 
   <h3>Our Current Quizzes</h3>
 
-  {{!-- {{#each quiz}} --}}
-    {{> populate-quiz}}
-  {{!-- {{/each}} --}}
+  {{#each quizzes as |quiz| }} 
+    <div class="row justify-content-around text-center quiz-section">
+      {{> populate-quiz quiz}}
+    </div>
+  {{/each}}
 </section>

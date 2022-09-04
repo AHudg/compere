@@ -1,57 +1,12 @@
-<div class="row justify-content-around text-center quiz-section">
-  <div class="col-10 col-md-5 quiz-body">
-    <img class="quiz-img" src="/images/placeholder.jpeg" />
-    <div class="quiz-content">
-      <h4>Quiz Title</h4>
-      <p>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora
-        minima, perspiciatis fugiat culpa iste laudantium, consequatur deleniti
-        temporibus blanditiis adipisci officiis et officia. Mollitia animi velit
-        voluptatem! Reiciendis, ducimus cupiditate!
-      </p>
-      <button class="view-btn" type="submit">More Quiz Details</button>
-    </div>
-  </div>
-
-  <div class="col-10 col-md-5 quiz-body">
-    <img class="quiz-img" src="/images/placeholder.jpeg" />
-    <div class="quiz-content">
-      <h4>Quiz Title</h4>
-      <p>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora
-        minima, perspiciatis fugiat culpa iste laudantium, consequatur deleniti
-        temporibus blanditiis adipisci officiis et officia. Mollitia animi velit
-        voluptatem! Reiciendis, ducimus cupiditate!
-      </p>
-      <button class="view-btn" type="submit">More Quiz Details</button>
-    </div>
-  </div>
-
-  <div class="col-10 col-md-5 quiz-body">
-    <img class="quiz-img" src="/images/placeholder.jpeg" />
-    <div class="quiz-content">
-      <h4>Quiz Title</h4>
-      <p>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora
-        minima, perspiciatis fugiat culpa iste laudantium, consequatur deleniti
-        temporibus blanditiis adipisci officiis et officia. Mollitia animi velit
-        voluptatem! Reiciendis, ducimus cupiditate!
-      </p>
-      <button class="view-btn" type="submit">More Quiz Details</button>
-    </div>
-  </div>
-
-  <div class="col-10 col-md-5 quiz-body">
-    <img class="quiz-img" src="/images/placeholder.jpeg" />
-    <div class="quiz-content">
-      <h4>Quiz Title</h4>
-      <p>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora
-        minima, perspiciatis fugiat culpa iste laudantium, consequatur deleniti
-        temporibus blanditiis adipisci officiis et officia. Mollitia animi velit
-        voluptatem! Reiciendis, ducimus cupiditate!
-      </p>
-      <button class="view-btn" type="submit">More Quiz Details</button>
-    </div>
+<div class="col-10 col-md-5 quiz-body">
+  {{#if img_url}}
+    <img class="quiz-img" src={{img_url}} />
+  {{/if}}
+  <div class="quiz-content">
+    <h4>{{title}}</h4>
+    <p>
+      {{description}}
+    </p>
+    <button class="view-btn" type="submit">More Quiz Details</button>
   </div>
 </div>
