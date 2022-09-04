@@ -94,6 +94,13 @@ input {
   color: var(--primary-text-color);
 }
 
+.mag-btn {
+  color: var(--secondary-color);
+  position: relative;
+  left: -45px;
+  bottom: -5px;
+}
+
 /* Styling Quiz Cards */
 h3 {
   margin-top: 15px;
@@ -114,6 +121,16 @@ h3 {
   padding-top: 15px;
 }
 
+.quiz-like {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  display: inline;
+  padding: 8px 10px;
+  position: relative;
+  left: -90px;
+  top: -10px;
+}
+
 .quiz-img {
   width: 95%;
 }
@@ -130,20 +147,21 @@ h4 ~ p {
 }
 
 .view-btn {
-  margin-bottom: 10px;
   background-color: var(--primary-color);
   border-top: solid 2px var(--secondary-color);
   border-bottom: solid 2px var(--secondary-color);
   border-radius: 3px;
   font-family: var(--primary-font);
   color: var(--secondary-color);
+  filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 0.3));
+  margin-bottom: 20px;
 }
 
 /* Styling Login */
 .form-section {
+  margin-top: 80px;
   border-left: solid 2px var(--secondary-text-color);
   border-right: solid 2px var(--secondary-text-color);
-  filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 0.3));
 }
 
 label {
@@ -155,18 +173,57 @@ label {
   color: var(--secondary-text-color);
 }
 
+.giant-img {
+  display: none;
+}
+
 /* For iPads and Tablets 481px - 767px */
 @media screen and (min-width: 481px) {
+  .quiz-like {
+    left: -145px;
+  }
 }
 
 /* For Small Screens and Laptops 768px - 1024px */
 @media screen and (min-width: 768px) {
+  .mag-btn {
+    left: -60px;
+  }
+
+  .quiz-like {
+    left: -100px;
+  }
 }
 
 /* For Desktops and Large Screens 1025px - 1200px */
 @media screen and (min-width: 1025px) {
+  .mag-btn {
+    left: -75px;
+  }
+
+  .quiz-like {
+    left: -150px;
+  }
 }
 
 /* For Extra Large Screens and TVs 1201px and more */
 @media screen and (min-width: 1201px) {
+  .mag-btn {
+    left: -90px;
+  }
+
+  .quiz-like {
+    left: -200px;
+  }
+}
+
+/* For Extra Large Screens and TVs 1201px and more */
+@media screen and (min-width: 1700px) {
+  .mag-btn {
+    left: -90px;
+  }
+
+  .quiz-like {
+    left: -250px;
+  }
 }

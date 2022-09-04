@@ -6,7 +6,7 @@ const { Quiz, User, Like, Score } = require("../models");
 // homepage initially upon URL entry so that you can click the login button
 // instead, I check for authentication on line 39
 router.get("/", (req, res) => {
-  res.render("homepage");
+  res.render("homepage", { loggedIn: true });
   // Quiz.findAll({
   //   attributes: [
   //     "id",
@@ -49,7 +49,8 @@ router.get("/", (req, res) => {
   //   });
 });
 
-router.get("/quiz/:id", (req, res) => {
+// router.get("/quiz/:id", (req, res) => {
+router.get("/quiz/1", (req, res) => {
   res.render("view-quiz");
   // Quiz.findOne({
   //   where: {
