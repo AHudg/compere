@@ -15,6 +15,6 @@ async function newFormHandler(event) {
         }
     });
     if (response.ok) {
-        document.location.replace('/dashboard') // also add in quiz url
+        document.location.replace('/dashboard', '/quiz/:id') // also add in quiz url
     }
 }

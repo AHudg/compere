@@ -105,23 +105,17 @@ router.put("/:id", withAuth, (req, res) => {
 
 // deletes the quiz/ questions
 router.delete("/:id", withAuth, (req, res) => {
-  Post.destroy(
-    {
-      title: req.body.title,
-      description: req.body.description,
+  Quiz.destroy({
+    where: {
+      id: req.params.id,
     },
-    {
-      where: {
-        id: req.params.id,
-      },
-    }
-  )
-    .then((dbPostData) => {
-      if (!dbPostData) {
+  })
+    .then((dbQuizData) => {
+      if (!dbQuizData) {
         res.status(404).json({ message: "No quiz found with this id" });
         return;
       }
-      res.json(dbPostData);
+      res.json(dbQuizData);
     })
     .catch((err) => {
       console.log(err);
