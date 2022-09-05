@@ -28,51 +28,32 @@ router.get("/", (req, res) => {
     });
 });
 
-// router.get("/quiz/:id", (req, res) => {
-router.get("/quiz/1", (req, res) => {
-  res.render("view-quiz");
-  // Quiz.findOne({
-  //   where: {
-  //     id: req.params.id,
-  //   },
-  //   attributes: [
-  //     "id",
-  //     "quiz_url",
-  //     "title",
-  //     "created_at"[
-  //       // potentially questions?
-  //       (sequelize.literal(
-  //         "(SELECT COUNT(*) FROM vote WHERE quiz.id = vote.quiz_id"
-  //       ),
-  //       "like_count")
-  //     ],
-  //   ],
-  //   include: [
-  //     {
-  //       model: Score,
-  //       include: {
-  //         model: User,
-  //         attributes: [""],
-  //       },
-  //     },
-  //   ],
-  // })
-  //   .then((dbQuizData) => {
-  //     if (!dbQuizData) {
-  //       res.status(404).json({ message: "No user found with this id." });
-  //       return;
-  //     }
-  //     const quiz = dbQuizData.get({ plain: true });
-  //     if (req.session.account_id) {
-  //       res.render("view-quiz", { quiz, loggedIn: true });
-  //     } else {
-  //       res.render("view-quiz", { quiz });
-  //     }
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //     res.status(500).json(err);
-  //   });
+router.get("/quiz/:id", (req, res) => {
+  Quiz.findOne({
+    where: {
+      id: req.params.id,
+    },
+    attributes: ["id", "title", "img_url", "description", "user_id"],
+  })
+    .then((dbQuizData) => {
+      if (!dbQuizData) {
+        res.status(404).json({ message: "No quiz found with this id." });
+        return;
+      }
+
+      // serializes data
+      const quiz = dbQuizData.get({ plain: true });
+
+      if (req.session.account_id) {
+        res.render("view-quiz", { quiz, loggedIn: true });
+      } else {
+        res.render("view-quiz", { quiz });
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 router.get("/login", (req, res) => {
