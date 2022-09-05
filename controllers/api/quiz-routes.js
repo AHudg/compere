@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const withAuth = require("../../utils/auth");
-const { Quiz, Question, User, Vote } = require("../../models");
+const { Quiz, Question, User, Vote, Score } = require("../../models");
 const sequelize = require("../../config/connection");
 // displays all quizzes
 router.get("/", (req, res) => {
@@ -25,10 +25,10 @@ router.get("/:id", (req, res) => {
       "description",
       // 'questions'
       [
-        (sequelize.literal(
+        sequelize.literal(
           "(SELECT COUNT(*) FROM vote WHERE quiz.id = vote.quiz_id)"
         ),
-        "like_count"),
+        "like_count",
       ],
     ],
     include: [
@@ -51,13 +51,42 @@ router.get("/:id", (req, res) => {
     });
 });
 
+// finds the top 10 scores for the quiz
+router.get("/scores/:id", (req, res) => {
+  Score.findAll({
+    limit: 10,
+    where: {
+      quiz_id: req.params.id,
+    },
+    attributes: ["points"],
+    include: [
+      {
+        model: User,
+        attributes: ["username"],
+      },
+    ],
+    order: [["points", "DESC"]],
+  })
+    .then((dbQuizData) => {
+      if (!dbQuizData) {
+        res.status(404).json({ message: "No quiz found with this id" });
+        return;
+      }
+      res.json(dbQuizData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
 // creates a new quiz
 router.post("/", withAuth, (req, res) => {
   //expects {title: 'Ultimate Stardew Valley Quiz', question:'Who is this character', answer: 'A. Harvey' }
   Quiz.create({
     title: req.body.title,
     description: req.body.description,
-    user_id: req.body.user_id, // user_id: req.session.user_id,
+    user_id: req.session.user_id, // user_id: req.session.user_id,
     img_url: req.body.img_url, // honestly not sure if that works / would work without
   })
     .then((dbQuizData) => res.json(dbQuizData))

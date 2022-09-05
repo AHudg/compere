@@ -5,9 +5,11 @@ const sequelize = require("../../config/connection");
 
 // shows all questions on the quiz
 router.get("/quiz/:id", withAuth, (req, res) => {
-  Question.findAll(/*{
-    attributes: ["question"]  // I don't know if this is strictly necessary but maybe it is. iunno. it's there if it's relevant.
-  }*/)
+  Question.findAll({
+    where: {
+      quiz_id: req.params.id,
+    },
+  })
     .then((dbQuestionData) => res.json(dbQuestionData))
     .catch((err) => {
       console.log(err);
@@ -73,7 +75,7 @@ router.post("/quiz/:id", withAuth, (req, res) => {
 });
 
 // updates the question
-router.put("/quiz/:id", withAuth, (req, res) => {
+router.put("/:id", withAuth, (req, res) => {
   Question.update(
     {
       question: req.body.question,
@@ -104,7 +106,7 @@ router.put("/quiz/:id", withAuth, (req, res) => {
     });
 });
 
-router.delete("/quiz/:id", withAuth, (req, res) => {
+router.delete("/:id", withAuth, (req, res) => {
   Question.destroy({
     where: {
       id: req.params.id,

@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const sequelize = require("../config/connection");
-const { Quiz, User, Like, Score } = require("../models");
+const { Quiz, User, Vote, Score } = require("../models");
 const withAuth = require("../utils/auth");
 
 // gets all of the quizzes the user has taken
