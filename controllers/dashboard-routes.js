@@ -5,9 +5,8 @@ const withAuth = require("../utils/auth");
 
 // gets all of the quizzes the user has taken
 
-router.get("/", (req, res) => {
-  res.render("dashboard");
-  // router.get("/", withAuth, (req, res) => {
+router.get("/", withAuth, (req, res) => {
+  res.render("dashboard", { loggedIn: true });
   // console.log(req.session);
   // console.log("=================");
   // Quiz.findAll({
@@ -36,6 +35,11 @@ router.get("/", (req, res) => {
   //     },
   //   ],
   // });
+});
+
+// router.get('/edit/:id', (req, res) => {})
+router.get("/edit/1", (req, res) => {
+  res.render("edit-dashboard");
 });
 
 module.exports = router;

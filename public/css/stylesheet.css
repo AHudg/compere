@@ -11,7 +11,7 @@
   --primary-font: "Kumbh Sans";
   --primary-color: #cbd5b1;
   --secondary-color: rgb(68, 103, 36);
-  --primary-text-color: #6e8b3d;
+  --primary-text-color: rgb(110, 139, 61);
   --secondary-text-color: #354e0c;
   --accent-color: #854442;
 }
@@ -92,6 +92,20 @@ li > a:hover {
 }
 
 /* Styling Home Page */
+.my-carousel {
+  padding: 10px 0;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  background-color: var(--primary-text-color);
+}
+
+.carousel-text {
+  font-size: 15px;
+  margin: 0 0 5px 0;
+  color: var(--primary-color);
+  font-family: var(--primary-font);
+}
+
 h2 {
   font-size: 18px;
   color: var(--primary-text-color);
@@ -116,7 +130,7 @@ input {
   height: 85vh;
 }
 
-/* Styling Quiz Cards */
+/* Styling Quiz Cards used on Home Page and Profile */
 h3 {
   margin-top: 15px;
   margin-left: 10px;
@@ -178,7 +192,7 @@ h4 ~ p {
   color: var(--primary-color);
 }
 
-/* Styling Login */
+/* Styling Login / Signup */
 .form-section {
   margin-top: 80px;
   border-left: solid 2px var(--secondary-text-color);
@@ -207,8 +221,57 @@ label {
   color: var(--secondary-text-color);
 }
 
+/* Styling Profile */
+.profile-name {
+  font-size: 30px;
+}
+
+.profile-img {
+  width: 100%;
+}
+
+.profile-email {
+  font-size: 20px;
+}
+
+.profile-meta {
+  font-size: 15px;
+  color: var(--secondary-text-color);
+}
+
+.sidebar {
+  border-left: solid 2px var(--secondary-color);
+  border-right: solid 2px var(--secondary-color);
+  border-radius: 30px;
+}
+
+.sidebar-title {
+  font-size: 20px;
+  font-family: var(--primary-font);
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.liked-section {
+  color: var(--secondary-text-color);
+  padding: 10px 0;
+}
+
+/* .liked-title {
+} */
+
 /* For iPads and Tablets 481px - 767px */
 @media screen and (min-width: 481px) {
+  .my-carousel {
+    padding: 15px 0;
+    margin-bottom: 30px;
+  }
+
+  .carousel-text {
+    font-size: 20px;
+    margin: 0 0 10px 0;
+  }
+
   .quiz-like {
     left: -145px;
   }
@@ -227,6 +290,10 @@ label {
 
 /* For Desktops and Large Screens 1025px - 1200px */
 @media screen and (min-width: 1025px) {
+  .my-carousel {
+    margin-bottom: 40px;
+  }
+
   .mag-btn {
     left: -75px;
   }
@@ -238,6 +305,10 @@ label {
 
 /* For Extra Large Screens and TVs 1201px and more */
 @media screen and (min-width: 1201px) {
+  .my-carousel {
+    margin-bottom: 50px;
+  }
+
   .mag-btn {
     left: -90px;
   }
