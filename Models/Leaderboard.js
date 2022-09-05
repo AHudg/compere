@@ -37,4 +37,4 @@ Leaderboard.init(
   }
 );
 
-module.exports = Leaderboard;
+// module.exports = Leaderboard;

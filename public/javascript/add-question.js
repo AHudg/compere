@@ -14,7 +14,5 @@ async function newFormHandler(event) {
             'Content-Tye': 'application/json'
         }
     });
-    if (response.ok) {
-        document.location.replace('/dashboard') // also add in quiz url
-    }
 }
+document.querySelector('.add-button').addEventListener('submit', editFormHandler);

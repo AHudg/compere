@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const { User, Quiz, Vote, Score } = require("../../models");
+const withAuth = require("../../utils/auth");
 
 // gets all users
 router.get("/", (req, res) => {
@@ -21,7 +22,7 @@ router.get("/:id", (req, res) => {
     include: [
       {
         model: Quiz,
-        attributes: ["id", "title", "img_url", "description"], // possibly include questions
+        attributes: ["id", "title", "img_url", "description"],
       },
       {
         model: Quiz,
@@ -31,7 +32,14 @@ router.get("/:id", (req, res) => {
       },
       {
         model: Score,
+
         attributes: ["points"],
+        include: [
+          {
+            model: Quiz,
+            attributes: ["title"],
+          },
+        ],
       },
     ],
   })
@@ -111,43 +119,27 @@ router.post("/logout", (req, res) => {
   }
 });
 
-router.put("/:id", (req, res) => {
+router.put("/:id", withAuth, (req, res) => {
   User.update(req.body, {
     individualHooks: true,
     where: {
       id: req.params.id,
     },
-  })
-    .then((dbUserData) => {
-      if (!dbUserData) {
-        res.status(404).json({ message: "No user found with this id" });
-        return;
-      }
-      res.json(dbUserData);
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
+  }).catch((err) => {
+    console.log(err);
+    res.status(500).json(err);
+  });
 });
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", withAuth, (req, res) => {
   User.destroy({
     where: {
       id: req.params.id,
     },
-  })
-    .then((dbUserData) => {
-      if (!dbUserData) {
-        res.status(404).json({ message: "No user found with this id" });
-        return;
-      }
-      res.json(dbUserData);
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
+  }).catch((err) => {
+    console.log(err);
+    res.status(500).json(err);
+  });
 });
 
 module.exports = router;
