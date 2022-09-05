@@ -6,7 +6,6 @@ const { Quiz, User, Vote, Score } = require("../models");
 // homepage initially upon URL entry so that you can click the login button
 // instead, I check for authentication on line 39
 router.get("/", (req, res) => {
-  //   res.render("homepage", { loggedIn: true });
   Quiz.findAll({
     attributes: ["id", "title", "img_url", "description"],
   })
@@ -15,7 +14,7 @@ router.get("/", (req, res) => {
       // of each quiz w/ properties of queried attributes
       const quizzes = dbQuizData.map((quiz) => quiz.get({ plain: true }));
 
-      if (req.session.account_id) {
+      if (req.session.user_id) {
         // second arguement of res.render should be an object
         //containing the data you wish to display in the templates
         res.render("homepage", { quizzes, loggedIn: true });
