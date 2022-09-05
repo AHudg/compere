@@ -11,10 +11,6 @@
     "start": "node server.js",
     "watch": "nodemon server.js",
     "seed": "node seeds/index.js"
-<<<<<<< HEAD
-=======
-
->>>>>>> 2ab9c17379e0e4e554d431e9f4a0eb11dd199ba8
   },
   "repository": {
     "type": "git",

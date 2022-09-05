@@ -1,4 +1,3 @@
-// add in a button to edit questions as well, if selected then the questions will appear at the bottom of the page
 async function editFormHandler(event) {
     event.preventDefault();
     
@@ -9,7 +8,7 @@ async function editFormHandler(event) {
     const id = window.location.toString().split('/')[
       window.location.toString().split('/').length - 1
     ];
-    const response = await fetch(`/api/questions/${id}`, {
+    const response = await fetch(`/api/quiz/${id}`, {
       method: 'PUT',
       body: JSON.stringify({
         title,
@@ -27,6 +26,7 @@ async function editFormHandler(event) {
       alert(response.statusText);
     }
 }
-  
-  document.querySelector('.edit-quiz-form').addEventListener('submit', editFormHandler);
+
+
+document.querySelector('.edit-quiz-form').addEventListener('click', editFormHandler);
   

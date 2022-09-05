@@ -1,9 +1,6 @@
 const router = require("express").Router();
 const { User, Quiz, Vote, Score } = require("../../models");
-<<<<<<< HEAD
-=======
 const withAuth = require("../../utils/auth");
->>>>>>> 2ab9c17379e0e4e554d431e9f4a0eb11dd199ba8
 
 // gets all users
 router.get("/", (req, res) => {
@@ -128,23 +125,6 @@ router.put("/:id", withAuth, (req, res) => {
     where: {
       id: req.params.id,
     },
-<<<<<<< HEAD
-  })
-    .then((dbUserData) => {
-      if (!dbUserData) {
-        res.status(404).json({ message: "No user found with this id" });
-        return;
-      }
-      res.json(dbUserData);
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-});
-
-router.delete("/:id", (req, res) => {
-=======
   }).catch((err) => {
     console.log(err);
     res.status(500).json(err);
@@ -152,30 +132,14 @@ router.delete("/:id", (req, res) => {
 });
 
 router.delete("/:id", withAuth, (req, res) => {
->>>>>>> 2ab9c17379e0e4e554d431e9f4a0eb11dd199ba8
   User.destroy({
     where: {
       id: req.params.id,
     },
-<<<<<<< HEAD
-  })
-    .then((dbUserData) => {
-      if (!dbUserData) {
-        res.status(404).json({ message: "No user found with this id" });
-        return;
-      }
-      res.json(dbUserData);
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-=======
   }).catch((err) => {
     console.log(err);
     res.status(500).json(err);
   });
->>>>>>> 2ab9c17379e0e4e554d431e9f4a0eb11dd199ba8
 });
 
 module.exports = router;
