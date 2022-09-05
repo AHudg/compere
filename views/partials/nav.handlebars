@@ -1,0 +1,31 @@
+<section>
+  <div class="header-bg"></div>
+  <h1>
+    <a href="/">C
+      <img id="header-img" src="/images/LogoMock.png" />
+      mpére</a>
+  </h1>
+
+  <nav class="container text-end">
+    <ol class="row justify-content-end">
+      {{#if loggedIn}}
+        <li class="col-3">
+          <a href="/">Home</a>
+        </li>
+        <li class="col-3">
+          <a href="/dashboard">Profile</a>
+        </li>
+        <li class="col-3">
+          <a href="/login">Log Out</a>
+        </li>
+      {{else}}
+        <li class="col-3">
+          <a href="/">Home</a>
+        </li>
+        <li class="col-3">
+          <a href="/login">Log In</a>
+        </li>
+      {{/if}}
+    </ol>
+  </nav>
+</section>
