@@ -44,7 +44,7 @@ router.get("/quiz/:id", (req, res) => {
       // serializes data
       const quiz = dbQuizData.get({ plain: true });
 
-      if (req.session.account_id) {
+      if (req.session.user_id) {
         res.render("view-quiz", { quiz, loggedIn: true });
       } else {
         res.render("view-quiz", { quiz });

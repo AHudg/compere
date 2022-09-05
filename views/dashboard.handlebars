@@ -15,7 +15,10 @@
 
     <section class="col-12">
         <h3 style="margin-top: 50px;">Your Quizzes</h3>
+        <div class="row justify-content-around text-center quiz-section">
+        {{#each quizzes}}
         {{> pop-user-quiz}}
+        {{/each}}
     </section>
   </section>
 

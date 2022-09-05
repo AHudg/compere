@@ -6,35 +6,31 @@ const withAuth = require("../utils/auth");
 // gets all of the quizzes the user has taken
 
 router.get("/", withAuth, (req, res) => {
-  res.render("dashboard", { loggedIn: true });
-  // console.log(req.session);
-  // console.log("=================");
-  // Quiz.findAll({
-  //   where: {
-  //     user_id: req.session.user_id,
-  //   },
-  //   attributes: [
-  //     "id",
-  //     "quiz_url",
-  //     "title",
-  //     "created_at"[
-  //       // potentially questions?
-  //       (sequelize.literal(
-  //         "(SELECT COUNT(*) FROM like WHERE quiz.id = like.quiz_id"
-  //       ),
-  //       "like_count")
-  //     ],
-  //   ],
-  //   include: [
-  //     {
-  //       model: Score,
-  //       include: {
-  //         model: User,
-  //         attributes: [""],
-  //       },
-  //     },
-  //   ],
-  // });
+  Quiz.findAll({
+    where: {
+      user_id: req.session.user_id,
+    },
+    attributes: [
+      "id",
+      "title",
+      "img_url",
+      "description",
+    ]
+  })
+  .then(dbQuizData => {
+
+    const quizzes = dbQuizData.map((quiz) => quiz.get({ plain: true }));
+
+    if (req.session.user_id) {
+      res.render("dashboard", { quizzes, loggedIn: true });
+    } else {
+      res.render("dashboard", { quizzes });
+    }
+  })
+  .catch((err) => {
+    console.log(err);
+    res.status(500).json(err);
+  });
 });
 
 // router.get('/edit/:id', (req, res) => {})
