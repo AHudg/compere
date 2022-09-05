@@ -1,3 +1,4 @@
+// add in a button to edit questions as well, if selected then the questions will appear at the bottom of the page
 async function editFormHandler(event) {
     event.preventDefault();
     
@@ -25,7 +26,7 @@ async function editFormHandler(event) {
     } else {
       alert(response.statusText);
     }
-  }
+}
   
   document.querySelector('.edit-quiz-form').addEventListener('submit', editFormHandler);
   

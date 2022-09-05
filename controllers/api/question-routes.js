@@ -17,25 +17,6 @@ router.get("/quiz/:id", withAuth, (req, res) => {
     });
 });
 
-<<<<<<< HEAD
-//finds question by id 
-router.get('/quiz/:id/questions', (req, res) => {
-    Question.findOne({
-        where: {
-            id: req.params.id
-        },
-        attributes: [
-            'id',
-            'question',
-            'answers'
-        ],
-        include: [
-            {
-                model: Quiz,
-                attributes: ['title', 'description']
-            }
-        ]
-=======
 //finds question by id
 /*
 router.get("/quiz/:id", (req, res) => {
@@ -58,7 +39,6 @@ router.get("/quiz/:id", (req, res) => {
         return;
       }
       res.json(dbQuestionData);
->>>>>>> f2bc9067662b1e060aa72243cbc9466ed25f7b07
     })
     .catch((err) => {
       console.log(err);
@@ -68,19 +48,6 @@ router.get("/quiz/:id", (req, res) => {
 
 //creates the quiz question
 
-<<<<<<< HEAD
-router.post('/quiz/:id/questions', withAuth, (req, res) => {
-    //expects question: "what does the fox say?", answer: "A. grr", "B. bark". "C. woof", "D. idk"
-    Question.create({
-        question: req.body.question,
-        answer: req.body.answer
-    })
-        .then(dbQuestionData => res.json(dbQuestionData))
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
-=======
 router.post("/quiz/:id", withAuth, (req, res) => {
   /*expects:    * fields in "()" are optional
     { question: "what does the fox say?",
@@ -105,7 +72,6 @@ router.post("/quiz/:id", withAuth, (req, res) => {
       console.log(err);
       res.status(500).json(err);
     });
->>>>>>> f2bc9067662b1e060aa72243cbc9466ed25f7b07
 });
 
 // updates the question
