@@ -38,4 +38,9 @@ router.get("/", (req, res) => {
   // });
 });
 
+// router.get('/edit/:id', (req, res) => {})
+router.get("/edit/1", (req, res) => {
+  res.render("edit-dashboard");
+});
+
 module.exports = router;
