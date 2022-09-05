@@ -92,6 +92,19 @@ li > a:hover {
 }
 
 /* Styling Home Page */
+.my-carousel {
+  padding: 10px 0;
+  margin-bottom: 15px;
+  background-color: var(--primary-text-color);
+}
+
+.carousel-text {
+  font-size: 15px;
+  margin: 0 0 5px 0;
+  color: var(--primary-color);
+  font-family: var(--primary-font);
+}
+
 h2 {
   font-size: 18px;
   color: var(--primary-text-color);
@@ -213,7 +226,7 @@ label {
 }
 
 .profile-img {
-  width: 97%;
+  width: 100%;
 }
 
 .profile-email {
@@ -233,6 +246,16 @@ label {
 
 /* For iPads and Tablets 481px - 767px */
 @media screen and (min-width: 481px) {
+  .my-carousel {
+    padding: 15px 0;
+    margin-bottom: 30px;
+  }
+
+  .carousel-text {
+    font-size: 20px;
+    margin: 0 0 10px 0;
+  }
+
   .quiz-like {
     left: -145px;
   }
@@ -251,6 +274,10 @@ label {
 
 /* For Desktops and Large Screens 1025px - 1200px */
 @media screen and (min-width: 1025px) {
+  .my-carousel {
+    margin-bottom: 40px;
+  }
+
   .mag-btn {
     left: -75px;
   }
@@ -262,6 +289,10 @@ label {
 
 /* For Extra Large Screens and TVs 1201px and more */
 @media screen and (min-width: 1201px) {
+  .my-carousel {
+    margin-bottom: 50px;
+  }
+
   .mag-btn {
     left: -90px;
   }
