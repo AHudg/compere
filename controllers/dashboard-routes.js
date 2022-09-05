@@ -6,26 +6,46 @@ const withAuth = require("../utils/auth");
 // gets all of the quizzes the user has taken
 
 router.get("/", withAuth, (req, res) => {
-  Quiz.findAll({
+  User.findOne({
     where: {
-      user_id: req.session.user_id,
+      id: req.session.user_id,
     },
-    attributes: [
-      "id",
-      "title",
-      "img_url",
-      "description",
-    ]
-  })
-  .then(dbQuizData => {
+    attributes: ['id','username','email','created_at'],
+    include: [
+      {
+        model: Quiz,
+        attributes: ["id", "title", "img_url", "description"],
+      },
+      {
+        model: Quiz,
+        attributes: ["title"],
+        through: Vote,
+        as: "liked_quizes",
+      },
+      {
+        model: Score,
 
-    const quizzes = dbQuizData.map((quiz) => quiz.get({ plain: true }));
+        attributes: ["points"],
+        include: [
+          {
+            model: Quiz,
+            attributes: ["title"],
+          },
+        ],
+      },
+    ],
+  })
+  .then(dbUserData => {
+    const userInfo = dbUserData.get({ plain: true });
+
+    console.log(userInfo);
 
     if (req.session.user_id) {
-      res.render("dashboard", { quizzes, loggedIn: true });
+      res.render("dashboard", { userInfo, loggedIn: true });
     } else {
-      res.render("dashboard", { quizzes });
+      res.render("dashboard", { userInfo });
     }
+
   })
   .catch((err) => {
     console.log(err);
@@ -33,9 +53,31 @@ router.get("/", withAuth, (req, res) => {
   });
 });
 
-// router.get('/edit/:id', (req, res) => {})
-router.get("/edit/1", (req, res) => {
-  res.render("edit-dashboard");
-});
+router.get('/edit/:id', withAuth, (req, res) => {
+  User.findOne({
+    where: {
+      id: req.session.user_id,
+    },
+    attributes: [
+      "username",
+      "email",
+      "password"
+    ]
+  })
+  .then(dbQuizData => {
+
+    const userInfo = dbQuizData.get({ plain: true });
+
+    if (req.session.user_id) {
+      res.render("dashboard", { userInfo, loggedIn: true });
+    } else {
+      res.render("dashboard", { userInfo });
+    }
+  })
+  .catch((err) => {
+    console.log(err);
+    res.status(500).json(err);
+  });
+})
 
 module.exports = router;
