@@ -116,7 +116,7 @@ input {
   height: 85vh;
 }
 
-/* Styling Quiz Cards */
+/* Styling Quiz Cards used on Home Page and Profile */
 h3 {
   margin-top: 15px;
   margin-left: 10px;
@@ -178,7 +178,7 @@ h4 ~ p {
   color: var(--primary-color);
 }
 
-/* Styling Login */
+/* Styling Login / Signup */
 .form-section {
   margin-top: 80px;
   border-left: solid 2px var(--secondary-text-color);
@@ -205,6 +205,30 @@ label {
 
 .toggle-link:hover {
   color: var(--secondary-text-color);
+}
+
+/* Styling Profile */
+.profile-name {
+  font-size: 30px;
+}
+
+.profile-img {
+  width: 97%;
+}
+
+.profile-email {
+  font-size: 20px;
+}
+
+.profile-meta {
+  font-size: 15px;
+  color: var(--secondary-text-color);
+}
+
+.sidebar {
+  border-left: solid 2px var(--secondary-color);
+  border-right: solid 2px var(--secondary-color);
+  border-radius: 30px;
 }
 
 /* For iPads and Tablets 481px - 767px */
