@@ -25,8 +25,13 @@
   </div>
 
   <h3>Our Current Quizzes</h3>
-
-  {{!-- {{#each quiz}} --}}
-    {{> pop-quiz-home}}
-  {{!-- {{/each}} --}}
+  <div class="row justify-content-around text-center quiz-section">
+    {{#each quizzes}}
+      {{> pop-quiz-home}}
+    {{/each}}
+  </div>
 </section>
+
+{{#if loggedIn}}
+<script src="/javascript/like-quiz.js"></script>
+{{/if}}

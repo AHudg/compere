@@ -1,72 +1,16 @@
-<div class="row justify-content-around text-center quiz-section">
-  <div class="col-10 col-md-5 quiz-body">
-    {{! make the <i> have an id of the quiz_id }}
-    <div class="quiz-like">14k likes
-      <i id="1" class="fa-regular fa-heart"></i></div>
-    <img class="quiz-img" src="/images/placeholder.jpeg" />
-    <div class="quiz-content">
-      <h4 id="quiz-title">Quiz Title</h4>
-      <p>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora
-        minima, perspiciatis fugiat culpa iste laudantium, consequatur deleniti
-        temporibus blanditiis adipisci officiis et officia. Mollitia animi velit
-        voluptatem! Reiciendis, ducimus cupiditate!
-      </p>
-      <a href="quiz/1" class="view-btn">More Quiz Details</a>
-      <br /><br />
-      {{!-- <a href=`/quiz/{{{id}}}` class="view-btn">More Quiz Details</a>  --}}
+<div class="col-10 col-md-5 quiz-body">
+  {{! make the <i> have an id of the quiz_id }}
+  <div class="quiz-like">14k likes
+    <i id="1" class="fa-regular fa-heart"></i></div>
+  <img class="quiz-img" src={{quiimg_url}} />
+  <div class="quiz-content">
+    <h4 id="quiz-title">{{title}}</h4>
+    <p>
+      {{description}}
+    </p>
+    <a href="quiz/1" class="view-btn">More Quiz Details</a>
+    <br /><br />
+    {{!-- <a href=`/quiz/{{{id}}}` class="view-btn">More Quiz Details</a>  --}}
 
-    </div>
-  </div>
-
-  <div class="col-10 col-md-5 quiz-body">
-    <div class="quiz-like">14k likes <i class="fa-regular fa-heart"></i></div>
-    <img class="quiz-img" src="/images/placeholder.jpeg" />
-    <div class="quiz-content">
-      <h4>Quiz Title</h4>
-      <p>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora
-        minima, perspiciatis fugiat culpa iste laudantium, consequatur deleniti
-        temporibus blanditiis adipisci officiis et officia. Mollitia animi velit
-        voluptatem! Reiciendis, ducimus cupiditate!
-      </p>
-      <a href="quiz/1" class="view-btn">More Quiz Details</a>
-      <br /><br />
-    </div>
-  </div>
-
-  <div class="col-10 col-md-5 quiz-body">
-    <div class="quiz-like">14k likes <i class="fa-regular fa-heart"></i></div>
-    <img class="quiz-img" src="/images/placeholder.jpeg" />
-    <div class="quiz-content">
-      <h4>Quiz Title</h4>
-      <p>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora
-        minima, perspiciatis fugiat culpa iste laudantium, consequatur deleniti
-        temporibus blanditiis adipisci officiis et officia. Mollitia animi velit
-        voluptatem! Reiciendis, ducimus cupiditate!
-      </p>
-      <a href="quiz/1" class="view-btn">More Quiz Details</a>
-      <br /><br />
-    </div>
-  </div>
-
-  <div class="col-10 col-md-5 quiz-body">
-    <div class="quiz-like">14k likes
-      <i class="fa-regular fa-heart"></i></div>
-    <img class="quiz-img" src="/images/placeholder.jpeg" />
-    <div class="quiz-content">
-      <h4>Quiz Title</h4>
-      <p>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora
-        minima, perspiciatis fugiat culpa iste laudantium, consequatur deleniti
-        temporibus blanditiis adipisci officiis et officia. Mollitia animi velit
-        voluptatem! Reiciendis, ducimus cupiditate!
-      </p>
-      <a href="quiz/1" class="view-btn">More Quiz Details</a>
-      <br /><br />
-    </div>
   </div>
 </div>
-
-<script src="/javascript/like-quiz.js"></script>
