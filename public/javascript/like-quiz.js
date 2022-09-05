@@ -1,13 +1,13 @@
 async function likeQuiz(event) {
   const emblem = event.target;
+  console.log(emblem);
   // checks that the click occured on the icon
   if (emblem.tagName.toLowerCase() === "i") {
     // if the icon is "unliked" status = like it and save to localStorage
     if (emblem.classList.contains("fa-regular")) {
       emblem.classList.remove("fa-regular");
       emblem.classList.add("fa-solid");
-      // emblem.value = "liked";
-      const quizId = document.getElementById("1").getAttribute("id");
+      const quizId = emblem.id;
       const quizTitle = document.getElementById("quiz-title").innerText;
 
       var quizInfo = {
@@ -35,4 +35,4 @@ async function likeQuiz(event) {
   }
 }
 
-document.querySelector(".quiz-body").addEventListener("click", likeQuiz);
+document.querySelector(".quiz-section").addEventListener("click", likeQuiz);

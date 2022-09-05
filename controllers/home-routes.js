@@ -87,6 +87,34 @@ router.get("/quiz/:id", (req, res) => {
     });
 });
 
+router.get("/quiz/:id", (req, res) => {
+  Quiz.findOne({
+    where: {
+      id: req.params.id,
+    },
+    attributes: ["id", "title", "img_url", "description", "user_id"],
+  })
+    .then((dbQuizData) => {
+      if (!dbQuizData) {
+        res.status(404).json({ message: "No quiz found with this id." });
+        return;
+      }
+
+      // serializes data
+      const quiz = dbQuizData.get({ plain: true });
+
+      if (req.session.user_id) {
+        res.render("view-quiz", { quiz, loggedIn: true });
+      } else {
+        res.render("view-quiz", { quiz });
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
 router.get("/login", (req, res) => {
   if (req.session.loggedIn) {
     res.redirect("/");

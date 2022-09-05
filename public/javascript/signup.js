@@ -37,4 +37,4 @@ async function signupFormHandler(event) {
 
 // document.querySelector('.google-button').addEventListener('click', onSignIn)
 
-document.querySelector('.signup-form').addEventListener('submit', signupFormHandler);
+document.querySelector('.view-btn').addEventListener('click', signupFormHandler);

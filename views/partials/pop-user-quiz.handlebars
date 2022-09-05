@@ -1,12 +1,11 @@
 <div class="col-10 col-md-5 quiz-body">
-  {{#if img_url}}
-    <img class="quiz-img" src={{img_url}} />
-  {{/if}}
+  <img class="quiz-img" src={{img_url}} />
   <div class="quiz-content">
-    <h4>{{title}}</h4>
+    <h4 id="quiz-title">{{title}}</h4>
     <p>
       {{description}}
     </p>
-    <button class="view-btn" type="submit">More Quiz Details</button>
+    <a href="/quiz/{{{id}}}" class="view-btn">More Quiz Details</a> 
+    <br /><br />
   </div>
 </div>

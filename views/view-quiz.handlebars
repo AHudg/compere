@@ -1,4 +1,10 @@
-<section>
-  <h2>Quiz Title</h2>
-
-</section>
+<section class="col-12 col-lg-8 row align-items-center scroll">
+    <div class="col-12 col-md-5 col-lg-6">
+    <h2>{{quiz.title}}</h2>
+    <img class="profile-img" src={{quiz.img_url}} />
+    </div>
+    <div class="col-12 col-md-7 col-lg-6 text-center text-md-start">
+      <h3 class="profile-email">{{quiz.description}}</h3>
+      <a href="quiz/{{{quiz.id}}}/active" class="view-btn">Start Quiz</a>
+    </div>
+  </section>
