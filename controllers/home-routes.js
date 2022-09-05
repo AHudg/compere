@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const sequelize = require("../config/connection");
-const { Quiz, User, Like, Score } = require("../models");
+const { Quiz, User, Vote, Score } = require("../models");
 
 // Cannot use withAuth here because you need to be able to be routed to the
 // homepage initially upon URL entry so that you can click the login button
@@ -15,7 +15,7 @@ router.get("/", (req, res) => {
   //     "created_at"[
   //       // potentially questions?
   //       (sequelize.literal(
-  //         "(SELECT COUNT(*) FROM like WHERE quiz.id = like.quiz_id"
+  //         "(SELECT COUNT(*) FROM vote WHERE quiz.id = vote.quiz_id"
   //       ),
   //       "like_count")
   //     ],
@@ -63,7 +63,7 @@ router.get("/quiz/1", (req, res) => {
   //     "created_at"[
   //       // potentially questions?
   //       (sequelize.literal(
-  //         "(SELECT COUNT(*) FROM like WHERE quiz.id = like.quiz_id"
+  //         "(SELECT COUNT(*) FROM vote WHERE quiz.id = vote.quiz_id"
   //       ),
   //       "like_count")
   //     ],
