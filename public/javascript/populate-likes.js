@@ -16,8 +16,10 @@ async function populateLikedQuizzes() {
       document.getElementsByClassName("sidebar")[0].appendChild(liEl);
 
       // create the header to hold the quiz title, style and append
-      const quiztitle = document.createElement("h5");
+      const quiztitle = document.createElement("a");
+      quiztitle.setAttribute("href", "/quiz/" + savedQuizzes[i].quiz_id);
       quiztitle.setAttribute("class", "liked-title");
+      quiztitle.setAttribute("id", savedQuizzes[i].quiz_id);
       quiztitle.innerText = savedQuizzes[i].title;
       liEl.appendChild(quiztitle);
     }
