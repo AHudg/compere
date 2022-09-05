@@ -53,7 +53,7 @@ router.get("/", withAuth, (req, res) => {
   });
 });
 
-router.get('/edit/:id', withAuth, (req, res) => {
+router.get('/edit/', withAuth, (req, res) => {
   User.findOne({
     where: {
       id: req.session.user_id,
@@ -69,9 +69,9 @@ router.get('/edit/:id', withAuth, (req, res) => {
     const userInfo = dbQuizData.get({ plain: true });
 
     if (req.session.user_id) {
-      res.render("dashboard", { userInfo, loggedIn: true });
+      res.render("edit-dashboard", { userInfo, loggedIn: true });
     } else {
-      res.render("dashboard", { userInfo });
+      res.render("edit-dashboard", { userInfo });
     }
   })
   .catch((err) => {
