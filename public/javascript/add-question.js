@@ -1,18 +1,30 @@
-async function newFormHandler(event) {
+async function quizMetaHandler(event) {
     event.preventDefault();
 
-    const question = document.querySelector('input[name="question"]').value;
-    const answer = document.querySelector('input[name="answer"]').value;
+    const title = document.querySelector('#quiz-title').value.trim();
+    const description = document.querySelector('#quiz-description').value.trim();
 
-    const response = await fetch(`/api/questions`, {
-        method: 'POST',
-        body: JSON.stringify({
-            question,
-            answer
-        }),
-        headers: {
-            'Content-Tye': 'application/json'
+    if (title && description) {
+        const response = await fetch('/api/quizes', {
+            method: 'post',
+            body: JSON.stringify({ 
+                title, 
+                description,
+             }),
+            headers: { 'Content-Type': 'application/json'}
+        });
+
+        if (response.ok) {
+            renderQuizInputs();
+        } else {
+            alert(response.statusText);
         }
-    });
+    }
+};
+
+async function renderQuizInputs() {
+    document.querySelector("#add-quiz-meta").setAttribute('style','display: none;')
+    document.querySelector("#add-quiz-content").setAttribute('style','display:inline;')
 }
-document.querySelector('.add-button').addEventListener('submit', editFormHandler);
+
+document.querySelector('#submit-quiz-meta').addEventListener('click', quizMetaHandler);
