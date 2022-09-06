@@ -86,8 +86,8 @@ router.post("/", withAuth, (req, res) => {
   Quiz.create({
     title: req.body.title,
     description: req.body.description,
-    user_id: req.session.user_id, // user_id: req.session.user_id,
-    img_url: req.body.img_url, // honestly not sure if that works / would work without
+    user_id: req.session.user_id,
+    img_url: req.body.img_url,
   })
     .then((dbQuizData) => res.json(dbQuizData))
     .catch((err) => {

@@ -2,6 +2,7 @@ const router = require("express").Router();
 const sequelize = require("../config/connection");
 const { Quiz, User, Vote, Score } = require("../models");
 const getFourQuizzes = require("../utils/homepageQuizes");
+const { Op } = require("sequelize");
 
 // Cannot use withAuth here because you need to be able to be routed to the
 // homepage initially upon URL entry so that you can click the login button
@@ -41,6 +42,21 @@ router.get("/", (req, res) => {
         loggedIn: req.session.loggedIn,
       });
     });
+});
+
+// get quizzes from searchbar
+router.get("/search/:name", (req, res) => {
+  Quiz.findAll({
+    where: {
+      title: { [Op.like]: `%${req.params.name}%` },
+    },
+  }).then((dbQuizData) => {
+    const quizzes = dbQuizData.map((quiz) => quiz.get({ plain: true }));
+    res.render("homepage", {
+      quizzes,
+      loggedIn: req.session.loggedIn,
+    });
+  });
 });
 
 router.get("/quiz/:id", (req, res) => {
