@@ -4,16 +4,18 @@ const opiton1El = document.querySelector("#answer1");
 const opiton2El = document.querySelector("#answer2");
 const opiton3El = document.querySelector("#answer3");
 const opiton4El = document.querySelector("#answer4");
-const confirmAnswerEl = document.querySelector("#confirm");
+const answerChoicesEl = document.querySelector("#answers");
 let score = 0;
 var questionArr = [];
 let quizLen = 0;
 var currentProblem;
+const id = parseInt(
+  window.location.toString().split("/")[
+    window.location.toString().split("/").length - 2
+  ]
+);
 
 async function takeQuiz() {
-  const id = window.location.toString().split("/")[
-    window.location.toString().split("/").length - 2
-  ];
   const response = await fetch(`/api/questions/quiz/${id}`);
   if (response.ok) {
     response.json().then((questions) => {
@@ -30,6 +32,11 @@ function loadQuestion() {
   questionArr.splice(n, 1);
 
   questionEl.textContent = currentProblem.question;
+  if (currentProblem.img_url) {
+    imageEl.setAttribute("src", currentProblem.img_url);
+  } else {
+    imageEl.setAttribute("src", "");
+  }
   opiton1El.textContent = currentProblem.answer1;
   opiton2El.textContent = currentProblem.answer2;
   opiton3El.textContent = currentProblem.answer3;
@@ -37,33 +44,33 @@ function loadQuestion() {
 }
 
 function checkAnswerHandler(event) {
+  console.log(event.target);
   var targetEl = event.target;
-  var background = document.querySelector(`#answer${targetEl.id}`);
-  var defaultBg = background.style.background;
-  if (targetEl.value === currentProblem.correct) {
+  console.log(currentProblem);
+  if (targetEl.innerText === currentProblem.correct) {
     score++;
-    background.style.background = "#095";
   } else if (targetEl.matches(".btn")) {
-    background.style.background = "#d00";
   }
 
   if (questionArr.length > 0) {
     setTimeout(function () {
-      background.style.background = defaultBg;
       loadQuestion();
     }, 100);
+    return;
   } else {
     setTimeout(function () {
-      background.style.background = defaultBg;
       calcualteScore();
+      window.location.replace(`/quiz/${id}/leaderboard`);
     }, 100);
+
+    return;
   }
 }
 
 async function calcualteScore() {
-  points = Math.floor(score / quizLen);
+  points = Math.floor((score / quizLen) * 100);
 
-  const response = await fetch(`/api/quizes/${id}scores`, {
+  const response = await fetch(`/api/quizes/${id}/scores`, {
     method: "post",
     body: JSON.stringify({
       points,
@@ -76,4 +83,4 @@ async function calcualteScore() {
     */
 }
 takeQuiz();
-confirmAnswerEl.addEventListener("click", checkAnswerHandler);
+answerChoicesEl.addEventListener("click", checkAnswerHandler);
