@@ -21,17 +21,16 @@ async function editFormHandler(event) {
       }
     });
   
-    if (response.ok) {
-      document.location.replace('/users/:id');
-    } else {
-      alert(response.statusText);
-    }
-
+    // if (response.ok) {
+    //   document.location.replace('/users/:id');
+    // } else {
+    //   alert(response.statusText);
+    // }
     var editProfile = document.getElementsByClassName('editable');
     editProfile.addEventListener('input', function () {
         console.log('An edit has been detected')
     });
-
+// add in a .then promise
   }
   
 
