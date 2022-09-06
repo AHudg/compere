@@ -1,3 +1,5 @@
+// Delete this. It is localstorage for the liked quizzes
+
 async function populateLikedQuizzes() {
   // get localStorage data
   savedQuizzes = JSON.parse(localStorage.getItem("likedQuizzes"));

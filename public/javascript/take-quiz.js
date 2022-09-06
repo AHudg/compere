@@ -66,3 +66,4 @@ async function calcualteScore() {
 }
 
 confirmAnswerEl.addEventListener("click", checkAnswerHandler);
+

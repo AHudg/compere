@@ -10,7 +10,7 @@ router.get("/", withAuth, (req, res) => {
     where: {
       id: req.session.user_id,
     },
-    attributes: ['id','username','email','created_at'],
+    attributes: ["id", "username", "email"],
     include: [
       {
         model: Quiz,
@@ -35,53 +35,43 @@ router.get("/", withAuth, (req, res) => {
       },
     ],
   })
-  .then(dbUserData => {
-    const userInfo = dbUserData.get({ plain: true });
+    .then((dbUserData) => {
+      const userInfo = dbUserData.get({ plain: true });
 
-    console.log(userInfo);
+      console.log(userInfo);
 
-    if (req.session.user_id) {
-      res.render("dashboard", { userInfo, loggedIn: true });
-    } else {
-      res.render("dashboard", { userInfo });
-    }
-
-  })
-  .catch((err) => {
-    console.log(err);
-    res.status(500).json(err);
-  });
+      res.render("dashboard", { userInfo, loggedIn: req.session.loggedIn });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
-router.get('/edit/', withAuth, (req, res) => {
+router.get("/edit/", withAuth, (req, res) => {
   User.findOne({
     where: {
       id: req.session.user_id,
     },
-    attributes: [
-      "username",
-      "email",
-      "password"
-    ]
+    attributes: ["username", "email", "password"],
   })
-  .then(dbQuizData => {
+    .then((dbQuizData) => {
+      const userInfo = dbQuizData.get({ plain: true });
 
-    const userInfo = dbQuizData.get({ plain: true });
+      if (req.session.user_id) {
+        res.render("edit-dashboard", { userInfo, loggedIn: true });
+      } else {
+        res.render("edit-dashboard", { userInfo });
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
 
-    if (req.session.user_id) {
-      res.render("edit-dashboard", { userInfo, loggedIn: true });
-    } else {
-      res.render("edit-dashboard", { userInfo });
-    }
-  })
-  .catch((err) => {
-    console.log(err);
-    res.status(500).json(err);
-  });
-})
-
-router.get('/quiz/add', (req, res) => {
-  res.render('add-quiz');
-})
+router.get("/quiz/add", (req, res) => {
+  res.render("add-quiz");
+});
 
 module.exports = router;

@@ -34,4 +34,5 @@ async function loginFormHandler(event) {
 
 // document.querySelector('.google-button').addEventListener('click', onSignIn)
 
+
 document.querySelector(".view-btn").addEventListener("click", loginFormHandler);
