@@ -107,9 +107,11 @@ h2 {
 }
 
 input {
+  border: solid 1px var(--primary-text-color);
   border-radius: 10px;
+  border-top: solid 2px var(--secondary-color);
+  border-bottom: solid 2px var(--secondary-color);
   background-color: var(--primary-color);
-  border: solid 2px var(--primary-text-color);
   color: var(--primary-text-color);
 }
 
@@ -252,9 +254,6 @@ label {
   padding: 10px 0;
 }
 
-/* .liked-title {
-} */
-
 /* Styling View Quiz */
 .quiz-title {
   font-size: 30px;
@@ -266,6 +265,35 @@ label {
   margin-bottom: 30px;
   font-size: 18px;
 }
+
+/* Styling Add Quiz */
+.add-title {
+  font-size: 20px;
+  margin: 20px auto 10px 10px;
+}
+
+.add-label {
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+#quiz-description {
+  height: 100px;
+  border: solid 1px var(--primary-text-color);
+  border-radius: 10px;
+  border-top: solid 2px var(--secondary-color);
+  border-bottom: solid 2px var(--secondary-color);
+  background-color: var(--primary-color);
+}
+
+.flip-icon {
+  transform: rotate(180deg);
+}
+
+.nav-btn {
+  padding: 5px;
+}
+
 
 /* For iPads and Tablets 481px - 767px */
 @media screen and (min-width: 481px) {
