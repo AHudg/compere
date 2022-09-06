@@ -20,6 +20,12 @@ router.get("/likes", withAuth, (req, res) => {
     where: {
       user_id: req.session.user_id,
     },
+    include: [
+      {
+        model: Quiz,
+        attributes: ["title"],
+      },
+    ],
   })
     .then((dbUserData) => {
       if (!dbUserData) {
