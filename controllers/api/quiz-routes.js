@@ -52,7 +52,6 @@ router.get("/:id", (req, res) => {
 });
 
 // finds the top 10 scores for the quiz
-
 router.get("/:id/leaderboard", (req, res) => {
   Score.findAll({
     limit: 10,
@@ -111,10 +110,41 @@ router.post("/:id/scores", withAuth, (req, res) => {
     });
 });
 
-// lets the user like a quiz
+// lets the user like or unlike a quiz
 router.put("/like", withAuth, (req, res) => {
-  Quiz.like({ ...req.body, user_id: req.session.user_id }, { Vote, Quiz, User })
-    .then((updatedVoteData) => res.json(updatedVoteData))
+  // checks if the user already liked the quiz
+  Vote.findOne({
+    where: {
+      quiz_id: req.body.quiz_id,
+      user_id: req.session.user_id,
+    },
+  })
+    .then((dbVoteData) => {
+      // if not, like it
+      if (!dbVoteData) {
+        Quiz.like(
+          { ...req.body, user_id: req.session.user_id },
+          { Vote, Quiz, User }
+        )
+          .then((updatedVoteData) => res.json(updatedVoteData))
+          .catch((err) => {
+            console.log(err);
+            res.status(500).json(err);
+          });
+        return;
+      }
+      // if so delete the like
+      else {
+        Vote.destroy({
+          where: {
+            id: dbVoteData.id,
+          },
+        }).catch((err) => {
+          console.log(err);
+          res.status(500).json(err);
+        });
+      }
+    })
     .catch((err) => {
       console.log(err);
       res.status(500).json(err);

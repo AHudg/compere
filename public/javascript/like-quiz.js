@@ -16,6 +16,16 @@ async function likeQuiz(event) {
         title: quizTitle,
       };
 
+      const response = await fetch("/api/quizes/like", {
+        method: "PUT",
+        body: JSON.stringify({
+          quiz_id: quizInfo.quiz_id,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
       savedQuizzes = JSON.parse(localStorage.getItem("likedQuizzes"));
 
       if (!savedQuizzes) {

@@ -34,3 +34,7 @@ async function populateLikedQuizzes() {
 }
 
 populateLikedQuizzes();
+
+async function getLikedQuizzes() {
+  const response = await fetch("/api/users/likes");
+}

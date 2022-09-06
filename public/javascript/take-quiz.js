@@ -1,17 +1,18 @@
 const questionEl = document.querySelector("#question");
 const imageEl = document.querySelector("#question-img");
-const opiton1El = document.querySelector("#question1");
-const opiton2El = document.querySelector("#question2");
-const opiton3El = document.querySelector("#question3");
-const opiton4El = document.querySelector("#question4");
+const opiton1El = document.querySelector("#answer1");
+const opiton2El = document.querySelector("#answer2");
+const opiton3El = document.querySelector("#answer3");
+const opiton4El = document.querySelector("#answer4");
 const confirmAnswerEl = document.querySelector("#confirm");
 let score = 0;
 var questionArr = [];
 let quizLen = 0;
+var currentProblem;
 
 async function takeQuiz() {
   const id = window.location.toString().split("/")[
-    window.location.toString().split("/").length - 1
+    window.location.toString().split("/").length - 2
   ];
   const response = await fetch(`/api/questions/quiz/${id}`);
   if (response.ok) {
@@ -36,17 +37,27 @@ function loadQuestion() {
 }
 
 function checkAnswerHandler(event) {
-  /*
-        check if an answer is selected
+  var targetEl = event.target;
+  var background = document.querySelector(`#answer${targetEl.id}`);
+  var defaultBg = background.style.background;
+  if (targetEl.value === currentProblem.correct) {
+    score++;
+    background.style.background = "#095";
+  } else if (targetEl.matches(".btn")) {
+    background.style.background = "#d00";
+  }
 
-        check if answer selected was the right one
-        
-        if yes: score ++ (make selected answer green?)
-
-        else: (make selected answer red?)
-
-        loadQuestion()
-    */
+  if (questionArr.length > 0) {
+    setTimeout(function () {
+      background.style.background = defaultBg;
+      loadQuestion();
+    }, 100);
+  } else {
+    setTimeout(function () {
+      background.style.background = defaultBg;
+      calcualteScore();
+    }, 100);
+  }
 }
 
 async function calcualteScore() {
@@ -64,6 +75,5 @@ async function calcualteScore() {
     display final score somewhere
     */
 }
-
+takeQuiz();
 confirmAnswerEl.addEventListener("click", checkAnswerHandler);
-
