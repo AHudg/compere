@@ -65,7 +65,7 @@ router.get("/quiz/:id", (req, res) => {
         model: Score,
         include: {
           model: User,
-          attributes: [""],
+          attributes: ["username"],
         },
       },
     ],
