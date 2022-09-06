@@ -6,6 +6,13 @@ class User extends Model {
   checkPassword(loginPw) {
     return bcrypt.compareSync(loginPw, this.password);
   }
+  static get createdAtColumn() {
+    return null;
+  }
+
+  static get updatedAtColumn() {
+    return null;
+  }
 }
 
 User.init(
@@ -57,7 +64,7 @@ User.init(
       },
     },
     sequelize,
-    timestamps: true,
+    timestamps: false,
     freezeTableName: true,
     underscored: true,
     modelName: "user",

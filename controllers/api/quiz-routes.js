@@ -52,7 +52,8 @@ router.get("/:id", (req, res) => {
 });
 
 // finds the top 10 scores for the quiz
-router.get("/scores/:id", (req, res) => {
+
+router.get("/:id/leaderboard", (req, res) => {
   Score.findAll({
     limit: 10,
     where: {
@@ -88,6 +89,20 @@ router.post("/", withAuth, (req, res) => {
     description: req.body.description,
     user_id: req.session.user_id, // user_id: req.session.user_id,
     img_url: req.body.img_url, // honestly not sure if that works / would work without
+  })
+    .then((dbQuizData) => res.json(dbQuizData))
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+// submit a score for a quiz
+router.post("/:id/scores", withAuth, (req, res) => {
+  Score.create({
+    quiz_id: req.params.id,
+    user_id: req.session.id,
+    points: req.body.points,
   })
     .then((dbQuizData) => res.json(dbQuizData))
     .catch((err) => {
