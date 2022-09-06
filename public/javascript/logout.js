@@ -21,5 +21,5 @@ async function logout() {
 // }
 // for the google log in/log out
 
-document.querySelector('.logout').addEventListener('click', logout);
+// document.querySelector('.logout').addEventListener('click', logout);
   

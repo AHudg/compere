@@ -32,6 +32,6 @@ async function loginFormHandler(event) {
 //   console.log("Email: " + profile.getEmail()); // This is null if the 'email' scope is not present.
 
 
-document.querySelector('.google-button').addEventListener('click', onSignIn)
+// document.querySelector('.google-button').addEventListener('click', onSignIn)
 
 document.querySelector(".view-btn").addEventListener("click", loginFormHandler);
