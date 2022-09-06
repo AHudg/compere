@@ -26,11 +26,14 @@
     <button class="col-6 col-md-4 view-btn" type="submit">Log In</button>
   </form>
 
+  <div class="g-signin2 google-button" data-onsuccess="onSignIn"></div>
+
   <p class="toggle-phrase">If you don't have an account. Make one
     <a class="toggle-link" href="/signup">here.</a></p>
 </section>
 
 <script src="/javascript/login.js"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
 {{! <script
   type="text/javascript"
   src="javascripts/livevalidation_standalone.js"
