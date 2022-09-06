@@ -80,4 +80,8 @@ router.get('/edit/', withAuth, (req, res) => {
   });
 })
 
+router.get('/quiz/add', (req, res) => {
+  res.render('add-quiz');
+})
+
 module.exports = router;

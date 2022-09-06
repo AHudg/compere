@@ -9,12 +9,12 @@
       <h3 class="profile-email">Created 6 Quizzes</h3>
       <h3 class="profile-email">Liked 203 Quizzes</h3>
       <h3 class="text-end profile-meta">Member since {{userInfo.created_at}}</h3>
-      {{!-- <a href="dashboard/edit/{{{user_id}}}" class="view-btn">Edit Profile</a> --}}
       <a href="/dashboard/edit/" class="view-btn">Edit Profile</a>
     </div>
 
-    <section class="col-12">
-        <h3 style="margin-top: 50px;">Your Quizzes</h3>
+    <section class="col-12 row justify-content-between align-items-end">
+        <h3 class="col-5" style="margin-top: 50px;">Your Quizzes</h3>
+        <a class="col-5 text-end" href="/dashboard/quiz/add/">Add a Quiz</a>
         <div class="row justify-content-around text-center quiz-section">
         {{#each quizzes}}
         {{> pop-user-quiz}}
