@@ -1,3 +1,5 @@
+// Keep the code that toggles the heart but switch the localstorage saving to use the database
+
 async function likeQuiz(event) {
   const emblem = event.target;
   // checks that the click occured on the icon
