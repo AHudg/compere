@@ -52,6 +52,7 @@ router.get("/:id", (req, res) => {
 });
 
 // finds the top 10 scores for the quiz
+
 router.get("/:id/leaderboard", (req, res) => {
   Score.findAll({
     limit: 10,
