@@ -9,36 +9,36 @@ async function likeQuiz(event) {
       emblem.classList.remove("fa-regular");
       emblem.classList.add("fa-solid");
       const quizId = emblem.id;
-      const quizTitle = document.getElementById("quiz-title").innerText;
-
-      var quizInfo = {
-        quiz_id: quizId,
-        title: quizTitle,
-      };
 
       const response = await fetch("/api/quizes/like", {
         method: "PUT",
         body: JSON.stringify({
-          quiz_id: quizInfo.quiz_id,
+          quiz_id: emblem.id,
         }),
         headers: {
           "Content-Type": "application/json",
         },
       });
-
-      savedQuizzes = JSON.parse(localStorage.getItem("likedQuizzes"));
-
-      if (!savedQuizzes) {
-        savedQuizzes = [];
-      }
-
-      savedQuizzes.push(quizInfo);
-      localStorage.setItem("likedQuizzes", JSON.stringify(savedQuizzes));
-
-      // if the icon is "liked" status = then unlike it and remove it from localStorage
+      emblem.previousElementSibling.innerText = `${
+        parseInt(emblem.previousElementSibling.innerText) + 1
+      } likes`;
     } else {
       emblem.classList.remove("fa-solid");
       emblem.classList.add("fa-regular");
+
+      emblem.previousElementSibling.innerText = `${
+        parseInt(emblem.previousElementSibling.innerText) - 1
+      } likes`;
+
+      const response = await fetch("/api/quizes/like", {
+        method: "PUT",
+        body: JSON.stringify({
+          quiz_id: emblem.id,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
     }
     // if the click event is not the icon, do nothing
   } else {
@@ -46,4 +46,22 @@ async function likeQuiz(event) {
   }
 }
 
+async function checkLikes() {
+  const response = await fetch("/api/users/likes");
+  if (response.ok) {
+    response.json().then((likes) => {
+      const hearts = document.querySelectorAll(".fa-heart");
+      for (const heart of hearts) {
+        for (const likedQuiz of likes) {
+          if (heart.id == likedQuiz.quiz_id) {
+            heart.classList.remove("fa-regular");
+            heart.classList.add("fa-solid");
+          }
+        }
+      }
+    });
+  }
+}
+
+checkLikes();
 document.querySelector(".quiz-section").addEventListener("click", likeQuiz);
