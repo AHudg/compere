@@ -3,11 +3,6 @@
 }
 
 :root {
-  /* --primary-color: rgb(139, 216, 147);
-  --secondary-color: rgb(63, 113, 72);
-  --tertiary-color: rgb(116, 186, 115);
-  --primary-text-color: rgb(239, 151, 65);
-  --secondary-text-color: rgb(226, 213, 174); */
   --primary-font: "Kumbh Sans";
   --primary-color: #cbd5b1;
   --secondary-color: rgb(68, 103, 36);
@@ -259,6 +254,18 @@ label {
 
 /* .liked-title {
 } */
+
+/* Styling View Quiz */
+.quiz-title {
+  font-size: 30px;
+  font-family: var(--primary-font);
+  margin-bottom: 10px;
+}
+
+.quiz-desc {
+  margin-bottom: 30px;
+  font-size: 18px;
+}
 
 /* For iPads and Tablets 481px - 767px */
 @media screen and (min-width: 481px) {

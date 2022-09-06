@@ -1,6 +1,5 @@
 async function likeQuiz(event) {
   const emblem = event.target;
-  console.log(emblem);
   // checks that the click occured on the icon
   if (emblem.tagName.toLowerCase() === "i") {
     // if the icon is "unliked" status = like it and save to localStorage
