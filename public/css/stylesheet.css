@@ -3,15 +3,10 @@
 }
 
 :root {
-  /* --primary-color: rgb(139, 216, 147);
-  --secondary-color: rgb(63, 113, 72);
-  --tertiary-color: rgb(116, 186, 115);
-  --primary-text-color: rgb(239, 151, 65);
-  --secondary-text-color: rgb(226, 213, 174); */
   --primary-font: "Kumbh Sans";
   --primary-color: #cbd5b1;
-  --secondary-color: #446724;
-  --primary-text-color: #6e8b3d;
+  --secondary-color: rgb(68, 103, 36);
+  --primary-text-color: rgb(110, 139, 61);
   --secondary-text-color: #354e0c;
   --accent-color: #854442;
 }
@@ -35,6 +30,16 @@ li {
 
 button {
   border: none;
+}
+
+#cursor-effect {
+  position: absolute;
+  transform: translate(40%, 30%);
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background-color: rgba(68, 103, 36, 0.25);
+  filter: drop-shadow(1px 1px 5px rgba(68, 103, 36, 0.5));
 }
 
 /* Styling the Header / Navigation */
@@ -82,6 +87,20 @@ li > a:hover {
 }
 
 /* Styling Home Page */
+.my-carousel {
+  padding: 10px 0;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  background-color: var(--primary-text-color);
+}
+
+.carousel-text {
+  font-size: 15px;
+  margin: 0 0 5px 0;
+  color: var(--primary-color);
+  font-family: var(--primary-font);
+}
+
 h2 {
   font-size: 18px;
   color: var(--primary-text-color);
@@ -94,7 +113,19 @@ input {
   color: var(--primary-text-color);
 }
 
-/* Styling Quiz Cards */
+.mag-btn {
+  color: var(--secondary-color);
+  position: relative;
+  left: -45px;
+  bottom: -5px;
+}
+
+.scroll {
+  overflow-y: scroll;
+  height: 85vh;
+}
+
+/* Styling Quiz Cards used on Home Page and Profile */
 h3 {
   margin-top: 15px;
   margin-left: 10px;
@@ -114,6 +145,16 @@ h3 {
   padding-top: 15px;
 }
 
+.quiz-like {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  display: inline;
+  padding: 8px 10px;
+  position: relative;
+  left: -90px;
+  top: -10px;
+}
+
 .quiz-img {
   width: 95%;
 }
@@ -130,20 +171,31 @@ h4 ~ p {
 }
 
 .view-btn {
-  margin-bottom: 10px;
   background-color: var(--primary-color);
   border-top: solid 2px var(--secondary-color);
   border-bottom: solid 2px var(--secondary-color);
   border-radius: 3px;
   font-family: var(--primary-font);
   color: var(--secondary-color);
+  filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 0.3));
+  margin-bottom: 20px;
+  padding: 5px;
 }
 
-/* Styling Login */
+.view-btn:hover {
+  background-color: var(--primary-text-color);
+  color: var(--primary-color);
+}
+
+/* Styling Login / Signup */
 .form-section {
+  margin-top: 80px;
   border-left: solid 2px var(--secondary-text-color);
   border-right: solid 2px var(--secondary-text-color);
-  filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 0.3));
+}
+
+.form-label {
+  margin-bottom: 30px;
 }
 
 label {
@@ -152,21 +204,134 @@ label {
 }
 
 .toggle-phrase {
+  margin-top: 10px;
   color: var(--secondary-text-color);
+}
+
+.toggle-link {
+  color: var(--primary-text-color);
+}
+
+.toggle-link:hover {
+  color: var(--secondary-text-color);
+}
+
+/* Styling Profile */
+.profile-name {
+  font-size: 30px;
+}
+
+.profile-img {
+  width: 100%;
+}
+
+.profile-email {
+  font-size: 20px;
+}
+
+.profile-meta {
+  font-size: 15px;
+  color: var(--secondary-text-color);
+}
+
+.sidebar {
+  border-left: solid 2px var(--secondary-color);
+  border-right: solid 2px var(--secondary-color);
+  border-radius: 30px;
+}
+
+.sidebar-title {
+  font-size: 20px;
+  font-family: var(--primary-font);
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.liked-section {
+  color: var(--secondary-text-color);
+  padding: 10px 0;
+}
+
+/* .liked-title {
+} */
+
+/* Styling View Quiz */
+.quiz-title {
+  font-size: 30px;
+  font-family: var(--primary-font);
+  margin-bottom: 10px;
+}
+
+.quiz-desc {
+  margin-bottom: 30px;
+  font-size: 18px;
 }
 
 /* For iPads and Tablets 481px - 767px */
 @media screen and (min-width: 481px) {
+  .my-carousel {
+    padding: 15px 0;
+    margin-bottom: 30px;
+  }
+
+  .carousel-text {
+    font-size: 20px;
+    margin: 0 0 10px 0;
+  }
+
+  .quiz-like {
+    left: -145px;
+  }
 }
 
 /* For Small Screens and Laptops 768px - 1024px */
 @media screen and (min-width: 768px) {
+  .mag-btn {
+    left: -60px;
+  }
+
+  .quiz-like {
+    left: -100px;
+  }
 }
 
 /* For Desktops and Large Screens 1025px - 1200px */
 @media screen and (min-width: 1025px) {
+  .my-carousel {
+    margin-bottom: 40px;
+  }
+
+  .mag-btn {
+    left: -75px;
+  }
+
+  .quiz-like {
+    left: -150px;
+  }
 }
 
 /* For Extra Large Screens and TVs 1201px and more */
 @media screen and (min-width: 1201px) {
+  .my-carousel {
+    margin-bottom: 50px;
+  }
+
+  .mag-btn {
+    left: -90px;
+  }
+
+  .quiz-like {
+    left: -200px;
+  }
+}
+
+/* For Extra Large Screens and TVs 1201px and more */
+@media screen and (min-width: 1700px) {
+  .mag-btn {
+    left: -90px;
+  }
+
+  .quiz-like {
+    left: -250px;
+  }
 }

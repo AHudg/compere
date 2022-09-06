@@ -1,0 +1,16 @@
+<div class="col-10 col-md-5 quiz-body">
+  <div class="quiz-like">{{like_count}}
+    likes
+    <i id="{{id}}" class="fa-regular fa-heart"></i></div>
+  {{#if img_url}}
+    <img class="quiz-img" src={{img_url}} />
+  {{/if}}
+  <div class="quiz-content">
+    <h4 id="quiz-title">{{title}}</h4>
+    <p>
+      {{description}}
+    </p>
+    <a href="/quiz/{{id}}" class="view-btn">More Quiz Details</a>
+    <br /><br />
+  </div>
+</div>

@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const sequelize = require("../config/connection");
-const { Quiz, User, Vote, Score } = require("../models");
+const { Quiz, User, Vote, Score, Question } = require("../models");
+const withAuth = require('../utils/auth');
 const getFourQuizzes = require("../utils/homepageQuizes");
 
 // Cannot use withAuth here because you need to be able to be routed to the
@@ -65,7 +66,7 @@ router.get("/quiz/:id", (req, res) => {
         model: Score,
         include: {
           model: User,
-          attributes: [""],
+          attributes: ["username"],
         },
       },
     ],
@@ -86,6 +87,34 @@ router.get("/quiz/:id", (req, res) => {
       res.status(500).json(err);
     });
 });
+
+router.get('/quiz/:id/active', withAuth, (req, res) => {
+  Question.findOne({
+    where: {
+      quiz_id: req.params.id
+    },
+    attributes: ['question']
+  })
+  .then(dbQuestionData => {
+    if (!dbQuestionData) {
+      res.status(404).json({ message: "No quiz found with this id." });
+      return;
+    }
+    // serializes data
+    const question = dbQuestionData.get({ plain: true });
+
+    res.render("active-quiz", { question, loggedIn: true });
+
+  })
+  .catch((err) => {
+  console.log(err);
+  res.status(500).json(err);
+  });
+})
+
+router.get('/quiz/:id/leaderboard', withAuth, (req, res) => {
+    res.render("leaderboard");
+})
 
 router.get("/login", (req, res) => {
   if (req.session.loggedIn) {

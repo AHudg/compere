@@ -1,3 +1,25 @@
-<ol>
-
-</ol>
+<section class="row justify-content-center align-items-center scroll">
+  <div class="col-12 col-md-4 col-lg-5 col-xl-4">
+    <h2 class="quiz-title">{{quiz.title}}</h2>
+    <img class="quiz-img" src={{quiz.img_url}} />
+  </div>
+  <div class="col-12 col-md-5 col-lg-5 col-xl-4 row text-center text-md-start">
+    <p class="col-6">Quiz Time:</p>
+    {{!-- <p>{{quiz.time}}</p> --}}
+    <p class="col-6">15 minutes</p>
+    <p class="col-6">Score:</p>
+    {{!-- <p>{{quiz.timed_score}}</p> --}}
+    <p class="col-6">Timer</p>
+    <p class="col-6">Correct Answers:</p>
+    {{!-- <p>Awards {{quiz.correct}} seconds</p> --}}
+    <p class="col-6">Awards 10 seconds</p>
+    <p class="col-6">Incorrect Answers:</p>
+    {{!-- <p>Deducts {{quiz.incorrect}} seconds</p> --}}
+    <p class="col-6">Deducs 20 seconds</p>
+  </div>
+  <div class="col-12 text-center">
+    <h3 class="quiz-desc">{{quiz.description}}</h3>
+    <a href="/quiz/{{{quiz.id}}}/leaderboard" class="view-btn">Leaderboard</a>
+    <a href="/quiz/{{{quiz.id}}}/active" class="view-btn">Start Quiz</a>
+  </div>
+</section>

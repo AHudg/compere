@@ -1,14 +1,37 @@
+<section class="row justify-content-center">
+  <div id="randomText" class="carousel slide col-12 col-md-8" data-bs-ride="carousel">
+    <div class="carousel-inner text-center my-carousel">
+      <div class="carousel-item active">
+        <h3 class="carousel-text">Think you know the most?</h3>
+        <h3 class="carousel-text">Test your knowledge against your friends!</h3>
+      </div>
+      <div class="carousel-item">
+        <h3 class="carousel-text">Who will come out the victor?</h3>
+        <h3 class="carousel-text">Compete for the top of the leaderboard!</h3>
+            </div>
+      <div class="carousel-item">
+        <h3 class="carousel-text">Do you desire more trivia content?</h3>
+        <h3 class="carousel-text">Make your own quiz to broaden our horizons!</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section>
-  <div class="row justify-content-center text-center quiz-section">
-    <h2 class="col-5 col-md-2 text-end">Search By Quiz:</h2>
-    <input class="col-6 col-md-5" type="searchQuery" id="searchQuery" />
+  <div class="row justify-content-center text-center">
+    <h2 class="col-5 col-md-3 text-end">Search By Quiz:</h2>
+    <input class="col-6 col-md-5 search-bar" type="searchQuery" id="searchQuery"/>
+    <i class="col-1 fa-solid fa-magnifying-glass mag-btn"></i>
   </div>
 
   <h3>Our Current Quizzes</h3>
-
-  {{#each quizzes as |quiz| }} 
-    <div class="row justify-content-around text-center quiz-section">
-      {{> populate-quiz quiz}}
-    </div>
-  {{/each}}
+  <div class="row justify-content-around text-center quiz-section">
+    {{#each quizzes}}
+      {{> pop-quiz-home}}
+    {{/each}}
+  </div>
 </section>
+
+{{#if loggedIn}}
+<script src="/javascript/like-quiz.js"></script>
+{{/if}}

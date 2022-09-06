@@ -8,7 +8,7 @@ async function editFormHandler(event) {
     const id = window.location.toString().split('/')[
       window.location.toString().split('/').length - 1
     ];
-    const response = await fetch(`/api/questions/${id}`, {
+    const response = await fetch(`/api/quiz/${id}`, {
       method: 'PUT',
       body: JSON.stringify({
         title,
@@ -25,7 +25,8 @@ async function editFormHandler(event) {
     } else {
       alert(response.statusText);
     }
-  }
-  
-  document.querySelector('.edit-quiz-form').addEventListener('submit', editFormHandler);
+}
+
+
+document.querySelector('.edit-quiz-form').addEventListener('click', editFormHandler);
   

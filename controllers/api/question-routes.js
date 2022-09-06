@@ -4,7 +4,8 @@ const { Quiz, Question } = require("../../models");
 const sequelize = require("../../config/connection");
 
 // shows all questions on the quiz
-router.get("/quiz/:id", withAuth, (req, res) => {
+// add w/ auth again
+router.get("/quiz/:id", (req, res) => {
   Question.findAll({
     where: {
       quiz_id: req.params.id,
@@ -18,14 +19,11 @@ router.get("/quiz/:id", withAuth, (req, res) => {
 });
 
 //finds question by id
-/*
-router.get("/quiz/:id", (req, res) => {
+router.get("/:id", (req, res) => {
   Question.findOne({
     where: {
       id: req.params.id,
     },
-    attributes: ["id", "quetion", "answer1", "answer2", "answer3", "answer4"],
-
     include: [
       {
         model: Quiz,
@@ -44,10 +42,9 @@ router.get("/quiz/:id", (req, res) => {
       console.log(err);
       res.status(500).json(err);
     });
-});*/
+});
 
 //creates the quiz question
-
 router.post("/quiz/:id", withAuth, (req, res) => {
   /*expects:    * fields in "()" are optional
     { question: "what does the fox say?",
