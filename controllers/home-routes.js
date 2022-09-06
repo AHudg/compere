@@ -89,11 +89,11 @@ router.get("/quiz/:id", (req, res) => {
 });
 
 router.get('/quiz/:id/active', withAuth, (req, res) => {
-  Question.findOne({
+  Quiz.findOne({
     where: {
-      quiz_id: req.params.id
+      id: req.params.id
     },
-    attributes: ['question']
+    attributes: ['title','pt_score','timer']
   })
   .then(dbQuestionData => {
     if (!dbQuestionData) {
@@ -101,9 +101,12 @@ router.get('/quiz/:id/active', withAuth, (req, res) => {
       return;
     }
     // serializes data
-    const question = dbQuestionData.get({ plain: true });
+    const pt_score = dbQuestionData.get({ plain: true });
+    // add the loggedIn arguement to the object
+    pt_score.loggedIn = true;
 
-    res.render("active-quiz", { question, loggedIn: true });
+  // our second arguement here is already an object and doesn't need the curly brackets
+  res.render("active-quiz", pt_score);
 
   })
   .catch((err) => {

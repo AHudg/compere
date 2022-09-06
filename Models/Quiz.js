@@ -50,6 +50,28 @@ Quiz.init(
       type: DataTypes.STRING,
       allowNull: true,
     },
+    pt_score: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
+      // quiz scores based off timer left is default, pt_score = true is scored based off points awared/subtracted
+    },
+    timer: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 6000
+      // default quiz is one minute long
+    },
+    add: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 5
+    },
+    deduct: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 10
+    },
     user_id: {
       type: DataTypes.INTEGER,
       allowNull: false,

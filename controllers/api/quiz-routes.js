@@ -18,25 +18,29 @@ router.get("/:id", (req, res) => {
     where: {
       id: req.params.id,
     },
-    attributes: [
-      "id",
-      "img_url",
-      "title",
-      "description",
-      // 'questions'
-      [
-        sequelize.literal(
-          "(SELECT COUNT(*) FROM vote WHERE quiz.id = vote.quiz_id)"
-        ),
-        "like_count",
-      ],
-    ],
+    // attributes: [
+    //   "id",
+    //   "img_url",
+    //   "title",
+    //   "description",
+    //   [
+    //     sequelize.literal(
+    //       "(SELECT COUNT(*) FROM vote WHERE quiz.id = vote.quiz_id)"
+    //     ),
+    //     "like_count",
+    //   ],
+    // ],
     include: [
       {
         model: User,
         attributes: ["username"],
       },
     ],
+    include: [
+      {
+        model: Question,
+      }
+    ]
   })
     .then((dbQuizData) => {
       if (!dbQuizData) {
