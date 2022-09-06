@@ -97,6 +97,20 @@ router.post("/", withAuth, (req, res) => {
     });
 });
 
+// submit a score for a quiz
+router.post("/:id/scores", withAuth, (req, res) => {
+  Score.create({
+    quiz_id: req.params.id,
+    user_id: req.session.id,
+    points: req.body.points,
+  })
+    .then((dbQuizData) => res.json(dbQuizData))
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
 // lets the user like a quiz
 router.put("/like", withAuth, (req, res) => {
   Quiz.like({ ...req.body, user_id: req.session.user_id }, { Vote, Quiz, User })

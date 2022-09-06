@@ -19,7 +19,7 @@ async function editFormHandler(event) {
     });
   
     if (response.ok) {
-      document.location.replace('/dashboard/', '/quiz/:id');
+      document.location.replace('/quiz/:id');
     } else {
       alert(response.statusText);
     }
