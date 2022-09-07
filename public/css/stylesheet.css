@@ -380,6 +380,10 @@ select {
   margin: 5px 0;
 }
 
+#user-scores {
+  margin-top: 20px;
+}
+
 /* Styling Edit Quiz */
 .edit-title {
   font-size: 25px;
