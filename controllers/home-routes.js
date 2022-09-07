@@ -73,6 +73,60 @@ router.get("/search/:name", (req, res) => {
   });
 });
 
+router.get("/quiz/:id/edit/", (req, res) => {
+  Quiz.findOne({
+    where: {
+      id: req.params.id,
+    },
+    attributes: ["id", "img_url", "title", "description", "user_id"],
+    include: [
+      {
+        model: Question,
+      },
+    ],
+  })
+    .then((dbQuizData) => {
+      console.log(dbQuizData);
+      if (!dbQuizData) {
+        res.status(404).json({ message: "No user found with this id." });
+        return;
+      }
+      const quiz = dbQuizData.get({ plain: true });
+
+      res.render("edit-quiz", {
+        quiz,
+        loggedIn: req.session.loggedIn,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+router.get("/quiz/:id/active", withAuth, (req, res) => {
+  Question.findOne({
+    where: {
+      quiz_id: req.params.id,
+    },
+    attributes: ["question"],
+  })
+    .then((dbQuestionData) => {
+      if (!dbQuestionData) {
+        res.status(404).json({ message: "No quiz found with this id." });
+        return;
+      }
+      // serializes data
+      const question = dbQuestionData.get({ plain: true });
+
+      res.render("active-quiz", { question, loggedIn: req.session.loggedIn });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+// displays quiz based on id
 router.get("/quiz/:id", (req, res) => {
   Quiz.findOne({
     where: {
@@ -83,6 +137,7 @@ router.get("/quiz/:id", (req, res) => {
       "img_url",
       "title",
       "description",
+      "user_id",
       [
         sequelize.literal(
           "(SELECT COUNT(*) FROM vote WHERE quiz.id = vote.quiz_id)"
@@ -117,10 +172,10 @@ router.get("/quiz/:id", (req, res) => {
         return;
       }
       const quiz = dbQuizData.get({ plain: true });
-      console.log(quiz);
       res.render("view-quiz", {
         quiz,
         loggedIn: req.session.loggedIn,
+        isAuthor: quiz.user_id === req.session.user_id,
       });
     })
     .catch((err) => {
@@ -129,31 +184,34 @@ router.get("/quiz/:id", (req, res) => {
     });
 });
 
-router.get("/quiz/:id/active", withAuth, (req, res) => {
-  Question.findOne({
+router.get("/quiz/:id/leaderboard", withAuth, (req, res) => {
+  Score.findAll({
+    limit: 10,
     where: {
       quiz_id: req.params.id,
     },
-    attributes: ["question"],
+    attributes: ["points"],
+    include: [
+      {
+        model: User,
+        attributes: ["username"],
+      },
+    ],
+    order: [["points", "DESC"]],
   })
-    .then((dbQuestionData) => {
-      if (!dbQuestionData) {
-        res.status(404).json({ message: "No quiz found with this id." });
+    .then((dbScoreData) => {
+      if (!dbScoreData) {
+        res.status(404).json({ message: "No leaderboard found with this quiz id." });
         return;
       }
-      // serializes data
-      const question = dbQuestionData.get({ plain: true });
-
-      res.render("active-quiz", { question, loggedIn: req.session.loggedIn });
+      const scores = dbScoreData.map((score) => score.get({ plain: true }));
+      console.log(scores)
+      res.render("leaderboard", { scores, completed: true, loggedIn: req.session.loggedIn });
     })
     .catch((err) => {
       console.log(err);
       res.status(500).json(err);
     });
-});
-
-router.get("/quiz/:id/leaderboard", withAuth, (req, res) => {
-  res.render("leaderboard", { loggedIn: req.session.loggedIn });
 });
 
 router.get("/login", (req, res) => {

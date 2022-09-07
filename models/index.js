@@ -41,11 +41,13 @@ Question.belongsTo(Quiz, {
 });
 Quiz.hasMany(Question, {
   foreignKey: "quiz_id",
+  onDelete: 'CASCADE'
 });
 
 Score.belongsTo(Quiz, {
   foreignKey: "quiz_id",
 });
+
 Quiz.hasOne(Score, {
   foreignKey: "quiz_id",
 });

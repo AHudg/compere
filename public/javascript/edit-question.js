@@ -26,17 +26,12 @@ async function editFormHandler(event) {
     },
   });
 
-  if (response.ok) {
-    document.location.replace("/quiz/:id");
-  } else {
-    alert(response.statusText);
-  }
   // var editProfile = document.getElementsByClassName('editable');
-  // editProfile.addEventListener('input', function () {
+  //  function () {
   //     console.log('An edit has been detected')
   // });
 }
-
+document.querySelector
 document
   .querySelector(".edit-question")
   .addEventListener("click", editFormHandler);

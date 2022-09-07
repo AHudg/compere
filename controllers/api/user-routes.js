@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const { User, Quiz, Vote, Score } = require("../../models");
-const withAuth = require('../../utils/auth');
+const withAuth = require("../../utils/auth");
 
 // gets all users
 router.get("/", (req, res) => {
@@ -76,6 +76,29 @@ router.get("/:id", (req, res) => {
     });
 });
 
+router.get('/:id/scores', (req, res) => {
+  Score.findAll({
+    limit: 10,
+    where: {
+      user_id: req.session.user_id,
+      quiz_id: req.params.id
+    },
+    attributes: ['points','created_at'],
+    order: [["points", "DESC"]]
+  })
+  .then((dbScoreData) => {
+    if (!dbScoreData) {
+      res.status(404).json({ message: "No quiz found with this id." });
+      return;
+    };
+    res.json(dbScoreData);
+  })
+  .catch((err) => {
+    console.log(err);
+    res.status(500).json(err);
+  })
+})
+
 // signup
 router.post("/", (req, res) => {
   // expects {username: 'Lernantino', email: 'lernantino@example.com, password: 'password1234'}
@@ -132,7 +155,7 @@ router.post("/login", (req, res) => {
 });
 
 // logout
-router.post("/logout", (req, res) => {
+router.post("/logout", withAuth, (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
       res.status(204).end();
@@ -143,23 +166,31 @@ router.post("/logout", (req, res) => {
 });
 
 // edit user
-router.put("/:id", withAuth, (req, res) => {
+router.put("/:id", (req, res) => {
   User.update(req.body, {
     individualHooks: true,
     where: {
       id: req.params.id,
     },
-  }).catch((err) => {
-    console.log(err);
-    res.status(500).json(err);
-  });
+  })
+    .then((dbUserData) => {
+      if (!dbUserData) {
+        res.status(404).json({ message: "No user found with this id" });
+        return;
+      }
+      res.json(dbUserData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 // delete user
-router.delete("/:id", withAuth, (req, res) => {
+router.delete("/", withAuth, (req, res) => {
   User.destroy({
     where: {
-      id: req.params.id,
+      id: req.session.user_id,
     },
   })
     .then((dbUserData) => {

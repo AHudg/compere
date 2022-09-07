@@ -1,20 +1,32 @@
-<section class="row justify-content-center align-items-center scroll">
-  <div class="col-12 col-md-4 col-lg-5 col-xl-4">
-    <h2 class="quiz-title">{{quiz.title}}</h2>
-    <img class="quiz-img" src={{quiz.img_url}} />
-  </div>
-  {{! -- I understand this isn't really used at this time, but we are going to show it as future development and my branch is already made with more code about it --}}
-  <div class="col-12 col-md-5 col-lg-5 col-xl-4 row text-center text-md-start">
-    <p class="col-6">Total Questions:</p>
-    {{!-- <p>{{quiz.time}}</p> --}}
-    <p class="col-6">{{quiz.total_questions}}</p>
-    <p class="col-6">Created By:</p>
-    {{!-- <p>{{quiz.timed_score}}</p> --}}
-    <p class="col-6">{{quiz.user.username}}</p>
-  </div>
-  <div class="col-12 text-center">
-    <h3 class="quiz-desc">{{quiz.description}}</h3>
-    <a href="/quiz/{{{quiz.id}}}/leaderboard" class="view-btn">Leaderboard</a>
-    <a href="/quiz/{{{quiz.id}}}/active" class="view-btn">Start Quiz</a>
+<section class="row justify-content-center">
+  <div class="col-12 col-md-10 col-xl-8 row justify-content-center text-center">
+    <h2 class="col-12 text-start quiz-title">{{quiz.title}}</h2>    
+
+    <div class="col-12 row justify-content-around text-center">
+      {{#if isAuthor}}
+        <a href="/quiz/{{{quiz.id}}}/edit" class="col-4 view-btn">Edit Quiz</a>
+        <a id="delete-btn" class="col-4 view-btn">Delete Quiz</a>
+      {{/if}}
+    </div>
+
+    <div class="col-12 col-lg-6 row justify-content-center text-center">
+      <img class="quiz-img" src={{quiz.img_url}} /> 
+    </div>
+
+    <div class="col-12 col-lg-6 row align-items-center text-start">
+      <p class="col-6 score-row text-end">Total Questions:</p>
+      <p class="col-6 score-row">{{quiz.total_questions}}</p>
+      <p class="col-6 score-row text-end">Created By:</p>
+      <p class="col-6 score-row">{{quiz.user.username}}</p>
+      <h3 class="text-center quiz-desc">{{quiz.description}}</h3>
+    </div>
+
+    <div class="col-12 row justify-content-around text-center">
+      <a href="/quiz/{{{quiz.id}}}/leaderboard" class="col-4 view-btn">Leaderboard</a>
+      <a href="/quiz/{{{quiz.id}}}/active" class="col-4 view-btn">Start Quiz</a>
+    </div>
+
   </div>
 </section>
+
+<script src="/javascript/delete-quiz.js"></script>
