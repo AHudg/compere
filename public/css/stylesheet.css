@@ -180,6 +180,7 @@ h3 {
 
 .quiz-img {
   width: 95%;
+  margin-bottom: 20px;
 }
 
 h4 {
@@ -304,7 +305,8 @@ input:-webkit-autofill:active  {
 }
 
 .quiz-desc {
-  margin-bottom: 30px;
+  margin-top: 10px;
+  margin-bottom: 20px;
   font-size: 18px;
 }
 
