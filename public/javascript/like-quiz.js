@@ -8,7 +8,6 @@ async function likeQuiz(event) {
     if (emblem.classList.contains("fa-regular")) {
       emblem.classList.remove("fa-regular");
       emblem.classList.add("fa-solid");
-      const quizId = emblem.id;
 
       const response = await fetch("/api/quizes/like", {
         method: "PUT",
@@ -64,5 +63,4 @@ async function checkLikes() {
 }
 
 checkLikes();
-document.querySelector(".quiz-section").addEventListener("click", likeQuiz);
-
+document.querySelector("#like-section").addEventListener("click", likeQuiz);
