@@ -178,11 +178,6 @@ router.get("/quiz/:id", (req, res) => {
         return;
       }
       const quiz = dbQuizData.get({ plain: true });
-<<<<<<< HEAD
-      console.log(quiz.user.id === quiz.user_id);
-
-=======
->>>>>>> feature/leaderboards
       res.render("view-quiz", {
         quiz,
         loggedIn: req.session.loggedIn,
@@ -195,8 +190,6 @@ router.get("/quiz/:id", (req, res) => {
     });
 });
 
-<<<<<<< HEAD
-=======
 router.get("/quiz/:id/active", withAuth, (req, res) => {
   Question.findOne({
     where: {
@@ -250,7 +243,6 @@ router.get("/quiz/:id/leaderboard", withAuth, (req, res) => {
     });
 });
 
->>>>>>> feature/leaderboards
 router.get("/login", (req, res) => {
   if (req.session.loggedIn) {
     res.redirect("/");
