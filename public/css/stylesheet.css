@@ -18,6 +18,7 @@
 
 p {
   margin-right: 0;
+  color: var(--secondary-text-color);
 }
 
 body {
@@ -360,8 +361,6 @@ select {
   transform: translate(-10px, 0px);
 }
 
-
-
 .leaderboard-header {
   margin-left: 20px;
   font-size: 25px;
@@ -381,6 +380,20 @@ select {
   margin: 5px 0;
 }
 
+/* Styling Edit Quiz */
+.edit-title {
+  font-size: 25px;
+}
+
+.edit-meta {
+  border-bottom: solid 1px var(--secondary-color);
+  margin-bottom: 20px;
+}
+
+.edit-section {
+  margin-bottom: 20px;
+  border-bottom: solid 1px var(--secondary-color);
+}
 
 /* For iPads and Tablets 481px - 767px */
 @media screen and (min-width: 481px) {

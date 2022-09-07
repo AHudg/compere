@@ -130,7 +130,7 @@ async function gathersInformation(event) {
                 ansTwoEl.value = '';
                 ansThreeEl.value = '';
                 ansFourel.value = '';
-                correctEl.value = '';
+                // correctEl.value = '';
             } else {
                 let previousInfo = postIndexArray.pop();
 
