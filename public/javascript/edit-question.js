@@ -3,10 +3,10 @@ async function editFormHandler(event) {
 
   const question = document.querySelector('input[name="question"]').value;
   const answer = document.querySelector('input[name="answer"]').value;
-  const option1 = document.querySelector('input[name="option1"]').value;
-  const option2 = document.querySelector('input[name="option2"]').value;
-  const option3 = document.querySelector('input[name="option3"]').value;
-  const option4 = document.querySelector('input[name="option4"]').value;
+  const answer1 = document.querySelector('input[name="option1"]').value;
+  const answer2 = document.querySelector('input[name="option2"]').value;
+  const answer3 = document.querySelector('input[name="option3"]').value;
+  const answer4 = document.querySelector('input[name="option4"]').value;
 
   const id = window.location.toString().split("/")[
     window.location.toString().split("/").length - 1
@@ -16,10 +16,10 @@ async function editFormHandler(event) {
     body: JSON.stringify({
       question,
       answer,
-      option1,
-      option2,
-      option3,
-      option4,
+      answer1,
+      answer2,
+      answer3,
+      answer4,
     }),
     headers: {
       "Content-Type": "application/json",

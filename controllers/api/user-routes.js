@@ -13,6 +13,33 @@ router.get("/", (req, res) => {
     });
 });
 
+// get users's liked quizzes
+router.get("/likes", withAuth, (req, res) => {
+  Vote.findAll({
+    where: {
+      user_id: req.session.user_id,
+    },
+    include: [
+      {
+        model: Quiz,
+        attributes: ["title"],
+      },
+    ],
+  })
+    .then((dbUserData) => {
+      if (!dbUserData) {
+        res.status(404).json({ message: "You haven't liked any quizzes" });
+        return;
+      }
+      res.json(dbUserData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+// get one user
 router.get("/:id", (req, res) => {
   User.findOne({
     where: {
@@ -48,6 +75,7 @@ router.get("/:id", (req, res) => {
     });
 });
 
+// signup
 router.post("/", (req, res) => {
   // expects {username: 'Lernantino', email: 'lernantino@example.com, password: 'password1234'}
   User.create({
@@ -70,6 +98,7 @@ router.post("/", (req, res) => {
     });
 });
 
+// login
 router.post("/login", (req, res) => {
   // expects { email: 'lernatino@gmail.com', password: 'password1234'}
   User.findOne({
@@ -101,6 +130,7 @@ router.post("/login", (req, res) => {
   });
 });
 
+// logout
 router.post("/logout", (req, res) => {
   if (req.session.loggedIn) {
     require.session.destroy(() => {
@@ -111,7 +141,22 @@ router.post("/logout", (req, res) => {
   }
 });
 
-router.delete("/:id", (req, res) => {
+// edit user
+router.put("/:id", withAuth, (req, res) => {
+  User.update(req.body, {
+    individualHooks: true,
+    where: {
+      id: req.params.id,
+    },
+  }).catch((err) => {
+    console.log(err);
+    res.status(500).json(err);
+  });
+});
+
+// delete user
+router.delete("/:id", withAuth, (req, res) => {
+
   User.destroy({
     where: {
       id: req.params.id,

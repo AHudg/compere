@@ -83,4 +83,6 @@ async function calcualteScore() {
     */
 }
 takeQuiz();
+
 answerChoicesEl.addEventListener("click", checkAnswerHandler);
+
