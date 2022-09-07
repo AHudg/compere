@@ -2,7 +2,52 @@ const quiz_id = window.location.toString().split("/")[
   window.location.toString().split("/").length - 2
 ];
 
+const putData = [];
+
 async function editFormHandler(event) {
+<<<<<<< HEAD
+    event.preventDefault();
+    
+    const editData = [];
+
+    const divLength = document.querySelector('#edit-location').children;
+
+    for (let i = 0; i < divLength.length; i++) {
+      const divEl = document.getElementById(i).children;
+
+      const extractedData = [];
+      
+      for (let j = 0; j < divEl.length; j++) {
+        if (j % 2 != 0) {
+          extractedData.push(divEl[j])
+        }
+      }   
+
+      editData.push(extractedData);
+    }
+
+    for (let i = 0; i < editData.length; i++) {
+      console.log(editData[i][0].innerText);
+      
+    }
+
+    
+
+    // const response = await fetch(`/api/quiz/${id}`, {
+    //   method: 'PUT',
+    //   body: JSON.stringify({
+    //     title,
+    //     description,
+    //     question,
+    //     answer
+    //   }),
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   }
+    // });
+
+    // window.location.replace(`/quiz/${quiz_id}/`);
+=======
   event.preventDefault();
 
   // const title = document.getElementById('title').innerText;
@@ -25,6 +70,7 @@ async function editFormHandler(event) {
   //   }
   // });
   window.location.replace(`/quiz/${quiz_id}/`);
+>>>>>>> 5470a3c50096fe2ce92f62e296a5036cb4310048
 }
 
 async function populateQuiz() {
@@ -37,9 +83,13 @@ async function populateQuiz() {
       return;
     }
 
+<<<<<<< HEAD
+    const referenceDiv = document.querySelector('#edit-location');
+=======
     console.log(quizData);
 
     const referenceDiv = document.querySelector("#edit-location");
+>>>>>>> 5470a3c50096fe2ce92f62e296a5036cb4310048
 
     for (let i = 0; i < quizData.length; i++) {
       // create a div for styling spacing and id reference
