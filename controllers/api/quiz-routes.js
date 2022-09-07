@@ -52,7 +52,6 @@ router.get("/:id", (req, res) => {
 });
 
 // finds the top 10 scores for the quiz
-
 router.get("/:id/leaderboard", (req, res) => {
   Score.findAll({
     limit: 10,
@@ -88,7 +87,12 @@ router.post("/", (req, res) => {
     title: req.body.title,
     img_url: req.body.img_url, // honestly not sure if that works / would work without
     description: req.body.description,
+<<<<<<< HEAD
     user_id: req.session.user_id, // user_id: req.session.user_id,
+=======
+    user_id: req.session.user_id,
+    img_url: req.body.img_url,
+>>>>>>> c965ee20c147e45449b43bd2d1f8367f3deb90b4
   })
     .then((dbQuizData) => res.json(dbQuizData))
     .catch((err) => {
@@ -101,7 +105,7 @@ router.post("/", (req, res) => {
 router.post("/:id/scores", withAuth, (req, res) => {
   Score.create({
     quiz_id: req.params.id,
-    user_id: req.session.id,
+    user_id: req.session.user_id,
     points: req.body.points,
   })
     .then((dbQuizData) => res.json(dbQuizData))
@@ -111,10 +115,41 @@ router.post("/:id/scores", withAuth, (req, res) => {
     });
 });
 
-// lets the user like a quiz
+// lets the user like or unlike a quiz
 router.put("/like", withAuth, (req, res) => {
-  Quiz.like({ ...req.body, user_id: req.session.user_id }, { Vote, Quiz, User })
-    .then((updatedVoteData) => res.json(updatedVoteData))
+  // checks if the user already liked the quiz
+  Vote.findOne({
+    where: {
+      quiz_id: req.body.quiz_id,
+      user_id: req.session.user_id,
+    },
+  })
+    .then((dbVoteData) => {
+      // if not, like it
+      if (!dbVoteData) {
+        Quiz.like(
+          { ...req.body, user_id: req.session.user_id },
+          { Vote, Quiz, User }
+        )
+          .then((updatedVoteData) => res.json(updatedVoteData))
+          .catch((err) => {
+            console.log(err);
+            res.status(500).json(err);
+          });
+        return;
+      }
+      // if so delete the like
+      else {
+        Vote.destroy({
+          where: {
+            id: dbVoteData.id,
+          },
+        }).catch((err) => {
+          console.log(err);
+          res.status(500).json(err);
+        });
+      }
+    })
     .catch((err) => {
       console.log(err);
       res.status(500).json(err);
