@@ -22,12 +22,21 @@ async function quizContentHandler(event) {
     const ansTwo = document.querySelector("#ans-two").value.trim();
     const ansThree = document.querySelector("#ans-three").value.trim();
     const ansFour = document.querySelector("#ans-four").value.trim();
-    const correct = document.querySelector("#correct").value.trim();
+    let correct = document.querySelector("#correct").value.trim();
 
-    // query in here using the title still saved on the page to match quiz and obtain quiz_id
     const quizId = document.querySelector('#quiz-title').value;
 
     if (question && ansOne && ansTwo && ansThree && ansFour && correct) {
+        if (correct === 'ansOne') {
+            correct = ansOne;
+        } else if (correct === 'ansTwo') {
+            correct = ansTwo;
+        } else if (correct === 'ansThree') {
+            correct = ansThree;
+        } else if (correct === 'ansFour') {
+            correct = ansFour;
+        }
+
         const response = await fetch(`/api/questions/quiz/${quizId}`, {
             method: 'post',
             body: JSON.stringify({ 
@@ -70,7 +79,17 @@ async function gathersInformation(event) {
     const ansTwo = document.querySelector("#ans-two").value.trim();
     const ansThree = document.querySelector("#ans-three").value.trim();
     const ansFour = document.querySelector("#ans-four").value.trim();
-    const correct = document.querySelector("#correct").value.trim();
+    let correct = document.querySelector("#correct").value.trim();
+
+        if (correct === 'ansOne') {
+            correct = ansOne;
+        } else if (correct === 'ansTwo') {
+            correct = ansTwo;
+        } else if (correct === 'ansThree') {
+            correct = ansThree;
+        } else if (correct === 'ansFour') {
+            correct = ansFour;
+        }
 
     if (event.target.id === 'previous') {
         contentIndex--;

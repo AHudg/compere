@@ -5,7 +5,6 @@ const quiz_id = window.location.toString().split("/")[
 const putData = [];
 
 async function editFormHandler(event) {
-<<<<<<< HEAD
     event.preventDefault();
     
     const editData = [];
@@ -28,6 +27,16 @@ async function editFormHandler(event) {
 
     for (let i = 0; i < editData.length; i++) {
       console.log(editData[i][0].innerText);
+      console.log(editData[i][1].innerText);
+      console.log(editData[i][5].innerText);
+
+      const objData = {
+        question: editData[i][0].innerText,
+        answer1: editData[i][0].innerText,
+        answer2: editData[i][0].innerText,
+        answer3: editData[i][0].innerText,
+        answer4: 
+      }
       
     }
 
@@ -47,30 +56,6 @@ async function editFormHandler(event) {
     // });
 
     // window.location.replace(`/quiz/${quiz_id}/`);
-=======
-  event.preventDefault();
-
-  // const title = document.getElementById('title').innerText;
-  // const description = document.getElementById('description').innerText;
-  // const question = document.getElementsByClassName('question').innerText;
-  // const answer = document.getElementsByClassName('answer').innerText;
-  // const id = window.location.toString().split('/')[
-  //   window.location.toString().split('/').length - 1
-  // ];
-  // const response = await fetch(`/api/quiz/${id}`, {
-  //   method: 'PUT',
-  //   body: JSON.stringify({
-  //     title,
-  //     description,
-  //     question,
-  //     answer
-  //   }),
-  //   headers: {
-  //     'Content-Type': 'application/json'
-  //   }
-  // });
-  window.location.replace(`/quiz/${quiz_id}/`);
->>>>>>> 5470a3c50096fe2ce92f62e296a5036cb4310048
 }
 
 async function populateQuiz() {
@@ -83,13 +68,7 @@ async function populateQuiz() {
       return;
     }
 
-<<<<<<< HEAD
     const referenceDiv = document.querySelector('#edit-location');
-=======
-    console.log(quizData);
-
-    const referenceDiv = document.querySelector("#edit-location");
->>>>>>> 5470a3c50096fe2ce92f62e296a5036cb4310048
 
     for (let i = 0; i < quizData.length; i++) {
       // create a div for styling spacing and id reference
@@ -175,6 +154,7 @@ async function populateQuiz() {
       // create and append the correct choice from database
       const correctEditEl = document.createElement("p");
       correctEditEl.classList.add("col-12");
+      console.log(quizData[i].answer1)
 
       if (quizData[i].correct === quizData[i].answer1) {
         correctEditEl.innerText = "Answer One";
