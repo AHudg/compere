@@ -8,7 +8,12 @@
       <h3 class="profile-email">Email: <span class="editable profile-emails" id= "profileEmail" contentEditable="true">{{userInfo.email}}</span></h3>
       <h3 class="profile-email">Created {{userInfo.quizzes.length}} Quizzes</h3>
       <h3 class="profile-email">Liked {{userInfo.liked_quizes.length}} Quizzes</h3>
-      <a href="/dashboard" class="view-btn col-4 text-center">Save</a>
     </div>
-    <script src ="/javascript/edit-profile.js"></script>
+    <div class="col-12 row justify-content-center">
+      <a href="/dashboard" class="col-10 view-btn text-center">Save</a>
+      <a id="delete-user" class="col-10 view-btn text-center">Delete User</a>
+    </div>
   </section>
+
+<script src ="/javascript/edit-profile.js"></script>
+<script src="/javascript/delete-user.js"></script>
