@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const { User, Quiz, Vote, Score } = require("../../models");
+const withAuth = require("../../utils/auth");
 
 // gets all users
 router.get("/", (req, res) => {
@@ -133,7 +134,7 @@ router.post("/login", (req, res) => {
 // logout
 router.post("/logout", (req, res) => {
   if (req.session.loggedIn) {
-    require.session.destroy(() => {
+    req.session.destroy(() => {
       res.status(204).end();
     });
   } else {
