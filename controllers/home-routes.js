@@ -104,7 +104,6 @@ router.get("/quiz/:id/edit/", (req, res) => {
       res.status(500).json(err);
     });
 });
-
 router.get("/quiz/:id/active", withAuth, (req, res) => {
   Question.findOne({
     where: {
@@ -126,10 +125,6 @@ router.get("/quiz/:id/active", withAuth, (req, res) => {
       console.log(err);
       res.status(500).json(err);
     });
-});
-
-router.get("/quiz/:id/leaderboard", withAuth, (req, res) => {
-  res.render("leaderboard", { loggedIn: req.session.loggedIn });
 });
 
 // displays quiz based on id
@@ -183,29 +178,6 @@ router.get("/quiz/:id", (req, res) => {
         loggedIn: req.session.loggedIn,
         isAuthor: quiz.user_id === req.session.user_id,
       });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-});
-
-router.get("/quiz/:id/active", withAuth, (req, res) => {
-  Question.findOne({
-    where: {
-      quiz_id: req.params.id,
-    },
-    attributes: ["question"],
-  })
-    .then((dbQuestionData) => {
-      if (!dbQuestionData) {
-        res.status(404).json({ message: "No quiz found with this id." });
-        return;
-      }
-      // serializes data
-      const question = dbQuestionData.get({ plain: true });
-
-      res.render("active-quiz", { question, loggedIn: req.session.loggedIn });
     })
     .catch((err) => {
       console.log(err);

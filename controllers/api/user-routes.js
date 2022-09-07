@@ -78,11 +78,13 @@ router.get("/:id", (req, res) => {
 
 router.get('/:id/scores', (req, res) => {
   Score.findAll({
+    limit: 10,
     where: {
       user_id: req.session.user_id,
       quiz_id: req.params.id
     },
-    attributes: ['points','created_at']
+    attributes: ['points','created_at'],
+    order: [["points", "DESC"]]
   })
   .then((dbScoreData) => {
     if (!dbScoreData) {
