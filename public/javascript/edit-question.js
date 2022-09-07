@@ -1,12 +1,12 @@
 async function editFormHandler(event) {
   event.preventDefault();
 
-  const question = document.querySelector('input[name="question"]').value;
-  const answer = document.querySelector('input[name="answer"]').value;
-  const answer1 = document.querySelector('input[name="option1"]').value;
-  const answer2 = document.querySelector('input[name="option2"]').value;
-  const answer3 = document.querySelector('input[name="option3"]').value;
-  const answer4 = document.querySelector('input[name="option4"]').value;
+  const question = document.getElementsByClassName('question').innerText;
+  const answer = document.getElementsByClassName('correct').innerText;
+  const answer1 = document.getElementsByClassName('option1').innerText;
+  const answer2 = document.getElementsByClassName('option2').innerText;
+  const answer3 = document.getElementsByClassName('option3').innerText;
+  const answer4 = document.getElementsByClassName('option4').innerText;
 
   const id = window.location.toString().split("/")[
     window.location.toString().split("/").length - 1
@@ -25,13 +25,10 @@ async function editFormHandler(event) {
       "Content-Type": "application/json",
     },
   });
-
-  // var editProfile = document.getElementsByClassName('editable');
-  //  function () {
-  //     console.log('An edit has been detected')
-  // });
 }
-document.querySelector
+
+var editQuiz = document.getElementsByClassName('editable');
+document.querySelector(".view-btn").addEventListener("click", editQuiz)
 document
   .querySelector(".edit-question")
   .addEventListener("click", editFormHandler);

@@ -1,12 +1,12 @@
 async function deleteUserHandler(event) {
     event.preventDefault();
-  
-    const response = await fetch(`/api/users`, {
+    const user_id = localStorage.getItem("user_id");
+    const response = await fetch(`/dashboard/edit/${user_id}/`, {
       method: 'DELETE'
     });
   
     if (response.ok) {
-      document.location.replace('/dashboard/');
+      // window.location.replace('/');
     } else {
       alert(response.statusText);
     }
