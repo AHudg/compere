@@ -4,9 +4,27 @@ const quiz_id = window.location.toString().split("/")[
 
 const putData = [];
 
-async function editFormHandler(event) {
-    event.preventDefault();
-    
+async function editMetaHandler(event) {
+  event.preventDefault();
+
+  const title = document.getElementById('title').innerText;
+  const description = document.getElementById('description').innerText;
+
+  const response = await fetch(`/api/quizes/${quiz_id}`, {
+    method: 'PUT',
+    body: JSON.stringify({
+      title,
+      description
+    }),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+
+  editFormHandler();
+}
+
+async function editFormHandler() {    
     const editData = [];
 
     const divLength = document.querySelector('#edit-location').children;
@@ -187,6 +205,6 @@ async function populateQuiz() {
 var editQuiz = document.getElementsByClassName("editable");
 
 document.querySelector("p").addEventListener("click", editQuiz);
-document.querySelector(".view-btn").addEventListener("click", editFormHandler);
+document.querySelector(".view-btn").addEventListener("click", editMetaHandler);
 
 populateQuiz();
