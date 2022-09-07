@@ -6,9 +6,10 @@ const sequelize = require("../../config/connection");
 // shows all questions on the quiz
 // add w/ auth again
 router.get("/", (req, res) => {
-  Question.findAll()
-  .then((dbQuestionData) => {res.json(dbQuestionData)})
-})
+  Question.findAll().then((dbQuestionData) => {
+    res.json(dbQuestionData);
+  });
+});
 
 router.get("/quiz/:id", (req, res) => {
   Question.findAll({
