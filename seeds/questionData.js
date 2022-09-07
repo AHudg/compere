@@ -17,7 +17,7 @@ const questiondata = [
     answer2: "Ginger Town",
     answer3: "Stardew Valley",
     answer4: "Frank",
-    correct: "Pelican Twon",
+    correct: "Pelican Town",
     img_url: "https://stardewvalleywiki.com/mediawiki/images/4/43/Map.png",
   },
   {

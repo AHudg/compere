@@ -31,6 +31,10 @@ async function editFormHandler(event) {
   } else {
     alert(response.statusText);
   }
+  // var editProfile = document.getElementsByClassName('editable');
+  // editProfile.addEventListener('input', function () {
+  //     console.log('An edit has been detected')
+  // });
 }
 
 document
