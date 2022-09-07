@@ -97,9 +97,10 @@ router.post("/", (req, res) => {
 });
 
 // submit a score for a quiz
-router.post("/:id/scores", withAuth, (req, res) => {
+router.post("/:id/scores", (req, res) => {
   Score.create({
     quiz_id: req.params.id,
+    // user_id: req.body.user_id,
     user_id: req.session.user_id,
     points: req.body.points,
   })

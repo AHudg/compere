@@ -178,8 +178,11 @@ router.get("/quiz/:id", (req, res) => {
         return;
       }
       const quiz = dbQuizData.get({ plain: true });
+<<<<<<< HEAD
       console.log(quiz.user.id === quiz.user_id);
 
+=======
+>>>>>>> feature/leaderboards
       res.render("view-quiz", {
         quiz,
         loggedIn: req.session.loggedIn,
@@ -192,6 +195,62 @@ router.get("/quiz/:id", (req, res) => {
     });
 });
 
+<<<<<<< HEAD
+=======
+router.get("/quiz/:id/active", withAuth, (req, res) => {
+  Question.findOne({
+    where: {
+      quiz_id: req.params.id,
+    },
+    attributes: ["question"],
+  })
+    .then((dbQuestionData) => {
+      if (!dbQuestionData) {
+        res.status(404).json({ message: "No quiz found with this id." });
+        return;
+      }
+      // serializes data
+      const question = dbQuestionData.get({ plain: true });
+
+      res.render("active-quiz", { question, loggedIn: req.session.loggedIn });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+router.get("/quiz/:id/leaderboard", withAuth, (req, res) => {
+  Score.findAll({
+    limit: 10,
+    where: {
+      quiz_id: req.params.id,
+    },
+    attributes: ["points"],
+    include: [
+      {
+        model: User,
+        attributes: ["username"],
+      },
+    ],
+    order: [["points", "DESC"]],
+  })
+    .then((dbScoreData) => {
+      if (!dbScoreData) {
+        res.status(404).json({ message: "No leaderboard found with this quiz id." });
+        return;
+      }
+      const scores = dbScoreData.map((score) => score.get({ plain: true }));
+      console.log(scores)
+      res.render("leaderboard", { scores, completed: true, loggedIn: req.session.loggedIn });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+>>>>>>> feature/leaderboards
 router.get("/login", (req, res) => {
   if (req.session.loggedIn) {
     res.redirect("/");

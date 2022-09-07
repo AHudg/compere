@@ -16,6 +16,10 @@
   margin-right: 0;
 }
 
+p {
+  margin-right: 0;
+}
+
 body {
   font-family: sans-serif;
   background-color: var(--primary-color);
@@ -292,6 +296,25 @@ label {
 
 .nav-btn {
   padding: 5px;
+}
+
+.leaderboard-header {
+  margin-left: 20px;
+  font-size: 25px;
+}
+
+.current-score {
+  font-size: 20px;
+  color: var(--secondary-color);
+}
+
+.individual {
+  background-color: rgba(110, 139, 61, 0.5);
+  border-bottom: solid 2px var(--primary-color);
+}
+
+.score-row {
+  margin: 5px 0;
 }
 
 
