@@ -117,7 +117,6 @@ router.get("/quiz/:id", (req, res) => {
         return;
       }
       const quiz = dbQuizData.get({ plain: true });
-      console.log(quiz);
       res.render("view-quiz", {
         quiz,
         loggedIn: req.session.loggedIn,
@@ -153,7 +152,33 @@ router.get("/quiz/:id/active", withAuth, (req, res) => {
 });
 
 router.get("/quiz/:id/leaderboard", withAuth, (req, res) => {
-  res.render("leaderboard", { loggedIn: req.session.loggedIn });
+  Score.findAll({
+    limit: 10,
+    where: {
+      quiz_id: req.params.id,
+    },
+    attributes: ["points"],
+    include: [
+      {
+        model: User,
+        attributes: ["username"],
+      },
+    ],
+    order: [["points", "DESC"]],
+  })
+    .then((dbScoreData) => {
+      if (!dbScoreData) {
+        res.status(404).json({ message: "No leaderboard found with this quiz id." });
+        return;
+      }
+      const scores = dbScoreData.map((score) => score.get({ plain: true }));
+      console.log(scores)
+      res.render("leaderboard", { scores, completed: true, loggedIn: req.session.loggedIn });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 router.get("/login", (req, res) => {
