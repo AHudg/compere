@@ -26,35 +26,41 @@ async function editFormHandler(event) {
     }
 
     for (let i = 0; i < editData.length; i++) {
-      console.log(editData[i][0].innerText);
-      console.log(editData[i][1].innerText);
-      console.log(editData[i][5].innerText);
+      let correct;
+
+      if (editData[i][5].innerText === 'Answer One') {
+        correct = editData[i][1].innerText;
+      } else if (editData[i][5].innerText === 'Answer Two') {
+        correct = editData[i][2].innerText;
+      } else if (editData[i][5].innerText === 'Answer Three') {
+        correct = editData[i][3].innerText;
+      } else if (editData[i][5].innerText === 'Answer Four') {
+        correct = editData[i][4].innerText;
+      }
 
       const objData = {
         question: editData[i][0].innerText,
-        answer1: editData[i][0].innerText,
-        answer2: editData[i][0].innerText,
-        answer3: editData[i][0].innerText,
-        answer4: 
+        answer1: editData[i][1].innerText,
+        answer2: editData[i][2].innerText,
+        answer3: editData[i][3].innerText,
+        answer4: editData[i][4].innerText,
+        correct: correct,
+        quiz_id: quiz_id
       }
-      
-    }
 
+      putData.push(objData);
+    };
     
-
-    // const response = await fetch(`/api/quiz/${id}`, {
-    //   method: 'PUT',
-    //   body: JSON.stringify({
-    //     title,
-    //     description,
-    //     question,
-    //     answer
-    //   }),
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   }
-    // });
-
+    for (let i = 0; i < putData.length; i++) {
+      console.log(putData[i]);
+      const response = await fetch(`/api/questions/${i}`, {
+        method: 'PUT',
+        body: JSON.stringify(putData[i]),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+    }
     // window.location.replace(`/quiz/${quiz_id}/`);
 }
 
@@ -160,7 +166,6 @@ async function populateQuiz() {
       // create and append the correct choice from database
       const correctEditEl = document.createElement("p");
       correctEditEl.classList.add("col-12");
-      console.log(quizData[i].answer1)
 
       if (quizData[i].correct === quizData[i].answer1) {
         correctEditEl.innerText = "Answer One";
