@@ -76,28 +76,28 @@ router.get("/:id", (req, res) => {
     });
 });
 
-router.get('/:id/scores', (req, res) => {
+router.get("/:id/scores", (req, res) => {
   Score.findAll({
     limit: 10,
     where: {
       user_id: req.session.user_id,
-      quiz_id: req.params.id
+      quiz_id: req.params.id,
     },
-    attributes: ['points','created_at'],
-    order: [["points", "DESC"]]
+    attributes: ["points", "created_at"],
+    order: [["points", "DESC"]],
   })
-  .then((dbScoreData) => {
-    if (!dbScoreData) {
-      res.status(404).json({ message: "No quiz found with this id." });
-      return;
-    };
-    res.json(dbScoreData);
-  })
-  .catch((err) => {
-    console.log(err);
-    res.status(500).json(err);
-  })
-})
+    .then((dbScoreData) => {
+      if (!dbScoreData) {
+        res.status(404).json({ message: "No quiz found with this id." });
+        return;
+      }
+      res.json(dbScoreData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
 
 // signup
 router.post("/", (req, res) => {
@@ -187,10 +187,10 @@ router.put("/:id", (req, res) => {
 });
 
 // delete user
-router.delete("/edit/:id", withAuth, (req, res) => {
+router.delete("/delete", withAuth, (req, res) => {
   User.destroy({
     where: {
-      id: req.params.id,
+      id: req.session.user_id,
     },
   })
     .then((dbUserData) => {
