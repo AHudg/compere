@@ -1,18 +1,14 @@
 async function editFormHandler(event) {
     event.preventDefault();
     
-    const userName = document.querySelector('input[name="profile-name"]').value;
+    const username = document.getElementById('profileName').innerText;
     // const profileImage = document.querySelector('input[name="profile-img"]').value;
-    const email = document.querySelector('input[name="profile-emails"]').value;
-
-    
-    const id = window.location.toString().split('/')[
-      window.location.toString().split('/').length - 1
-    ];
-    const response = await fetch(`/api/users/${id}`, {
+    const email = document.getElementById('profileEmail').innerText;
+    const user_id = localStorage.getItem('user_id');
+  const response = await fetch(`/dashboard/edit/${user_id}/`, {
       method: 'PUT',
       body: JSON.stringify({
-          userName,
+          username,
         //   profileImage,
           email
       }),
@@ -20,20 +16,9 @@ async function editFormHandler(event) {
         'Content-Type': 'application/json'
       }
     });
-  
-    if (response.ok) {
-      document.location.replace('/users/:id');
-    } else {
-      alert(response.statusText);
-    }
 
-    var editProfile = document.getElementsByClassName('editable');
-    editProfile.addEventListener('input', function () {
-        console.log('An edit has been detected')
-    });
+}
+var editProfile = document.getElementsByClassName('editable');  
 
-  }
-  
-
+document.querySelector('.view-btn').addEventListener('click', editProfile);
 document.querySelector('.view-btn').addEventListener('click', editFormHandler);
-  

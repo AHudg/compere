@@ -74,4 +74,26 @@ router.get("/quiz/add", (req, res) => {
   res.render("add-quiz");
 });
 
+router.put("/edit/:id", withAuth, (req, res) => {
+  console.log(req.body);
+  User.update(req.body, {
+    individualHooks: true,
+    where: {
+      id: req.params.id,
+    },
+    attributes: [ "email", "username"]
+  })
+    .then((dbUserData) => {
+      if (!dbUserData) {
+        res.status(404).json({ message: "No user found with this id" });
+        return;
+      }
+      res.json(dbUserData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
 module.exports = router;

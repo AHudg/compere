@@ -33,8 +33,6 @@ async function populateLikedQuizzes() {
   }
 }
 
-getLikedQuizzes();
-
 async function getLikedQuizzes() {
   const response = await fetch("/api/users/likes");
   if (response.ok) {
@@ -61,3 +59,5 @@ async function getLikedQuizzes() {
     });
   }
 }
+
+getLikedQuizzes();

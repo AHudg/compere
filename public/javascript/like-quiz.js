@@ -65,3 +65,4 @@ async function checkLikes() {
 
 checkLikes();
 document.querySelector(".quiz-section").addEventListener("click", likeQuiz);
+

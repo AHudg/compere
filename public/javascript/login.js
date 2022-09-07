@@ -17,6 +17,9 @@ async function loginFormHandler(event) {
     });
 
     if (response.ok) {
+      const data = await response.json();
+      localStorage.setItem("user_id", data.user.id);
+
       window.location.replace("/dashboard/");
     } else {
       alert(response.statusText);
