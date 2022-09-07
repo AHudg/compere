@@ -2,16 +2,36 @@ const quiz_id = window.location.toString().split('/')[
   window.location.toString().split('/').length - 2
 ];
 
+const putData = [];
+
 async function editFormHandler(event) {
     event.preventDefault();
     
-    // const title = document.getElementById('title').innerText;
-    // const description = document.getElementById('description').innerText;
-    // const question = document.getElementsByClassName('question').innerText;
-    // const answer = document.getElementsByClassName('answer').innerText;
-    // const id = window.location.toString().split('/')[
-    //   window.location.toString().split('/').length - 1
-    // ];
+    const editData = [];
+
+    const divLength = document.querySelector('#edit-location').children;
+
+    for (let i = 0; i < divLength.length; i++) {
+      const divEl = document.getElementById(i).children;
+
+      const extractedData = [];
+      
+      for (let j = 0; j < divEl.length; j++) {
+        if (j % 2 != 0) {
+          extractedData.push(divEl[j])
+        }
+      }   
+
+      editData.push(extractedData);
+    }
+
+    for (let i = 0; i < editData.length; i++) {
+      console.log(editData[i][0].innerText);
+      
+    }
+
+    
+
     // const response = await fetch(`/api/quiz/${id}`, {
     //   method: 'PUT',
     //   body: JSON.stringify({
@@ -24,7 +44,8 @@ async function editFormHandler(event) {
     //     'Content-Type': 'application/json'
     //   }
     // });
-    window.location.replace(`/quiz/${quiz_id}/`);
+
+    // window.location.replace(`/quiz/${quiz_id}/`);
 }
 
 async function populateQuiz() {
@@ -36,8 +57,6 @@ async function populateQuiz() {
       console.log('Error. No questions found with this quiz id.');
       return;
     }
-
-    console.log(quizData);
 
     const referenceDiv = document.querySelector('#edit-location');
 
