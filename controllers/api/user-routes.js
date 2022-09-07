@@ -76,6 +76,26 @@ router.get("/:id", (req, res) => {
     });
 });
 
+router.get('/:id/scores', (req, res) => {
+  Score.findAll({
+    where: {
+      user_id: req.params.id,
+      quiz_id: 1
+    }
+  })
+  .then((dbScoreData) => {
+    if (!dbScoreData) {
+      res.status(404).json({ message: "No quiz found with this id." });
+      return;
+    };
+    res.json(dbScoreData);
+  })
+  .catch((err) => {
+    console.log(err);
+    res.status(500).json(err);
+  })
+})
+
 // signup
 router.post("/", (req, res) => {
   // expects {username: 'Lernantino', email: 'lernantino@example.com, password: 'password1234'}
