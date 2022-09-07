@@ -11,6 +11,11 @@
   --accent-color: #854442;
 }
 
+.row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
 body {
   font-family: sans-serif;
   background-color: var(--primary-color);
@@ -132,11 +137,6 @@ h3 {
   margin-top: 15px;
   margin-left: 10px;
   color: var(--secondary-color);
-}
-
-.quiz-section {
-  margin-right: 0;
-  margin-left: 0;
 }
 
 .quiz-body {
