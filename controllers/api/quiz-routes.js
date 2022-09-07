@@ -83,7 +83,6 @@ router.get("/:id/leaderboard", (req, res) => {
 
 // creates a new quiz
 router.post("/", (req, res) => {
-  console.log(req.body, req.session.user_id)
   //expects {title: 'Ultimate Stardew Valley Quiz', question:'Who is this character', answer: 'A. Harvey' }
   Quiz.create({
     title: req.body.title,

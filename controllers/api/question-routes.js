@@ -45,7 +45,7 @@ router.get("/:id", (req, res) => {
 });
 
 //creates the quiz question
-router.post("/quiz/:id", withAuth, (req, res) => {
+router.post("/quiz/:id", (req, res) => {
   /*expects:    * fields in "()" are optional
     { question: "what does the fox say?",
      answer1: "grr",
@@ -56,10 +56,10 @@ router.post("/quiz/:id", withAuth, (req, res) => {
      ( "img_url" ): "https://media.wired.com/photos/59332718714b881cb296a076/master/pass/Screen-Shot-2013-09-06-at-11.52.17-AM.png" }*/
   Question.create({
     question: req.body.question,
-    answer1: req.body.answer1,
-    answer2: req.body.answer2,
-    answer3: req.body.answer3,
-    answer4: req.body.answer4,
+    answer1: req.body.ansOne,
+    answer2: req.body.ansTwo,
+    answer3: req.body.ansThree,
+    answer4: req.body.ansFour,
     correct: req.body.correct,
     img_url: req.body.img_url,
     quiz_id: req.params.id,
