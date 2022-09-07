@@ -53,7 +53,29 @@ router.get("/edit/", withAuth, (req, res) => {
     where: {
       id: req.session.user_id,
     },
-    attributes: ["username", "email", "password"],
+    include: [
+      {
+        model: Quiz,
+        attributes: ["id", "title", "img_url", "description"],
+      },
+      {
+        model: Quiz,
+        attributes: ["title"],
+        through: Vote,
+        as: "liked_quizes",
+      },
+      {
+        model: Score,
+
+        attributes: ["points"],
+        include: [
+          {
+            model: Quiz,
+            attributes: ["title"],
+          },
+        ],
+      },
+    ],
   })
     .then((dbQuizData) => {
       const userInfo = dbQuizData.get({ plain: true });
@@ -81,7 +103,7 @@ router.put("/edit/:id", withAuth, (req, res) => {
     where: {
       id: req.params.id,
     },
-    attributes: [ "email", "username"]
+    attributes: ["email", "username"],
   })
     .then((dbUserData) => {
       if (!dbUserData) {

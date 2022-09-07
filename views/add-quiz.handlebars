@@ -1,40 +1,60 @@
-{{! input{name='question'} & input{name='answer'} for input attributes to link correctly to the front end}}
-<section id="add-quiz-meta" class="container">
-    <h2 class="add-title">Build Your Quiz</h2>
-    <div class="row justify-content-center quiz-section">
-        <label class="col-11 text-center add-label" for="quiz-title">Quiz Title:</label>
-        <input class="col-11" style="margin-bottom: 20px;" type="text" id="quiz-title"/>
-        <img class="col-11" src="/images/placeholder.jpeg">
-        <label class="col-11 text-center add-label" for="quiz-description">Description:</label>
-        <textarea class="col-11" id="quiz-description" name="quiz-description"></textarea>
-        <button class="col-4 view-btn" id="submit-quiz-meta" type="button">Continue</button>
+<section id="add-quiz-meta">
+    <div class="row justify-content-center text-center">
+        <div class="col-12 col-md-11 col-lg-10 col-xl-7 row justify-content-center">
+            <h2 class="col-12 add-title text-start">Build Your Quiz</h2>
+
+            <div class="col-12 row justify-content-center quiz-section">
+                <div class="col-12 col-md-6 row justify-content-center">
+                    <label class="col-11 text-center add-label" for="quiz-title">Quiz Title:</label>
+                    <input class="col-11" style="margin-bottom: 20px;" type="text" id="quiz-title"/>
+                    <label class="col-11 text-center add-label" for="quiz-description">Description:</label>
+                    <textarea class="col-11" id="quiz-description" name="quiz-description"></textarea>
+                </div>
+
+                <div class="col-12 col-md-6 row justify-content-center">
+                    <img class="col-11" src="/images/placeholder.jpeg">
+                </div>
+            </div>
+
+            <button class="col-4 view-btn" style="margin: 20px;" id="submit-quiz-meta" type="button">Continue</button>
+        </div>
     </div>
 </section>
-<section id="add-quiz-content" class="container" style="display: none;">
-    <h2 class="add-title">Build Your Quiz</h2>
-    <div class="row justify-content-around">
-        <label class="col-11" for="question">Question</label>
-        <input class="col-11" style="margin-bottom: 20px;" type="text" id="question"/>
-        <label class="col-11" for="ans-one">Answer One</label>
-        <input class="col-11" style="margin-bottom: 20px;" type="text" id="ans-one"/>
-        <label class="col-11" for="ans-two">Answer Two</label>
-        <input class="col-11" style="margin-bottom: 20px;" type="text" id="ans-two"/>
-        <label class="col-11" for="ans-three">Answer Three</label>
-        <input class="col-11" style="margin-bottom: 20px;" type="text" id="ans-three"/>
-        <label class="col-11" for="ans-four">Answer Four</label>
-        <input class="col-11" style="margin-bottom: 20px;" type="text" id="ans-four"/>
-        <label class="col-11" for="ans-four">Correct Answer</label>
-        <select class="col-11" style="margin-bottom: 20px;" name="correct" id="correct">
-            <option value="ansOne">Choice One</option>
-            <option value="ansTwo">Choice Two</option>
-            <option value="ansThree">Choice Three</option>
-            <option value="ansFour">Choice Four</option>
-        </select>
-    </div>
-    <div class="row justify-content-between align-items-center text-center">
-        <span id="previous" class="col-5" style="display: none;"><i class="fa-solid fa-chevron-right flip-icon nav-btn"></i>Previous</span>
-        <span id="next" class="col-5">Next<i class="fa-solid fa-chevron-right nav-btn"></i></span>
-        <button id="save-quiz" class="col-12 view-btn" style="display: none;" type="click">Publish Quiz</button>
+
+<section id="add-quiz-content" style="display: none;">
+    <div class="row justify-content-center text-center">
+        <div class="col-12 col-md-11 col-lg-10 col-xl-7 row justify-content-center">
+            <h2 class="add-title">Build Your Quiz</h2>
+
+            <div class="row justify-content-around">
+            <label class="col-11" for="question">Question</label>
+            <input class="col-11" style="margin-bottom: 20px;" type="text" id="question"/>
+            <label class="col-11" for="ans-one">Answer One</label>
+            <input class="col-11" style="margin-bottom: 20px;" type="text" id="ans-one"/>
+            <label class="col-11" for="ans-two">Answer Two</label>
+            <input class="col-11" style="margin-bottom: 20px;" type="text" id="ans-two"/>
+            <label class="col-11" for="ans-three">Answer Three</label>
+            <input class="col-11" style="margin-bottom: 20px;" type="text" id="ans-three"/>
+            <label class="col-11" for="ans-four">Answer Four</label>
+            <input class="col-11" style="margin-bottom: 20px;" type="text" id="ans-four"/>
+            <label class="col-11" for="ans-four">Correct Answer</label>
+            <select class="col-11" style="margin-bottom: 20px;" name="correct" id="correct">
+                <option value="ansOne">Choice One</option>
+                <option value="ansTwo">Choice Two</option>
+                <option value="ansThree">Choice Three</option>
+                <option value="ansFour">Choice Four</option>
+            </select>
+            </div>
+
+            <div class="row justify-content-between align-items-center text-center">
+                <span id="previous" class="col-5" style="display: none;"><i class="fa-solid fa-chevron-right flip-icon nav-btn"></i>Previous</span>
+                <span id="next" class="col-5">Next<i class="fa-solid fa-chevron-right nav-btn"></i></span>
+            </div>
+            
+            <div class="row justify-content-center">
+                <button id="save-quiz" class="col-4 view-btn" style="display: none;" type="click">Publish Quiz</button>
+            </div>
+        </div>
     </div>
 </section>
 
