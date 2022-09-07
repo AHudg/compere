@@ -4,7 +4,6 @@ async function logout() {
     headers: { "Content-Type": "application/json" },
   });
 
-  
   if (response.ok) {
     document.location.replace("/");
   } else {
@@ -20,5 +19,6 @@ async function logout() {
 //   });
 // }
 // for the google log in/log out
+
 
 document.querySelector('#logout').addEventListener('click', logout);
