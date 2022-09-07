@@ -73,40 +73,15 @@ router.get("/search/:name", (req, res) => {
   });
 });
 
-router.get("/quiz/:id", (req, res) => {
+router.get("/quiz/:id/edit/", (req, res) => {
   Quiz.findOne({
     where: {
       id: req.params.id,
     },
-    attributes: [
-      "id",
-      "img_url",
-      "title",
-      "description",
-      [
-        sequelize.literal(
-          "(SELECT COUNT(*) FROM vote WHERE quiz.id = vote.quiz_id)"
-        ),
-        "like_count",
-      ],
-      [
-        sequelize.literal(
-          "(SELECT COUNT(*) FROM question WHERE quiz.id = question.quiz_id)"
-        ),
-        "total_questions",
-      ],
-    ],
+    attributes: ["id", "img_url", "title", "description", "user_id"],
     include: [
       {
-        model: Score,
-        include: {
-          model: User,
-          attributes: ["username"],
-        },
-      },
-      {
-        model: User,
-        attributes: ["username"],
+        model: Question,
       },
     ],
   })
@@ -118,7 +93,8 @@ router.get("/quiz/:id", (req, res) => {
       }
       const quiz = dbQuizData.get({ plain: true });
       console.log(quiz);
-      res.render("view-quiz", {
+
+      res.render("edit-quiz", {
         quiz,
         loggedIn: req.session.loggedIn,
       });
@@ -154,6 +130,66 @@ router.get("/quiz/:id/active", withAuth, (req, res) => {
 
 router.get("/quiz/:id/leaderboard", withAuth, (req, res) => {
   res.render("leaderboard", { loggedIn: req.session.loggedIn });
+});
+
+// displays quiz based on id
+router.get("/quiz/:id", (req, res) => {
+  Quiz.findOne({
+    where: {
+      id: req.params.id,
+    },
+    attributes: [
+      "id",
+      "img_url",
+      "title",
+      "description",
+      "user_id",
+      [
+        sequelize.literal(
+          "(SELECT COUNT(*) FROM vote WHERE quiz.id = vote.quiz_id)"
+        ),
+        "like_count",
+      ],
+      [
+        sequelize.literal(
+          "(SELECT COUNT(*) FROM question WHERE quiz.id = question.quiz_id)"
+        ),
+        "total_questions",
+      ],
+    ],
+    include: [
+      {
+        model: Score,
+        include: {
+          model: User,
+          attributes: ["username"],
+        },
+      },
+      {
+        model: User,
+        attributes: ["username"],
+      },
+    ],
+  })
+    .then((dbQuizData) => {
+      console.log(dbQuizData);
+      if (!dbQuizData) {
+        res.status(404).json({ message: "No user found with this id." });
+        return;
+      }
+      const quiz = dbQuizData.get({ plain: true });
+      console.log(quiz.user.id === quiz.user_id);
+
+      res.render("view-quiz", {
+        quiz,
+        loggedIn: req.session.loggedIn,
+        isAuthor: quiz.user_id === req.session.user_id,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 router.get("/login", (req, res) => {
