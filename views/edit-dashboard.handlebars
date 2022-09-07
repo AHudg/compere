@@ -6,8 +6,8 @@
     </div>
     <div class="col-12 col-md-7 col-lg-6 text-center text-md-start" >
       <h3 class="profile-email">Email: <span class="editable profile-emails" id= "profileEmail" contentEditable="true">{{userInfo.email}}</span></h3>
-      <h3 class="profile-email">Created 6 Quizzes</h3>
-      <h3 class="profile-email">Liked 203 Quizzes</h3>
+      <h3 class="profile-email">Created {{userInfo.quizzes.length}} Quizzes</h3>
+      <h3 class="profile-email">Liked {{userInfo.liked_quizes.length}} Quizzes</h3>
       <a href="/dashboard" class="view-btn">Save</a>
     </div>
     <script src ="/javascript/edit-profile.js"></script>
