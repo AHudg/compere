@@ -147,7 +147,7 @@ const questiondata = [
     answer2: "2015",
     answer3: "2016",
     answer4: "2017",
-    correct: "2016"
+    correct: "2016",
   },
   {
     quiz_id: 5,
