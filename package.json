@@ -1,0 +1,39 @@
+{
+  "name": "compere",
+  "version": "1.0.0",
+  "description": "We want to create a trivia will allow users to create their own quizzes to send to friends, family, or test random strangers. In order to start a quiz the user will have to create an account, after they have completed the quiz they will be redirected to a page to see if they are eligible to put their name on the leaderboard. They will also be able to write comments underneath about the quiz and if they liked it or didn’t like it.\r ...",
+  "main": "server.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "watch": "nodemon server.js",
+    "seed": "node seeds/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AHudg/compere.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AHudg/compere/issues"
+  },
+  "homepage": "https://github.com/AHudg/compere#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "connect-session-sequelize": "^7.1.5",
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "express-handlebars": "^6.0.6",
+    "express-session": "^1.17.3",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.21.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}

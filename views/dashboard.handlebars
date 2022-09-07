@@ -1,0 +1,29 @@
+<div class="row justify-content-around">
+  <section class="col-12 col-lg-8 row align-items-center scroll">
+    <div class="col-12 col-md-5 col-lg-6">
+      <h2 class="profile-name">{{userInfo.username}}</h2>
+      <img class="profile-img" src="/images/placeholder.jpeg" /> 
+    </div>
+    <div class="col-12 col-md-7 col-lg-6 text-center text-md-start">
+      <h3 class="profile-email">Email: {{userInfo.email}}</h3>
+      <h3 class="profile-email">Created {{userInfo.quizzes.length}} Quizzes</h3>
+      <h3 class="profile-email">Liked {{userInfo.liked_quizes.length}} Quizzes</h3>
+      <a href="/dashboard/edit/" class="view-btn">Edit Profile</a>
+    </div>
+
+    <section class="col-12 row justify-content-between align-items-end">
+        <h3 class="col-5" style="margin-top: 50px;">Your Quizzes</h3>
+        <a class="col-5 text-end view-btn" href="/dashboard/quiz/add/">Add a Quiz</a>
+        <div class="row justify-content-around text-center quiz-section">
+        {{#each userInfo.quizzes}}
+          {{> pop-user-quiz}}
+        {{/each}}
+    </section>
+  </section>
+
+  <section class="col-10 col-lg-3 text-center sidebar">
+    <h4 class="sidebar-title">Quizzes You Loved</h4>
+  </section>
+</div>
+
+<script src="/javascript/populate-likes.js"></script>

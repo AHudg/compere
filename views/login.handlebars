@@ -1,0 +1,40 @@
+<section class="row justify-content-center text-center">
+  <form
+    class="col-10 col-md-8 col-lg-5 col-xl-4 row justify-content-center form-section"
+  >
+    <h2 class="col-12 text-start form-label">Log In</h2>
+    <div class="col-12 row">
+      <label class="col-12 col-md-4" for="email-login">Email: </label>
+      <input
+        class="col-12 col-md-8"
+        style="margin-bottom: 20px;"
+        type="text"
+        id="email-login"
+      />
+    </div>
+
+    <div class="col-12 row">
+      <label class="col-12 col-md-4" for="password-login">Password: </label>
+      <input
+        class="col-12 col-md-8"
+        style="margin-bottom: 20px;"
+        type="password"
+        id="password-login"
+      />
+    </div>
+
+    <button class="col-6 col-md-4 view-btn" type="submit">Log In</button>
+  </form>
+
+  <div class="g-signin2 google-button" data-onsuccess="onSignIn"></div>
+
+  <p class="toggle-phrase">If you don't have an account. Make one
+    <a class="toggle-link" href="/signup">here.</a></p>
+</section>
+
+<script src="/javascript/login.js"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+{{! <script
+  type="text/javascript"
+  src="javascripts/livevalidation_standalone.js"
+></script> }}
