@@ -25,9 +25,10 @@ async function quizContentHandler(event) {
     const correct = document.querySelector("#correct").value.trim();
 
     // query in here using the title still saved on the page to match quiz and obtain quiz_id
+    const quizId = document.querySelector('#quiz-title').value;
+
     if (question && ansOne && ansTwo && ansThree && ansFour && correct) {
-        const response = await fetch(`/api/questions/quiz/1`, {
-        // const response = await fetch(`/api/questions/quiz/${quiz_id}`, {
+        const response = await fetch(`/api/questions/quiz/${quizId}`, {
             method: 'post',
             body: JSON.stringify({ 
                 question,
@@ -47,7 +48,7 @@ async function quizContentHandler(event) {
         };
 
         for (let i = 0; i < preIndexArray.length; i++) {
-            const response = await fetch(`/api/questions/quiz/1`, {
+            const response = await fetch(`/api/questions/quiz/${quizId}`, {
                 method: 'post',
                 body: JSON.stringify(preIndexArray[i]),
                 headers: { 'Content-Type': 'application/json'}
@@ -93,7 +94,6 @@ async function gathersInformation(event) {
                 correct: correct
             }
             postIndexArray.push(specificQuestion);
-            console.log('postIndex', postIndexArray);
         }
 
         let previousInfo = preIndexArray.pop();
@@ -122,9 +122,7 @@ async function gathersInformation(event) {
             }
 
             preIndexArray.push(specificQuestion);
-            console.log('preIndex', preIndexArray);
             contentIndex++;
-            console.log(contentIndex);
 
             if (postIndexArray.length === 0) {
                 questionEl.value = '';

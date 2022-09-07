@@ -92,7 +92,6 @@ router.get("/quiz/:id/edit/", (req, res) => {
         return;
       }
       const quiz = dbQuizData.get({ plain: true });
-      console.log(quiz);
 
       res.render("edit-quiz", {
         quiz,
