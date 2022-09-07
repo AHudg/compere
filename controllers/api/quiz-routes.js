@@ -87,12 +87,7 @@ router.post("/", (req, res) => {
     title: req.body.title,
     img_url: req.body.img_url, // honestly not sure if that works / would work without
     description: req.body.description,
-<<<<<<< HEAD
     user_id: req.session.user_id, // user_id: req.session.user_id,
-=======
-    user_id: req.session.user_id,
-    img_url: req.body.img_url,
->>>>>>> c965ee20c147e45449b43bd2d1f8367f3deb90b4
   })
     .then((dbQuizData) => res.json(dbQuizData))
     .catch((err) => {
