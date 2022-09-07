@@ -4,11 +4,13 @@ const quizdata = [
   {
     title: "Stardew Valley Quiz",
     description: "How well do you know Stardew Valley?",
+    img_url:"https://cdn.cloudflare.steamstatic.com/steam/apps/413150/capsule_616x353.jpg?t=1608624324",
     user_id: 1,
   },
   {
     title: "Javascript Quiz",
     description: "Test your knowledge of javascript principles",
+    img_url: "http://code-institute-org.github.io/Full-Stack-Web-Developer-Stream-0/assets/javascript.png",
     user_id: 1,
   },
   {

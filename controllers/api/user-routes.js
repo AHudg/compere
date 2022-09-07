@@ -187,10 +187,10 @@ router.put("/:id", (req, res) => {
 });
 
 // delete user
-router.delete("/", withAuth, (req, res) => {
+router.delete("/edit/:id", withAuth, (req, res) => {
   User.destroy({
     where: {
-      id: req.session.user_id,
+      id: req.params.id,
     },
   })
     .then((dbUserData) => {
