@@ -81,13 +81,13 @@ router.get("/:id/leaderboard", (req, res) => {
 });
 
 // creates a new quiz
-router.post("/", withAuth, (req, res) => {
+router.post("/", (req, res) => {
   //expects {title: 'Ultimate Stardew Valley Quiz', question:'Who is this character', answer: 'A. Harvey' }
   Quiz.create({
     title: req.body.title,
+    img_url: req.body.img_url, // honestly not sure if that works / would work without
     description: req.body.description,
-    user_id: req.session.user_id,
-    img_url: req.body.img_url,
+    user_id: req.session.user_id, // user_id: req.session.user_id,
   })
     .then((dbQuizData) => res.json(dbQuizData))
     .catch((err) => {
