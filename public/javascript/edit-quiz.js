@@ -60,6 +60,8 @@ async function populateQuiz() {
       const questionEditEl = document.createElement("p");
       questionEditEl.classList.add("col-12");
       questionEditEl.classList.add("editable");
+      questionEditEl.setAttribute("contenteditable", "true");
+      questionEditEl.classList.add("choice");
       questionEditEl.innerText = quizData[i].question;
       divEl.appendChild(questionEditEl);
 
@@ -73,6 +75,7 @@ async function populateQuiz() {
       // create and append the first answer from database
       const oneEditEl = document.createElement("p");
       oneEditEl.classList.add("col-12");
+      oneEditEl.setAttribute("contenteditable", "true");
       oneEditEl.innerText = quizData[i].answer1;
       divEl.appendChild(oneEditEl);
 
@@ -86,6 +89,7 @@ async function populateQuiz() {
       // create and append the second answer from database
       const twoEditEl = document.createElement("p");
       twoEditEl.classList.add("col-12");
+      twoEditEl.setAttribute("contenteditable", "true");
       twoEditEl.innerText = quizData[i].answer2;
       divEl.appendChild(twoEditEl);
 
@@ -99,6 +103,7 @@ async function populateQuiz() {
       // create and append the third answer from database
       const threeEditEl = document.createElement("p");
       threeEditEl.classList.add("col-12");
+      threeEditEl.setAttribute("contenteditable", "true");
       threeEditEl.innerText = quizData[i].answer3;
       divEl.appendChild(threeEditEl);
 
@@ -112,6 +117,7 @@ async function populateQuiz() {
       // create and append the fourth answer from database
       const fourEditEl = document.createElement("p");
       fourEditEl.classList.add("col-12");
+      fourEditEl.setAttribute("contenteditable", "true");
       fourEditEl.innerText = quizData[i].answer4;
       divEl.appendChild(fourEditEl);
 
@@ -145,7 +151,7 @@ async function populateQuiz() {
 
 var editQuiz = document.getElementsByClassName("editable");
 
-document.querySelector(".view-btn").addEventListener("click", editQuiz);
+document.querySelector("p").addEventListener("click", editQuiz);
 document.querySelector(".view-btn").addEventListener("click", editFormHandler);
 
 populateQuiz();
