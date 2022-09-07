@@ -9,16 +9,7 @@ async function logout() {
   } else {
     alert(response.statusText);
   }
-  // signOut();
+;
 }
-
-// function signOut() {
-//   var auth2 = gapi.auth2.getAuthInstance();
-//   auth2.signOut().then(function () {
-//     console.log('User signed out.');
-//   });
-// }
-// for the google log in/log out
-
 
 document.querySelector('#logout').addEventListener('click', logout);

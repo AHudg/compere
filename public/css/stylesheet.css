@@ -4,7 +4,7 @@
 
 :root {
   --primary-font: "Kumbh Sans";
-  --primary-color: #cbd5b1;
+  --primary-color: rgb(203, 213, 177);
   --secondary-color: rgb(68, 103, 36);
   --primary-text-color: rgb(110, 139, 61);
   --secondary-text-color: #354e0c;
@@ -14,6 +14,11 @@
 .row {
   margin-left: 0;
   margin-right: 0;
+}
+
+p {
+  margin-right: 0;
+  color: var(--secondary-text-color);
 }
 
 body {
@@ -81,21 +86,29 @@ h1 > a:hover {
   transform: rotate(720deg);
 }
 
+#logout {
+  color: var(--primary-text-color);
+}
+
+#logout:hover {
+  color: var(--secondary-text-color);
+  cursor: pointer;
+}
+
 li > a {
   font-size: 15px;
   color: var(--primary-text-color);
 }
 
 li > a:hover {
-  font-size: 15px;
   color: var(--secondary-text-color);
 }
 
 /* Styling Home Page */
 .my-carousel {
   padding: 10px 0;
-  margin-bottom: 15px;
-  margin-top: 15px;
+  margin-bottom: 30px;
+  margin-top: 10px;
   background-color: var(--primary-text-color);
 }
 
@@ -126,6 +139,15 @@ input {
   left: -45px;
   bottom: -5px;
 }
+
+/* gets rid of x that populates on input for internet explorer */
+input[type=search]::-ms-clear {  display: none; width : 0; height: 0; }
+input[type=search]::-ms-reveal {  display: none; width : 0; height: 0; }
+/* gets rid of x that populates on input for google chrome */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration { display: none; }
 
 .scroll {
   overflow-y: scroll;
@@ -159,6 +181,7 @@ h3 {
 
 .quiz-img {
   width: 95%;
+  margin-bottom: 20px;
 }
 
 h4 {
@@ -180,8 +203,8 @@ h4 ~ p {
   font-family: var(--primary-font);
   color: var(--secondary-color);
   filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 0.3));
-  margin-bottom: 20px;
   padding: 5px;
+  margin-top: 10px;
 }
 
 .view-btn:hover {
@@ -201,8 +224,17 @@ h4 ~ p {
 }
 
 label {
-  color: var(--secondary-text-color);
+  color: var(--primary-text-color);
   font-family: var(--primary-font);
+}
+
+/* Used to correct google chrome autofill */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+  -webkit-box-shadow: 0 0 0 30px var(--primary-color) inset !important;
+  -webkit-text-fill-color: var(--secondary-color) !important;
 }
 
 .toggle-phrase {
@@ -219,6 +251,10 @@ label {
 }
 
 /* Styling Profile */
+.profile-section {
+  margin-top: 10px;
+}
+
 .profile-name {
   font-size: 30px;
 }
@@ -228,7 +264,8 @@ label {
 }
 
 .profile-email {
-  font-size: 20px;
+  font-size: 18px;
+  margin-top: 10px;
 }
 
 .profile-meta {
@@ -236,10 +273,17 @@ label {
   color: var(--secondary-text-color);
 }
 
+.page-break {
+  border-bottom: solid 2px var(--primary-text-color);
+  margin-bottom: 20px;
+}
+
 .sidebar {
   border-left: solid 2px var(--secondary-color);
   border-right: solid 2px var(--secondary-color);
   border-radius: 30px;
+  margin-top: 10px;
+  margin-bottom: 30px;
 }
 
 .sidebar-title {
@@ -262,11 +306,17 @@ label {
 }
 
 .quiz-desc {
-  margin-bottom: 30px;
+  margin-top: 10px;
+  margin-bottom: 20px;
   font-size: 18px;
 }
 
 /* Styling Add Quiz */
+.quiz-section {
+  border-left: solid 2px var(--secondary-color);
+  border-right: solid 2px var(--secondary-color);
+}
+
 .add-title {
   font-size: 20px;
   margin: 20px auto 10px 10px;
@@ -284,16 +334,70 @@ label {
   border-top: solid 2px var(--secondary-color);
   border-bottom: solid 2px var(--secondary-color);
   background-color: var(--primary-color);
+  color: var(--primary-text-color);
+  margin-bottom: 30px;
+}
+
+select {
+  background-color: var(--primary-color);
+  color: var(--secondary-text-color);
 }
 
 .flip-icon {
   transform: rotate(180deg);
 }
 
-.nav-btn {
+.nav-btn, #next, #previous {
   padding: 5px;
+  color: var(--primary-text-color);
+  transition: .5s;
 }
 
+#next:hover {
+  transform: translate(10px, 0px);
+}
+
+#previous:hover {
+  transform: translate(-10px, 0px);
+}
+
+.leaderboard-header {
+  margin-left: 20px;
+  font-size: 25px;
+}
+
+.current-score {
+  font-size: 20px;
+  color: var(--secondary-color);
+}
+
+.individual {
+  background-color: rgba(110, 139, 61, 0.5);
+  border-bottom: solid 2px var(--primary-color);
+}
+
+.score-row {
+  margin: 5px 0;
+}
+
+#user-scores {
+  margin-top: 20px;
+}
+
+/* Styling Edit Quiz */
+.edit-title {
+  font-size: 25px;
+}
+
+.edit-meta {
+  border-bottom: solid 1px var(--secondary-color);
+  margin-bottom: 20px;
+}
+
+.edit-section {
+  margin-bottom: 20px;
+  border-bottom: solid 1px var(--secondary-color);
+}
 
 /* For iPads and Tablets 481px - 767px */
 @media screen and (min-width: 481px) {

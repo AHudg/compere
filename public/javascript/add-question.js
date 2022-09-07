@@ -22,12 +22,22 @@ async function quizContentHandler(event) {
     const ansTwo = document.querySelector("#ans-two").value.trim();
     const ansThree = document.querySelector("#ans-three").value.trim();
     const ansFour = document.querySelector("#ans-four").value.trim();
-    const correct = document.querySelector("#correct").value.trim();
+    let correct = document.querySelector("#correct").value.trim();
 
-    // query in here using the title still saved on the page to match quiz and obtain quiz_id
+    const quizId = document.querySelector('#quiz-title').value;
+
     if (question && ansOne && ansTwo && ansThree && ansFour && correct) {
-        const response = await fetch(`/api/questions/quiz/1`, {
-        // const response = await fetch(`/api/questions/quiz/${quiz_id}`, {
+        if (correct === 'ansOne') {
+            correct = ansOne;
+        } else if (correct === 'ansTwo') {
+            correct = ansTwo;
+        } else if (correct === 'ansThree') {
+            correct = ansThree;
+        } else if (correct === 'ansFour') {
+            correct = ansFour;
+        }
+
+        const response = await fetch(`/api/questions/quiz/${quizId}`, {
             method: 'post',
             body: JSON.stringify({ 
                 question,
@@ -47,7 +57,7 @@ async function quizContentHandler(event) {
         };
 
         for (let i = 0; i < preIndexArray.length; i++) {
-            const response = await fetch(`/api/questions/quiz/1`, {
+            const response = await fetch(`/api/questions/quiz/${quizId}`, {
                 method: 'post',
                 body: JSON.stringify(preIndexArray[i]),
                 headers: { 'Content-Type': 'application/json'}
@@ -69,7 +79,17 @@ async function gathersInformation(event) {
     const ansTwo = document.querySelector("#ans-two").value.trim();
     const ansThree = document.querySelector("#ans-three").value.trim();
     const ansFour = document.querySelector("#ans-four").value.trim();
-    const correct = document.querySelector("#correct").value.trim();
+    let correct = document.querySelector("#correct").value.trim();
+
+        if (correct === 'ansOne') {
+            correct = ansOne;
+        } else if (correct === 'ansTwo') {
+            correct = ansTwo;
+        } else if (correct === 'ansThree') {
+            correct = ansThree;
+        } else if (correct === 'ansFour') {
+            correct = ansFour;
+        }
 
     if (event.target.id === 'previous') {
         contentIndex--;
@@ -93,7 +113,6 @@ async function gathersInformation(event) {
                 correct: correct
             }
             postIndexArray.push(specificQuestion);
-            console.log('postIndex', postIndexArray);
         }
 
         let previousInfo = preIndexArray.pop();
@@ -122,9 +141,7 @@ async function gathersInformation(event) {
             }
 
             preIndexArray.push(specificQuestion);
-            console.log('preIndex', preIndexArray);
             contentIndex++;
-            console.log(contentIndex);
 
             if (postIndexArray.length === 0) {
                 questionEl.value = '';
@@ -132,7 +149,7 @@ async function gathersInformation(event) {
                 ansTwoEl.value = '';
                 ansThreeEl.value = '';
                 ansFourel.value = '';
-                correctEl.value = '';
+                // correctEl.value = '';
             } else {
                 let previousInfo = postIndexArray.pop();
 
