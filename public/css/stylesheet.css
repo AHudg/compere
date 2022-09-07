@@ -16,6 +16,10 @@
   margin-right: 0;
 }
 
+p {
+  margin-right: 0;
+}
+
 body {
   font-family: sans-serif;
   background-color: var(--primary-color);

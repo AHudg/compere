@@ -7,14 +7,24 @@
 
     <div class="row justify-content-center text-center">
         <h3>Top Leaderboards</h3>
+        <li  class="col-8 row individual">
+            <p class="col-8 score-row">Username</p>
+            <p class="col-4 score-row">Scores</p>
+        </li>
         {{#each scores}}
             {{> pop-leaderboard}}
         {{/each}}
     </div>
 
     {{#if loggedIn}}
-    <div id="user-scores">
+    <div id="user-scores" class="row justify-content-center text-center">
         <h3>Your Scores</h3>
+        <li class="col-8 row individual">
+            <p class="col-6 score-row">Scores</p>
+            <p class="col-6 score-row">Date</p>
+        </li>
     </div>
     {{/if}}
 </section>
+
+<script src="/javascript/leaderboards.js"></script>
