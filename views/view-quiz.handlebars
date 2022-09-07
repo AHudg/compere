@@ -5,7 +5,7 @@
     <div class="col-12 row justify-content-around text-center">
       {{#if isAuthor}}
         <a href="/quiz/{{{quiz.id}}}/edit" class="col-4 view-btn">Edit Quiz</a>
-        <a href="/quiz/{{{quiz.id}}}/edit" class="col-4 view-btn">Delete Quiz</a>
+        <a id="delete-btn" class="col-4 view-btn">Delete Quiz</a>
       {{/if}}
     </div>
 
@@ -28,3 +28,5 @@
 
   </div>
 </section>
+
+<script src="/javascript/delete-quiz.js"></script>
