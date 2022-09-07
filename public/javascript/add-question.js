@@ -58,8 +58,8 @@ async function quizContentHandler(event) {
             } else {
                 alert(response.statusText);
             };
-            
         };
+        window.location.replace('/dashboard');
     };
 };
 
@@ -107,7 +107,7 @@ async function gathersInformation(event) {
 
     } else if (event.target.id === 'next') {
         // display none and inline for the submit button
-            // document.querySelector('#save-quiz').setAttribute('style','display: inline;')
+        document.querySelector('#save-quiz').setAttribute('style','display: inline;')
         
         document.querySelector('#previous').setAttribute('style','display: inline;');
 
