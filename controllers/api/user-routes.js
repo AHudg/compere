@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const { User, Quiz, Vote, Score } = require("../../models");
-const withAuth = require('../../utils/auth');
+const withAuth = require("../../utils/auth");
 
 // gets all users
 router.get("/", (req, res) => {
@@ -132,7 +132,7 @@ router.post("/login", (req, res) => {
 });
 
 // logout
-router.post("/logout", (req, res) => {
+router.post("/logout", withAuth, (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
       res.status(204).end();
@@ -143,16 +143,24 @@ router.post("/logout", (req, res) => {
 });
 
 // edit user
-router.put("/:id", withAuth, (req, res) => {
+router.put("/:id", (req, res) => {
   User.update(req.body, {
     individualHooks: true,
     where: {
       id: req.params.id,
     },
-  }).catch((err) => {
-    console.log(err);
-    res.status(500).json(err);
-  });
+  })
+    .then((dbUserData) => {
+      if (!dbUserData) {
+        res.status(404).json({ message: "No user found with this id" });
+        return;
+      }
+      res.json(dbUserData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 // delete user

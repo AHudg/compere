@@ -26,11 +26,6 @@ async function editFormHandler(event) {
     },
   });
 
-  if (response.ok) {
-    document.location.replace("/quiz/:id");
-  } else {
-    alert(response.statusText);
-  }
   // var editProfile = document.getElementsByClassName('editable');
   //  function () {
   //     console.log('An edit has been detected')
