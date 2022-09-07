@@ -100,7 +100,7 @@ const questiondata = [
     answer1: "Vageta Skin",
     answer2: "Ariana Grande Skin",
     answer3: "Aerial Assault Trooper Skin",
-    answer5: "Rick Sanchez Skin",
+    answer4: "Rick Sanchez Skin",
     correct: "Aerial Assault Trooper Skin"
   },
   {
@@ -147,7 +147,7 @@ const questiondata = [
     answer2: "2015",
     answer3: "2016",
     answer4: "2017",
-    correct: "2016"
+    correct: "2016",
   },
   {
     quiz_id: 5,
@@ -318,7 +318,7 @@ const questiondata = [
     answer1: "Twitch",
     answer2: "Twitter",
     answer3: "Snapchat",
-    anwer4: "Pintrest",
+    answer4: "Pintrest",
     correct: "Pintrest",
     img_url: "https://cdn-icons-png.flaticon.com/512/174/174863.png"
   },
@@ -348,7 +348,8 @@ const questiondata = [
     answer1: "40 meters",
     answer2: "45 meteres",
     answer3: "50 meters",
-    answer4: "55 meters"
+    answer4: "55 meters",
+    correct: "50 meters",
   },
   {
     quiz_id: 10,
