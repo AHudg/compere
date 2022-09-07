@@ -15,5 +15,8 @@
     <h3 class="quiz-desc">{{quiz.description}}</h3>
     <a href="/quiz/{{{quiz.id}}}/leaderboard" class="view-btn">Leaderboard</a>
     <a href="/quiz/{{{quiz.id}}}/active" class="view-btn">Start Quiz</a>
+    {{#if isAuthor}}
+      <a href="/quiz/{{{quiz.id}}}/edit" class="view-btn">Edit Quiz</a>
+    {{/if}}
   </div>
 </section>

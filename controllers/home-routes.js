@@ -83,6 +83,7 @@ router.get("/quiz/:id", (req, res) => {
       "img_url",
       "title",
       "description",
+      "user_id",
       [
         sequelize.literal(
           "(SELECT COUNT(*) FROM vote WHERE quiz.id = vote.quiz_id)"
@@ -117,10 +118,12 @@ router.get("/quiz/:id", (req, res) => {
         return;
       }
       const quiz = dbQuizData.get({ plain: true });
-      console.log(quiz);
+      console.log(quiz.user.id === quiz.user_id);
+
       res.render("view-quiz", {
         quiz,
         loggedIn: req.session.loggedIn,
+        isAuthor: quiz.user_id === req.session.user_id,
       });
     })
     .catch((err) => {
