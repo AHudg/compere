@@ -349,7 +349,7 @@ const questiondata = [
     answer2: "45 meteres",
     answer3: "50 meters",
     answer4: "55 meters",
-    correct: "50 meters",
+    correct: "50 meters"
   },
   {
     quiz_id: 10,

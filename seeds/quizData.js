@@ -49,7 +49,7 @@ const quizdata = [
       "Are you a master chef? Do you think you have what it takes to tell the difference between alfredo and ramen? Try this quiz and test your cooking knowledge!",
     img_url:
       "https://images.squarespace-cdn.com/content/v1/53b839afe4b07ea978436183/1608506169128-S6KYNEV61LEP5MS1UIH4/traditional-food-around-the-world-Travlinmad.jpg",
-    user_id: 2,
+    user_id: 3,
   },
   {
     title: "The Ultimate Disney Trivia Quiz!",
@@ -57,7 +57,7 @@ const quizdata = [
       "Try this quiz and see if you know everything Disney!",
     img_url:
       "https://media.disneylandparis.com/d4th/en-usd/images/n037009_2029mar16_world_30-anniversary-fireworks-castle_16-9_tcm1861-233244.jpg",
-    user_id: 2,
+    user_id: 3,
   },
   {
     title: "Name That Social Media!",
