@@ -5,50 +5,45 @@ const quiz_id = window.location.toString().split("/")[
 const putData = [];
 
 async function editFormHandler(event) {
-<<<<<<< HEAD
-    event.preventDefault();
-    
-    const editData = [];
-
-    const divLength = document.querySelector('#edit-location').children;
-
-    for (let i = 0; i < divLength.length; i++) {
-      const divEl = document.getElementById(i).children;
-
-      const extractedData = [];
-      
-      for (let j = 0; j < divEl.length; j++) {
-        if (j % 2 != 0) {
-          extractedData.push(divEl[j])
-        }
-      }   
-
-      editData.push(extractedData);
-    }
-
-    for (let i = 0; i < editData.length; i++) {
-      console.log(editData[i][0].innerText);
-      
-    }
-
-    
-
-    // const response = await fetch(`/api/quiz/${id}`, {
-    //   method: 'PUT',
-    //   body: JSON.stringify({
-    //     title,
-    //     description,
-    //     question,
-    //     answer
-    //   }),
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   }
-    // });
-
-    // window.location.replace(`/quiz/${quiz_id}/`);
-=======
   event.preventDefault();
+
+  const editData = [];
+
+  const divLength = document.querySelector("#edit-location").children;
+
+  for (let i = 0; i < divLength.length; i++) {
+    const divEl = document.getElementById(i).children;
+
+    const extractedData = [];
+
+    for (let j = 0; j < divEl.length; j++) {
+      if (j % 2 != 0) {
+        extractedData.push(divEl[j]);
+      }
+    }
+
+    editData.push(extractedData);
+  }
+
+  for (let i = 0; i < editData.length; i++) {
+    console.log(editData[i][0].innerText);
+  }
+
+  // const response = await fetch(`/api/quiz/${id}`, {
+  //   method: 'PUT',
+  //   body: JSON.stringify({
+  //     title,
+  //     description,
+  //     question,
+  //     answer
+  //   }),
+  //   headers: {
+  //     'Content-Type': 'application/json'
+  //   }
+  // });
+
+  // window.location.replace(`/quiz/${quiz_id}/`);
+  /*event.preventDefault();
 
   // const title = document.getElementById('title').innerText;
   // const description = document.getElementById('description').innerText;
@@ -69,8 +64,7 @@ async function editFormHandler(event) {
   //     'Content-Type': 'application/json'
   //   }
   // });
-  window.location.replace(`/quiz/${quiz_id}/`);
->>>>>>> 5470a3c50096fe2ce92f62e296a5036cb4310048
+  window.location.replace(`/quiz/${quiz_id}/`); */
 }
 
 async function populateQuiz() {
@@ -83,13 +77,9 @@ async function populateQuiz() {
       return;
     }
 
-<<<<<<< HEAD
-    const referenceDiv = document.querySelector('#edit-location');
-=======
     console.log(quizData);
 
     const referenceDiv = document.querySelector("#edit-location");
->>>>>>> 5470a3c50096fe2ce92f62e296a5036cb4310048
 
     for (let i = 0; i < quizData.length; i++) {
       // create a div for styling spacing and id reference
@@ -178,8 +168,17 @@ async function populateQuiz() {
       correctLabelEl.innerText = "Correct Answer:";
       divEl.appendChild(correctLabelEl);
 
+      /*
+      <select class="col-11" style="margin-bottom: 20px;" name="correct" id="correct">
+        <option value="ansOne">Choice One</option>
+        <option value="ansTwo">Choice Two</option>
+        <option value="ansThree">Choice Three</option>
+        <option value="ansFour">Choice Four</option>
+      </select>
+      */
+
       // create and append the correct choice from database
-      const correctEditEl = document.createElement("p");
+      const correctEditEl = document.createElement("select");
       correctEditEl.classList.add("col-12");
 
       if (quizData[i].correct === quizData[i].answer1) {
