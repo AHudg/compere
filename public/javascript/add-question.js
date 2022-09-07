@@ -41,11 +41,26 @@ async function quizContentHandler(event) {
         });
 
         if (response.ok) {
-            window.location.replace('/dashboard');
+    
         } else {
             alert(response.statusText);
         };
-    }
+
+        for (let i = 0; i < preIndexArray.length; i++) {
+            const response = await fetch(`/api/questions/quiz/1`, {
+                method: 'post',
+                body: JSON.stringify(preIndexArray[i]),
+                headers: { 'Content-Type': 'application/json'}
+            });
+
+            if (response.ok) {
+                window.location.replace('/dashboard');
+            } else {
+                alert(response.statusText);
+            };
+            
+        };
+    };
 };
 
 async function gathersInformation(event) {
