@@ -16,8 +16,7 @@ async function editFormHandler(event) {
       "Content-Type": "application/json",
     },
   });
-  console.log(username, email);
-  //window.location.replace(`/dashboard/`);
+  window.location.replace(`/dashboard/`);
 }
 var editProfile = document.getElementsByClassName("editable");
 
