@@ -5,7 +5,7 @@ async function editFormHandler(event) {
   // const profileImage = document.querySelector('input[name="profile-img"]').value;
   const email = document.getElementById("profileEmail").innerText;
   const user_id = localStorage.getItem("user_id");
-  const response = await fetch(`/dashboard/edit/${user_id}/`, {
+  const response = await fetch(`/api/users/${user_id}/`, {
     method: "PUT",
     body: JSON.stringify({
       username,
@@ -16,7 +16,8 @@ async function editFormHandler(event) {
       "Content-Type": "application/json",
     },
   });
-  window.location.replace(`/dashboard/`);
+  console.log(username, email);
+  //window.location.replace(`/dashboard/`);
 }
 var editProfile = document.getElementsByClassName("editable");
 
