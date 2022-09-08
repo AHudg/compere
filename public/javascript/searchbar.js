@@ -10,3 +10,8 @@ function searchFor(event) {
 }
 
 magnifyingGlassEl.addEventListener("click", searchFor);
+searchbarEl.addEventListener("keypress", function (e) {
+  if (e.key === "Enter") {
+    searchFor(e);
+  }
+});
