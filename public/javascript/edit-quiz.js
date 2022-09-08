@@ -9,7 +9,7 @@ async function editMetaHandler(event) {
 
   const title = document.getElementById("title").innerText;
   const description = document.getElementById("description").innerText;
-
+  // comment
   const response = await fetch(`/api/quizes/${quiz_id}`, {
     method: "PUT",
     body: JSON.stringify({
