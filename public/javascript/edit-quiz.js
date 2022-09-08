@@ -9,7 +9,7 @@ async function editMetaHandler(event) {
 
   const title = document.getElementById("title").innerText;
   const description = document.getElementById("description").innerText;
-
+  // comment
   const response = await fetch(`/api/quizes/${quiz_id}`, {
     method: "PUT",
     body: JSON.stringify({
@@ -26,7 +26,7 @@ async function editMetaHandler(event) {
 
 async function editFormHandler() {
   var updateStart;
-  var questionResp = await fetch(`/api/questions/quiz/4`);
+  var questionResp = await fetch(`/api/questions/quiz/${quiz_id}`);
   if (questionResp.ok) {
     const questionjson = await questionResp.json();
     updateStart = questionjson[0].id;
