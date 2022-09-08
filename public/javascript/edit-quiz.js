@@ -25,6 +25,13 @@ async function editMetaHandler(event) {
 }
 
 async function editFormHandler() {
+  var updateStart;
+  var questionResp = await fetch(`/api/questions/quiz/4`);
+  if (questionResp.ok) {
+    const questionjson = await questionResp.json();
+    updateStart = questionjson[0].id;
+  }
+
   const editData = [];
 
   const divLength = document.querySelector("#edit-location").children;
@@ -45,14 +52,14 @@ async function editFormHandler() {
 
   for (let i = 0; i < editData.length; i++) {
     let correct;
-
-    if (editData[i][5].innerText === "Answer One") {
+    console.log(editData[i]);
+    if (editData[i][5].value === "Answer One") {
       correct = editData[i][1].innerText;
-    } else if (editData[i][5].innerText === "Answer Two") {
+    } else if (editData[i][5].value === "Answer Two") {
       correct = editData[i][2].innerText;
-    } else if (editData[i][5].innerText === "Answer Three") {
+    } else if (editData[i][5].value === "Answer Three") {
       correct = editData[i][3].innerText;
-    } else if (editData[i][5].innerText === "Answer Four") {
+    } else if (editData[i][5].value === "Answer Four") {
       correct = editData[i][4].innerText;
     }
 
@@ -69,17 +76,21 @@ async function editFormHandler() {
     putData.push(objData);
   }
 
-  for (let i = 0; i < putData.length; i++) {
-    console.log(putData[i]);
-    const response = await fetch(`/api/questions/${i}`, {
+  while (putData.length > 0) {
+    const obj = putData.pop();
+    console.log(obj);
+    const response = await fetch(`/api/questions/${updateStart}`, {
       method: "PUT",
-      body: JSON.stringify(putData[i]),
+      body: JSON.stringify(obj),
       headers: {
         "Content-Type": "application/json",
       },
     });
+    updateStart++;
   }
-  // window.location.replace(`/quiz/${quiz_id}/`);
+
+  putData;
+  window.location.replace(`/quiz/${quiz_id}/`);
 }
 
 async function populateQuiz() {
@@ -181,30 +192,23 @@ async function populateQuiz() {
       correctLabelEl.innerText = "Correct Answer:";
       divEl.appendChild(correctLabelEl);
 
-      /*
-      <select class="col-11" style="margin-bottom: 20px;" name="correct" id="correct">
-        <option value="ansOne">Choice One</option>
-        <option value="ansTwo">Choice Two</option>
-        <option value="ansThree">Choice Three</option>
-        <option value="ansFour">Choice Four</option>
-      </select>
-      */
-
       // create and append the correct choice from database
-      const correctEditEl = document.createElement("select");
-      correctEditEl.classList.add("col-12");
 
-      if (quizData[i].correct === quizData[i].answer1) {
-        correctEditEl.innerText = "Answer One";
-      } else if (quizData[i].correct === quizData[i].answer2) {
-        correctEditEl.innerText = "Answer Two";
-      } else if (quizData[i].correct == quizData[i].answer3) {
-        correctEditEl.innerText = "Answer Three";
-      } else if (quizData[i].correct === quizData[i].answer4) {
-        correctEditEl.innerText = "Answer Four";
+      //Create array of options to be added
+      var choices = ["Answer One", "Answer Two", "Answer Three", "Answer Four"];
+
+      //Create and append select list
+      var CorrectList = document.createElement("select");
+      CorrectList.id = "mySelect";
+      divEl.appendChild(CorrectList);
+
+      //Create and append the options
+      for (var j = 0; j < choices.length; j++) {
+        var option = document.createElement("option");
+        option.value = choices[j];
+        option.text = choices[j];
+        CorrectList.appendChild(option);
       }
-
-      divEl.appendChild(correctEditEl);
     }
   } catch (error) {
     // console.log(error.response.body)
